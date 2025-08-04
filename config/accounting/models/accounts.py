@@ -71,7 +71,7 @@ class AccountCategory(models.Model):
     """
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=100, verbose_name="Category Name")
-    code = models.CharField(max_length=10, verbose_name="Category Code")
+    code = models.CharField(max_length=100, verbose_name="Category Code")
     account_type = models.ForeignKey(AccountType, on_delete=models.CASCADE, related_name='categories', verbose_name="Account Type")
     description = models.TextField(blank=True, verbose_name="Description")
     parent_category = models.ForeignKey('self', on_delete=models.CASCADE, null=True, blank=True, related_name='subcategories', verbose_name="Parent Category")
@@ -196,52 +196,57 @@ class Account(TimeStampedModel, SoftDeleteModel):
     def get_balance(self, as_of_date=None):
         """
         Get the account balance as of a specific date.
-        
+
         Args:
             as_of_date: Date to calculate balance for (defaults to current date)
-            
+
         Returns:
             Decimal representing the account balance
         """
-        from .transactions import JournalItem
-        
-        if as_of_date is None:
-            return self.current_balance
-        
-        # Calculate balance from journal items up to the specified date
-        items = JournalItem.objects.filter(
-            account=self,
-            journal_entry__transaction_date__lte=as_of_date,
-            journal_entry__is_posted=True
-        )
-        
         balance = self.opening_balance
+        from .transactions import JournalItem
+
+        # The filter query should apply to all cases
+        if as_of_date:
+            items = JournalItem.objects.filter(
+                account=self,
+                journal_entry__transaction_date__lte=as_of_date,
+                journal_entry__transaction__is_posted=True
+            )
+        else:
+            items = JournalItem.objects.filter(
+                account=self,
+                journal_entry__transaction__is_posted=True
+            )
+
         for item in items:
             if item.debit_amount > 0:
                 balance += item.debit_amount
             else:
                 balance -= item.credit_amount
-        
+
         return balance
     
     def update_balance(self):
         """Update the current balance based on posted journal items."""
+        balance = self.opening_balance
         from .transactions import JournalItem
         
         # Calculate current balance from all posted journal items
         items = JournalItem.objects.filter(
             account=self,
-            journal_entry__is_posted=True
+            journal_entry__transaction__is_posted=True
         )
         
-        balance = self.opening_balance
+        converted_balance : Decimal = Decimal(str(balance))
         for item in items:
+            
             if item.debit_amount > 0:
-                balance += item.debit_amount
+                converted_balance += Decimal(str(item.debit_amount))
             else:
-                balance -= item.credit_amount
+                converted_balance -= Decimal(str(item.credit_amount))
         
-        self.current_balance = balance
+        self.current_balance = converted_balance
         self.save(update_fields=['current_balance'])
     
     def get_transaction_history(self, start_date=None, end_date=None):

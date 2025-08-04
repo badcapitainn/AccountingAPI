@@ -163,7 +163,7 @@ class AccountModelTest(TestCase):
         self.asset_type = AccountType.objects.create(
             name="Assets",
             code="ASSET",
-            normal_balance="ASSET"
+            normal_balance="DEBIT"
         )
         self.current_assets = AccountCategory.objects.create(
             name="Current Assets",
@@ -221,35 +221,65 @@ class AccountModelTest(TestCase):
         balance = self.cash_account.get_balance()
         self.assertEqual(balance, Decimal('10000.00'))
 
+    # In tests/test_models.py, within the AccountModelTest class
     def test_update_balance_method(self):
         """Test updating account balance."""
-        # Create a transaction to affect balance
+
+        # You need an account for the credit side of the transaction
+        liability_type = AccountType.objects.create(name="Liabilities", code="LIABILITY", normal_balance="CREDIT")
+        liability_category = AccountCategory.objects.create(name="Current Liabilities", code="CUR_LIAB", account_type=liability_type)
+        liability_account = Account.objects.create(
+            account_number="2000",
+            name="Accounts Payable",
+            account_type=liability_type,
+            category=liability_category,
+            balance_type="CREDIT",
+            opening_balance=Decimal('0.00')
+        )
+
+        # Create a balanced transaction
         transaction_type = TransactionType.objects.create(
             name="Cash Transaction",
             code="CASH"
         )
+        user = User.objects.create_user(username='test_poster')
         transaction = Transaction.objects.create(
             description="Test transaction",
             transaction_date=date.today(),
             transaction_type=transaction_type,
-            amount=1000.00
+            amount=Decimal('1000.00')
         )
         journal_entry = JournalEntry.objects.create(
             transaction=transaction,
             description="Cash deposit",
-            amount=1000.00
+            amount=Decimal('1000.00')
         )
+
+        # Create the debit JournalItem
         JournalItem.objects.create(
             journal_entry=journal_entry,
             account=self.cash_account,
-            debit_amount=1000.00,
-            credit_amount=0.00
+            debit_amount=Decimal('1000.00'),
+            credit_amount=Decimal('0.00')
         )
+
+        # Create the credit JournalItem to balance the transaction
+        JournalItem.objects.create(
+            journal_entry=journal_entry,
+            account=liability_account, # Use the new liability account
+            debit_amount=Decimal('0.00'),
+            credit_amount=Decimal('1000.00')
+        )
+
+        # Now post the transaction, which will pass the balance check
+        transaction.post_transaction(user)
 
         # Update balance
         self.cash_account.update_balance()
-        self.assertEqual(self.cash_account.current_balance, Decimal('11000.00'))
+        self.cash_account.refresh_from_db()
 
+        self.assertEqual(self.cash_account.current_balance, Decimal('11000.00'))
+        
     def test_is_debit_balance_method(self):
         """Test checking if account has debit balance."""
         self.assertTrue(self.cash_account.is_debit_balance())

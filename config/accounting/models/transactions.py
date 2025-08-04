@@ -301,7 +301,9 @@ class JournalItem(TimeStampedModel):
         ]
     
     def __str__(self):
-        return f"{self.account.account_number} - {self.get_amount_display()}"
+
+        amount = self.get_amount_display()
+        return f"{self.account.account_number} - {amount}"
     
     def clean(self):
         """Validate journal item data."""
@@ -314,10 +316,16 @@ class JournalItem(TimeStampedModel):
     def get_amount_display(self):
         """Get a formatted display of the amount."""
         if self.debit_amount > 0:
-            return f"DR {self.debit_amount}"
+            amount = Decimal(self.debit_amount)
+            balance_type = "DR"
         else:
-            return f"CR {self.credit_amount}"
-    
+            amount = Decimal(self.credit_amount)
+            balance_type = "CR"
+
+        # Use quantize to ensure two decimal places for currency
+        formatted_amount = amount.quantize(Decimal('0.01'))
+        return f"{balance_type} {formatted_amount}"
+        
     def get_net_amount(self):
         """Get the net amount (debit - credit)."""
         return self.debit_amount - self.credit_amount 

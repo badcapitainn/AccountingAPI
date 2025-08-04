@@ -1,0 +1,217 @@
+ERROR 2025-08-04 09:40:59,447 log 16660 17544 Internal Server Error: /api/v1/accounts/7d308c48-8b13-49a8-80ff-9cca49568d5d/transactions/
+Traceback (most recent call last):
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\db\models\sql\query.py", line 1846, in transform
+    return self.try_transform(wrapped, name)
+           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\db\models\sql\query.py", line 1356, in try_transform
+    raise FieldError(
+    ...<2 lines>...
+    )
+django.core.exceptions.FieldError: Unsupported lookup 'transaction_date' for UUIDField or join on the field not permitted.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\views\decorators\csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\madza\Documents\Project\AccountingAPI\config\api\views\accounts.py", line 239, in transactions
+    page = self.paginate_queryset(transactions)
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\rest_framework\generics.py", line 171, in paginate_queryset
+    return self.paginator.paginate_queryset(queryset, self.request, view=self)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\rest_framework\pagination.py", line 216, in paginate_queryset
+    return list(self.page)
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\core\paginator.py", line 174, in __len__
+    return len(self.object_list)
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\db\models\query.py", line 380, in __len__
+    self._fetch_all()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\db\models\query.py", line 1881, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\db\models\query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+        chunked_fetch=self.chunked_fetch, chunk_size=self.chunk_size
+    )
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\db\models\sql\compiler.py", line 1549, in execute_sql
+    sql, params = self.as_sql()
+                  ~~~~~~~~~~~^^
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\db\models\sql\compiler.py", line 736, in as_sql
+    extra_select, order_by, group_by = self.pre_sql_setup(
+                                       ~~~~~~~~~~~~~~~~~~^
+        with_col_aliases=with_col_aliases or bool(combinator),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\db\models\sql\compiler.py", line 85, in pre_sql_setup
+    order_by = self.get_order_by()
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\db\models\sql\compiler.py", line 459, in get_order_by
+    for expr, is_ref in self._order_by_pairs():
+                        ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\db\models\sql\compiler.py", line 442, in _order_by_pairs
+    yield from self.find_ordering_name(
+               ~~~~~~~~~~~~~~~~~~~~~~~^
+        field,
+        ^^^^^^
+        self.query.get_meta(),
+        ^^^^^^^^^^^^^^^^^^^^^^
+        default_order=default_order,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\db\models\sql\compiler.py", line 1087, in find_ordering_name
+    (OrderBy(transform_function(t, alias), descending=descending), False)
+             ~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\db\models\sql\query.py", line 1850, in transform
+    raise last_field_exception
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\db\models\sql\query.py", line 1823, in setup_joins
+    path, final_field, targets, rest = self.names_to_path(
+                                       ~~~~~~~~~~~~~~~~~~^
+        names[:pivot],
+        ^^^^^^^^^^^^^^
+    ...<2 lines>...
+        fail_on_missing=True,
+        ^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\db\models\sql\query.py", line 1724, in names_to_path
+    raise FieldError(
+    ...<2 lines>...
+    )
+django.core.exceptions.FieldError: Cannot resolve keyword 'transaction_date' into field. Choices are: amount, created_at, description, id, items, sort_order, transaction, transaction_id, updated_at
+WARNING 2025-08-04 09:41:00,038 log 16660 17544 Forbidden: /api/v1/accounts/
+WARNING 2025-08-04 09:41:00,464 log 16660 17544 Forbidden: /api/v1/accounts/36850139-7caf-4b48-8a82-9a1a7558fadf/
+WARNING 2025-08-04 09:41:01,772 log 16660 17544 Forbidden: /api/v1/accounts/ca8f6b3d-71ba-41c8-bbcd-b584b9602acf/
+WARNING 2025-08-04 09:41:05,794 log 16660 17544 Unauthorized: /api/v1/accounts/
+WARNING 2025-08-04 09:41:06,249 log 16660 17544 Forbidden: /api/v1/reports/
+WARNING 2025-08-04 09:41:06,654 log 16660 17544 Forbidden: /api/v1/reports/
+WARNING 2025-08-04 09:41:07,604 log 16660 17544 Forbidden: /api/v1/transactions/
+ERROR 2025-08-04 10:05:48,331 utils 8100 17060 Failed to create audit log: Cannot assign "<tests.test_utils.User object at 0x000001986093B230>": "AuditLog.user" must be a "User" instance.
+ERROR 2025-08-04 10:05:48,334 utils 8100 17060 Failed to create audit log: Cannot assign "<tests.test_utils.User object at 0x000001986093B380>": "AuditLog.user" must be a "User" instance.
+ERROR 2025-08-04 10:05:48,334 utils 8100 17060 Failed to create audit log: Cannot assign "<tests.test_utils.User object at 0x000001986093B380>": "AuditLog.user" must be a "User" instance.
+ERROR 2025-08-04 10:05:48,336 utils 8100 17060 Failed to create audit log: Cannot assign "<tests.test_utils.User object at 0x000001986093B4D0>": "AuditLog.user" must be a "User" instance.
+ERROR 2025-08-04 10:05:48,579 utils 8100 17060 Failed to create notification: Cannot assign "<tests.test_utils.User object at 0x000001986093B770>": "Notification.user" must be a "User" instance.
+ERROR 2025-08-04 10:05:48,583 utils 8100 17060 Failed to create notification: Cannot assign "<tests.test_utils.User object at 0x000001986093BA10>": "Notification.user" must be a "User" instance.
+ERROR 2025-08-04 10:05:48,584 utils 8100 17060 Failed to create notification: Cannot assign "<tests.test_utils.User object at 0x000001986093BB60>": "Notification.user" must be a "User" instance.
+ERROR 2025-08-04 10:05:48,585 utils 8100 17060 Failed to create notification: Cannot assign "<tests.test_utils.User object at 0x000001986093BB60>": "Notification.user" must be a "User" instance.
+ERROR 2025-08-04 10:05:48,586 utils 8100 17060 Failed to create notification: Cannot assign "<tests.test_utils.User object at 0x000001986093BCB0>": "Notification.user" must be a "User" instance.
+ERROR 2025-08-04 10:09:01,596 log 16004 9804 Internal Server Error: /api/v1/accounts/9d931d0f-7959-4cfc-83e8-48ed4401046f/transactions/
+Traceback (most recent call last):
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\db\models\sql\query.py", line 1846, in transform
+    return self.try_transform(wrapped, name)
+           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\db\models\sql\query.py", line 1356, in try_transform
+    raise FieldError(
+    ...<2 lines>...
+    )
+django.core.exceptions.FieldError: Unsupported lookup 'transaction_date' for UUIDField or join on the field not permitted.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\views\decorators\csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\madza\Documents\Project\AccountingAPI\config\api\views\accounts.py", line 239, in transactions
+    page = self.paginate_queryset(transactions)
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\rest_framework\generics.py", line 171, in paginate_queryset
+    return self.paginator.paginate_queryset(queryset, self.request, view=self)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\rest_framework\pagination.py", line 216, in paginate_queryset
+    return list(self.page)
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\core\paginator.py", line 174, in __len__
+    return len(self.object_list)
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\db\models\query.py", line 380, in __len__
+    self._fetch_all()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\db\models\query.py", line 1881, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\db\models\query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+        chunked_fetch=self.chunked_fetch, chunk_size=self.chunk_size
+    )
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\db\models\sql\compiler.py", line 1549, in execute_sql
+    sql, params = self.as_sql()
+                  ~~~~~~~~~~~^^
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\db\models\sql\compiler.py", line 736, in as_sql
+    extra_select, order_by, group_by = self.pre_sql_setup(
+                                       ~~~~~~~~~~~~~~~~~~^
+        with_col_aliases=with_col_aliases or bool(combinator),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\db\models\sql\compiler.py", line 85, in pre_sql_setup
+    order_by = self.get_order_by()
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\db\models\sql\compiler.py", line 459, in get_order_by
+    for expr, is_ref in self._order_by_pairs():
+                        ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\db\models\sql\compiler.py", line 442, in _order_by_pairs
+    yield from self.find_ordering_name(
+               ~~~~~~~~~~~~~~~~~~~~~~~^
+        field,
+        ^^^^^^
+        self.query.get_meta(),
+        ^^^^^^^^^^^^^^^^^^^^^^
+        default_order=default_order,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\db\models\sql\compiler.py", line 1087, in find_ordering_name
+    (OrderBy(transform_function(t, alias), descending=descending), False)
+             ~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\db\models\sql\query.py", line 1850, in transform
+    raise last_field_exception
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\db\models\sql\query.py", line 1823, in setup_joins
+    path, final_field, targets, rest = self.names_to_path(
+                                       ~~~~~~~~~~~~~~~~~~^
+        names[:pivot],
+        ^^^^^^^^^^^^^^
+    ...<2 lines>...
+        fail_on_missing=True,
+        ^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\db\models\sql\query.py", line 1724, in names_to_path
+    raise FieldError(
+    ...<2 lines>...
+    )
+django.core.exceptions.FieldError: Cannot resolve keyword 'transaction_date' into field. Choices are: amount, created_at, description, id, items, sort_order, transaction, transaction_id, updated_at
+WARNING 2025-08-04 10:09:02,089 log 16004 9804 Forbidden: /api/v1/accounts/
+WARNING 2025-08-04 10:09:02,548 log 16004 9804 Forbidden: /api/v1/accounts/bf8d90c6-a73f-45c2-9213-762ac0e81f02/
+WARNING 2025-08-04 10:09:03,957 log 16004 9804 Forbidden: /api/v1/accounts/df1fa27b-167e-4b98-be62-43be3fee936c/
+WARNING 2025-08-04 10:09:08,179 log 16004 9804 Unauthorized: /api/v1/accounts/
+WARNING 2025-08-04 10:09:08,682 log 16004 9804 Forbidden: /api/v1/reports/
+WARNING 2025-08-04 10:09:09,114 log 16004 9804 Forbidden: /api/v1/reports/
+WARNING 2025-08-04 10:09:10,073 log 16004 9804 Forbidden: /api/v1/transactions/
