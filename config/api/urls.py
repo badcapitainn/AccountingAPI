@@ -50,7 +50,7 @@ urlpatterns = [
     # Router URLs
     path('', include(router.urls)),
     
-    # Additional endpoints
-    path('dashboard/', include('api.views.dashboard')),
-    path('analytics/', include('api.views.analytics')),
+    # # Additional endpoints
+    # path('dashboard/', include('api.views.dashboard')),
+    # path('analytics/', include('api.views.analytics')),
 ] 
