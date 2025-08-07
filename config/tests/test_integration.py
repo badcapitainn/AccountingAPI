@@ -19,7 +19,8 @@ from accounting.models import (
 )
 from accounting.services.transaction_service import TransactionService
 from accounting.services.report_generator import ReportGenerator
-from accounting.exceptions import ValidationError
+# from accounting.exceptions import ValidationError
+from django.core.exceptions import ValidationError
 
 
 class CompleteWorkflowTest(APITestCase):

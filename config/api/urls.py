@@ -16,6 +16,7 @@ from rest_framework_simplejwt.views import (
 from api.views.accounts import AccountViewSet, AccountTypeViewSet, AccountCategoryViewSet
 from api.views.transactions import TransactionViewSet, JournalEntryViewSet, TransactionTypeViewSet
 from api.views.reports import ReportViewSet, ReportTemplateViewSet, ReportScheduleViewSet
+from core.views import DashboardView, SystemHealthView
 
 # Create router and register viewsets
 router = DefaultRouter()
@@ -50,7 +51,8 @@ urlpatterns = [
     # Router URLs
     path('', include(router.urls)),
     
-    # # Additional endpoints
-    # path('dashboard/', include('api.views.dashboard')),
+    # Additional endpoints
+    path('dashboard/', DashboardView.as_view(), name='dashboard'),
     # path('analytics/', include('api.views.analytics')),
+    path('system/health/', SystemHealthView.as_view(), name='system-health'),
 ] 

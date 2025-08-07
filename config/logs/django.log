@@ -215,3 +215,226 @@ WARNING 2025-08-04 10:09:08,179 log 16004 9804 Unauthorized: /api/v1/accounts/
 WARNING 2025-08-04 10:09:08,682 log 16004 9804 Forbidden: /api/v1/reports/
 WARNING 2025-08-04 10:09:09,114 log 16004 9804 Forbidden: /api/v1/reports/
 WARNING 2025-08-04 10:09:10,073 log 16004 9804 Forbidden: /api/v1/transactions/
+ERROR 2025-08-04 11:49:17,580 report_generator 20204 19200 Failed to generate balance sheet: Unsupported lookup 'transaction_date' for ForeignKey or join on the field not permitted.
+ERROR 2025-08-04 11:49:18,498 report_generator 20204 19200 Failed to generate general ledger: 'str' object cannot be interpreted as an integer
+ERROR 2025-08-04 11:49:19,869 report_generator 20204 19200 Failed to generate trial balance: Unsupported lookup 'transaction_date' for ForeignKey or join on the field not permitted.
+ERROR 2025-08-04 11:49:21,204 transaction_service 20204 19200 Failed to create transaction: Account matching query does not exist.
+ERROR 2025-08-04 11:49:21,642 utils 20204 19200 Failed to create audit log: null value in column "user_agent" of relation "core_auditlog" violates not-null constraint
+DETAIL:  Failing row contains (11edbb1e-6b96-47fd-9027-f53d68e30096, CREATE, Transaction, e8598b1f-e70e-4ccd-89c1-8f93c61826f1, TXN202508040001 - Purchase office supplies, {"transaction_number": "TXN202508040001"}, null, null, 2025-08-04 09:49:21.639292+00, 12).
+
+INFO 2025-08-04 11:49:21,642 transaction_service 20204 19200 Transaction TXN202508040001 created by testuser
+ERROR 2025-08-04 11:49:22,070 transaction_service 20204 19200 Failed to create transaction: ["Transaction is not balanced. Debits: 500.00, Credits: 0.00; Journal entry 'Unbalanced entry' is not balanced. Debits: 500.00, Credits: 0.00"]
+ERROR 2025-08-04 11:49:22,492 transaction_service 20204 19200 Failed to post transaction TXN202508040001: ['Transaction must have at least one journal entry']
+ERROR 2025-08-04 11:49:22,927 utils 20204 19200 Failed to create audit log: null value in column "user_agent" of relation "core_auditlog" violates not-null constraint
+DETAIL:  Failing row contains (063d1ea8-23d8-450e-b32d-594447e09c73, POST, Transaction, 686b9863-b349-4e25-afa5-5c6d65ac2e08, TXN202508040001 - Test transaction, {"status": "POSTED", "posted_date": "2025-08-04T09:49:22.927283+..., null, null, 2025-08-04 09:49:22.927435+00, 15).
+
+INFO 2025-08-04 11:49:22,928 transaction_service 20204 19200 Transaction TXN202508040001 posted successfully
+INFO 2025-08-04 11:49:22,928 transaction_service 20204 19200 Transaction TXN202508040001 posted by testuser
+ERROR 2025-08-04 11:49:23,369 transaction_service 20204 19200 Failed to post transaction TXN202508040001: ["Transaction is not balanced. Debits: 500.00, Credits: 0.00; Journal entry 'Unbalanced entry' is not balanced. Debits: 500.00, Credits: 0.00"]
+ERROR 2025-08-04 11:49:25,003 transaction_service 20204 19200 Failed to void transaction TXN202508040001: ['Only posted transactions can be voided']
+ERROR 2025-08-04 11:49:25,450 utils 20204 19200 Failed to create audit log: null value in column "user_agent" of relation "core_auditlog" violates not-null constraint
+DETAIL:  Failing row contains (3dac17ec-c12f-4d30-ac00-20c8daa0decc, POST, Transaction, 9065f496-53c4-4d36-935c-11846a798a36, TXN202508040001 - Test transaction, {"status": "POSTED", "posted_date": "2025-08-04T09:49:25.449971+..., null, null, 2025-08-04 09:49:25.450116+00, 21).
+
+INFO 2025-08-04 11:49:25,450 transaction_service 20204 19200 Transaction TXN202508040001 posted successfully
+INFO 2025-08-04 11:49:25,451 transaction_service 20204 19200 Transaction TXN202508040001 posted by testuser
+ERROR 2025-08-04 11:49:25,455 transaction_service 20204 19200 Failed to void transaction TXN202508040001: 'JournalEntry' object has no attribute 'journalentry_set'
+ERROR 2025-08-04 11:56:44,087 report_generator 4144 15688 Failed to generate balance sheet: Unsupported lookup 'transaction_date' for ForeignKey or join on the field not permitted.
+ERROR 2025-08-04 11:56:45,026 report_generator 4144 15688 Failed to generate general ledger: 'str' object cannot be interpreted as an integer
+ERROR 2025-08-04 11:56:46,375 report_generator 4144 15688 Failed to generate trial balance: Unsupported lookup 'transaction_date' for ForeignKey or join on the field not permitted.
+ERROR 2025-08-04 11:56:47,760 transaction_service 4144 15688 Failed to create transaction: Account matching query does not exist.
+ERROR 2025-08-04 11:56:48,210 utils 4144 15688 Failed to create audit log: null value in column "user_agent" of relation "core_auditlog" violates not-null constraint
+DETAIL:  Failing row contains (1067d68a-d7bb-4dab-9350-3114609fc39e, CREATE, Transaction, c1bf0040-efd3-4c5a-8bad-12c5974f34ee, TXN202508040001 - Purchase office supplies, {"transaction_number": "TXN202508040001"}, null, null, 2025-08-04 09:56:48.210132+00, 12).
+
+INFO 2025-08-04 11:56:48,211 transaction_service 4144 15688 Transaction TXN202508040001 created by testuser
+ERROR 2025-08-04 11:56:48,678 transaction_service 4144 15688 Failed to create transaction: ["Transaction is not balanced. Debits: 500.00, Credits: 0.00; Journal entry 'Unbalanced entry' is not balanced. Debits: 500.00, Credits: 0.00"]
+ERROR 2025-08-04 11:56:49,114 transaction_service 4144 15688 Failed to post transaction TXN202508040001: ['Transaction must have at least one journal entry']
+ERROR 2025-08-04 11:56:49,585 utils 4144 15688 Failed to create audit log: null value in column "user_agent" of relation "core_auditlog" violates not-null constraint
+DETAIL:  Failing row contains (40816f4f-0a2a-4eaa-ae76-c1da5ccc75e4, POST, Transaction, effce521-e27e-42e3-94d6-6694645998f1, TXN202508040001 - Test transaction, {"status": "POSTED", "posted_date": "2025-08-04T09:56:49.584835+..., null, null, 2025-08-04 09:56:49.585005+00, 15).
+
+INFO 2025-08-04 11:56:49,585 transaction_service 4144 15688 Transaction TXN202508040001 posted successfully
+INFO 2025-08-04 11:56:49,586 transaction_service 4144 15688 Transaction TXN202508040001 posted by testuser
+ERROR 2025-08-04 11:56:50,033 transaction_service 4144 15688 Failed to post transaction TXN202508040001: ["Transaction is not balanced. Debits: 500.00, Credits: 0.00; Journal entry 'Unbalanced entry' is not balanced. Debits: 500.00, Credits: 0.00"]
+ERROR 2025-08-04 11:56:51,745 transaction_service 4144 15688 Failed to void transaction TXN202508040001: ['Only posted transactions can be voided']
+ERROR 2025-08-04 11:56:52,206 utils 4144 15688 Failed to create audit log: null value in column "user_agent" of relation "core_auditlog" violates not-null constraint
+DETAIL:  Failing row contains (6096ee84-9d66-4571-8617-e2dcbfc5d4d3, POST, Transaction, ffdb25a5-fa86-4303-8e05-e3fb96f0cc77, TXN202508040001 - Test transaction, {"status": "POSTED", "posted_date": "2025-08-04T09:56:52.205635+..., null, null, 2025-08-04 09:56:52.205818+00, 21).
+
+INFO 2025-08-04 11:56:52,206 transaction_service 4144 15688 Transaction TXN202508040001 posted successfully
+INFO 2025-08-04 11:56:52,206 transaction_service 4144 15688 Transaction TXN202508040001 posted by testuser
+ERROR 2025-08-04 11:56:52,211 transaction_service 4144 15688 Failed to void transaction TXN202508040001: 'JournalEntry' object has no attribute 'journalentry_set'
+ERROR 2025-08-04 12:02:27,012 report_generator 12416 8532 Failed to generate balance sheet: Unsupported lookup 'transaction_date' for ForeignKey or join on the field not permitted.
+ERROR 2025-08-04 12:02:27,889 report_generator 12416 8532 Failed to generate general ledger: 'str' object cannot be interpreted as an integer
+ERROR 2025-08-04 12:02:29,195 report_generator 12416 8532 Failed to generate trial balance: Unsupported lookup 'transaction_date' for ForeignKey or join on the field not permitted.
+ERROR 2025-08-04 12:02:29,729 transaction_service 12416 8532 Failed to create transaction: Account matching query does not exist.
+ERROR 2025-08-04 12:02:30,179 utils 12416 8532 Failed to create audit log: null value in column "user_agent" of relation "core_auditlog" violates not-null constraint
+DETAIL:  Failing row contains (9d6c164e-f313-4684-b956-ddcba0d74ccb, CREATE, Transaction, 8766dd26-730d-44ec-8cf5-375f805b3e9d, TXN202508040001 - Purchase office supplies, {"transaction_number": "TXN202508040001"}, null, null, 2025-08-04 10:02:30.178438+00, 10).
+
+INFO 2025-08-04 12:02:30,179 transaction_service 12416 8532 Transaction TXN202508040001 created by testuser
+ERROR 2025-08-04 12:02:30,641 transaction_service 12416 8532 Failed to create transaction: ["Transaction is not balanced. Debits: 500.00, Credits: 0.00; Journal entry 'Unbalanced entry' is not balanced. Debits: 500.00, Credits: 0.00"]
+ERROR 2025-08-04 12:02:31,102 transaction_service 12416 8532 Failed to post transaction TXN202508040001: ['Transaction must have at least one journal entry']
+ERROR 2025-08-04 12:02:31,580 utils 12416 8532 Failed to create audit log: null value in column "user_agent" of relation "core_auditlog" violates not-null constraint
+DETAIL:  Failing row contains (4ad483b2-1905-426b-a8c5-1dc033ad6205, POST, Transaction, 872622fd-40bc-4de4-aa60-6e2955b4c058, TXN202508040001 - Test transaction, {"status": "POSTED", "posted_date": "2025-08-04T10:02:31.579532+..., null, null, 2025-08-04 10:02:31.57969+00, 13).
+
+INFO 2025-08-04 12:02:31,580 transaction_service 12416 8532 Transaction TXN202508040001 posted successfully
+INFO 2025-08-04 12:02:31,580 transaction_service 12416 8532 Transaction TXN202508040001 posted by testuser
+ERROR 2025-08-04 12:02:32,031 transaction_service 12416 8532 Failed to post transaction TXN202508040001: ["Transaction is not balanced. Debits: 500.00, Credits: 0.00; Journal entry 'Unbalanced entry' is not balanced. Debits: 500.00, Credits: 0.00"]
+ERROR 2025-08-04 12:02:33,791 transaction_service 12416 8532 Failed to void transaction TXN202508040001: ['Only posted transactions can be voided']
+ERROR 2025-08-04 12:02:34,255 utils 12416 8532 Failed to create audit log: null value in column "user_agent" of relation "core_auditlog" violates not-null constraint
+DETAIL:  Failing row contains (925cc8ed-e329-486a-b6cd-68540bffb458, POST, Transaction, d1862556-4084-4feb-95a4-7304a1999783, TXN202508040001 - Test transaction, {"status": "POSTED", "posted_date": "2025-08-04T10:02:34.254452+..., null, null, 2025-08-04 10:02:34.254602+00, 19).
+
+INFO 2025-08-04 12:02:34,255 transaction_service 12416 8532 Transaction TXN202508040001 posted successfully
+INFO 2025-08-04 12:02:34,255 transaction_service 12416 8532 Transaction TXN202508040001 posted by testuser
+ERROR 2025-08-04 12:02:34,259 transaction_service 12416 8532 Failed to void transaction TXN202508040001: 'JournalEntry' object has no attribute 'journalentry_set'
+ERROR 2025-08-04 12:03:41,292 report_generator 18232 20340 Failed to generate balance sheet: Unsupported lookup 'transaction_date' for ForeignKey or join on the field not permitted.
+ERROR 2025-08-04 12:03:42,272 report_generator 18232 20340 Failed to generate general ledger: 'str' object cannot be interpreted as an integer
+ERROR 2025-08-04 12:03:43,566 report_generator 18232 20340 Failed to generate trial balance: Unsupported lookup 'transaction_date' for ForeignKey or join on the field not permitted.
+ERROR 2025-08-04 12:03:44,062 transaction_service 18232 20340 Failed to create transaction: Account matching query does not exist.
+ERROR 2025-08-04 12:03:44,508 utils 18232 20340 Failed to create audit log: null value in column "user_agent" of relation "core_auditlog" violates not-null constraint
+DETAIL:  Failing row contains (7cb34e48-bd5a-4ae6-845b-eeea203174f6, CREATE, Transaction, 44fdd13d-d04d-4204-8c5e-2041e0a32bf7, TXN202508040001 - Purchase office supplies, {"transaction_number": "TXN202508040001"}, null, null, 2025-08-04 10:03:44.508135+00, 10).
+
+INFO 2025-08-04 12:03:44,509 transaction_service 18232 20340 Transaction TXN202508040001 created by testuser
+ERROR 2025-08-04 12:03:44,954 transaction_service 18232 20340 Failed to create transaction: ["Transaction is not balanced. Debits: 500.00, Credits: 0.00; Journal entry 'Unbalanced entry' is not balanced. Debits: 500.00, Credits: 0.00"]
+ERROR 2025-08-04 12:03:45,375 transaction_service 18232 20340 Failed to post transaction TXN202508040001: ['Transaction must have at least one journal entry']
+ERROR 2025-08-04 12:03:45,834 utils 18232 20340 Failed to create audit log: null value in column "user_agent" of relation "core_auditlog" violates not-null constraint
+DETAIL:  Failing row contains (3d542701-1dc7-4240-99e7-d71ead20a519, POST, Transaction, d7b41bed-47ec-4f2f-bf71-f79d76988a55, TXN202508040001 - Test transaction, {"status": "POSTED", "posted_date": "2025-08-04T10:03:45.833943+..., null, null, 2025-08-04 10:03:45.834128+00, 13).
+
+INFO 2025-08-04 12:03:45,835 transaction_service 18232 20340 Transaction TXN202508040001 posted successfully
+INFO 2025-08-04 12:03:45,835 transaction_service 18232 20340 Transaction TXN202508040001 posted by testuser
+ERROR 2025-08-04 12:03:46,283 transaction_service 18232 20340 Failed to post transaction TXN202508040001: ["Transaction is not balanced. Debits: 500.00, Credits: 0.00; Journal entry 'Unbalanced entry' is not balanced. Debits: 500.00, Credits: 0.00"]
+ERROR 2025-08-04 12:03:47,932 transaction_service 18232 20340 Failed to void transaction TXN202508040001: ['Only posted transactions can be voided']
+ERROR 2025-08-04 12:03:48,384 utils 18232 20340 Failed to create audit log: null value in column "user_agent" of relation "core_auditlog" violates not-null constraint
+DETAIL:  Failing row contains (954ee946-1fa2-4ed8-b3b6-8cb8c26eae38, POST, Transaction, 5f632f33-f588-4b99-a467-fad8b49c7dcd, TXN202508040001 - Test transaction, {"status": "POSTED", "posted_date": "2025-08-04T10:03:48.383601+..., null, null, 2025-08-04 10:03:48.383769+00, 19).
+
+INFO 2025-08-04 12:03:48,384 transaction_service 18232 20340 Transaction TXN202508040001 posted successfully
+INFO 2025-08-04 12:03:48,384 transaction_service 18232 20340 Transaction TXN202508040001 posted by testuser
+ERROR 2025-08-04 12:03:48,388 transaction_service 18232 20340 Failed to void transaction TXN202508040001: 'JournalEntry' object has no attribute 'journalentry_set'
+ERROR 2025-08-04 12:04:03,882 report_generator 4480 2800 Failed to generate balance sheet: Unsupported lookup 'transaction_date' for ForeignKey or join on the field not permitted.
+ERROR 2025-08-04 12:04:04,786 report_generator 4480 2800 Failed to generate general ledger: 'str' object cannot be interpreted as an integer
+ERROR 2025-08-04 12:04:06,086 report_generator 4480 2800 Failed to generate trial balance: Unsupported lookup 'transaction_date' for ForeignKey or join on the field not permitted.
+ERROR 2025-08-04 12:04:06,590 transaction_service 4480 2800 Failed to create transaction: Account matching query does not exist.
+ERROR 2025-08-04 12:04:07,037 utils 4480 2800 Failed to create audit log: null value in column "user_agent" of relation "core_auditlog" violates not-null constraint
+DETAIL:  Failing row contains (590e860a-f9b7-4eb0-8f72-6fe606462bb8, CREATE, Transaction, abe97c9e-47fc-4a95-b4a3-2ef5ea99994b, TXN202508040001 - Purchase office supplies, {"transaction_number": "TXN202508040001"}, null, null, 2025-08-04 10:04:07.036784+00, 10).
+
+INFO 2025-08-04 12:04:07,038 transaction_service 4480 2800 Transaction TXN202508040001 created by testuser
+ERROR 2025-08-04 12:04:07,478 transaction_service 4480 2800 Failed to create transaction: ["Transaction is not balanced. Debits: 500.00, Credits: 0.00; Journal entry 'Unbalanced entry' is not balanced. Debits: 500.00, Credits: 0.00"]
+ERROR 2025-08-04 12:04:07,900 transaction_service 4480 2800 Failed to post transaction TXN202508040001: ['Transaction must have at least one journal entry']
+ERROR 2025-08-04 12:04:08,351 utils 4480 2800 Failed to create audit log: null value in column "user_agent" of relation "core_auditlog" violates not-null constraint
+DETAIL:  Failing row contains (06de067f-e909-4e35-951f-57d0baa8eee9, POST, Transaction, 2924caa4-ae4d-475e-877e-388bb389eebd, TXN202508040001 - Test transaction, {"status": "POSTED", "posted_date": "2025-08-04T10:04:08.350897+..., null, null, 2025-08-04 10:04:08.351048+00, 13).
+
+INFO 2025-08-04 12:04:08,351 transaction_service 4480 2800 Transaction TXN202508040001 posted successfully
+INFO 2025-08-04 12:04:08,352 transaction_service 4480 2800 Transaction TXN202508040001 posted by testuser
+ERROR 2025-08-04 12:04:08,792 transaction_service 4480 2800 Failed to post transaction TXN202508040001: ["Transaction is not balanced. Debits: 500.00, Credits: 0.00; Journal entry 'Unbalanced entry' is not balanced. Debits: 500.00, Credits: 0.00"]
+ERROR 2025-08-04 12:04:10,505 transaction_service 4480 2800 Failed to void transaction TXN202508040001: ['Only posted transactions can be voided']
+ERROR 2025-08-04 12:04:10,967 utils 4480 2800 Failed to create audit log: null value in column "user_agent" of relation "core_auditlog" violates not-null constraint
+DETAIL:  Failing row contains (b36ade0a-680b-4a60-b76b-dd87a6c3cbd2, POST, Transaction, 2939956c-8353-4c96-b7dd-a6f45f192603, TXN202508040001 - Test transaction, {"status": "POSTED", "posted_date": "2025-08-04T10:04:10.967250+..., null, null, 2025-08-04 10:04:10.967405+00, 19).
+
+INFO 2025-08-04 12:04:10,968 transaction_service 4480 2800 Transaction TXN202508040001 posted successfully
+INFO 2025-08-04 12:04:10,968 transaction_service 4480 2800 Transaction TXN202508040001 posted by testuser
+ERROR 2025-08-04 12:04:10,972 transaction_service 4480 2800 Failed to void transaction TXN202508040001: 'JournalEntry' object has no attribute 'journalentry_set'
+ERROR 2025-08-04 12:07:12,755 utils 19416 3312 Failed to create audit log: Cannot assign "<tests.test_utils.User object at 0x00000211C7B5AE40>": "AuditLog.user" must be a "User" instance.
+ERROR 2025-08-04 12:07:12,758 utils 19416 3312 Failed to create audit log: Cannot assign "<tests.test_utils.User object at 0x00000211C7B5AF90>": "AuditLog.user" must be a "User" instance.
+ERROR 2025-08-04 12:07:12,758 utils 19416 3312 Failed to create audit log: Cannot assign "<tests.test_utils.User object at 0x00000211C7B5AF90>": "AuditLog.user" must be a "User" instance.
+ERROR 2025-08-04 12:07:12,759 utils 19416 3312 Failed to create audit log: Cannot assign "<tests.test_utils.User object at 0x00000211C7B5B0E0>": "AuditLog.user" must be a "User" instance.
+ERROR 2025-08-04 12:07:13,009 utils 19416 3312 Failed to create notification: Cannot assign "<tests.test_utils.User object at 0x00000211C7B5B230>": "Notification.user" must be a "User" instance.
+ERROR 2025-08-04 12:07:13,010 utils 19416 3312 Failed to create notification: Cannot assign "<tests.test_utils.User object at 0x00000211C7B5AF90>": "Notification.user" must be a "User" instance.
+ERROR 2025-08-04 12:07:13,011 utils 19416 3312 Failed to create notification: Cannot assign "<tests.test_utils.User object at 0x00000211C7B5AE40>": "Notification.user" must be a "User" instance.
+ERROR 2025-08-04 12:07:13,012 utils 19416 3312 Failed to create notification: Cannot assign "<tests.test_utils.User object at 0x00000211C7B5AE40>": "Notification.user" must be a "User" instance.
+ERROR 2025-08-04 12:07:13,013 utils 19416 3312 Failed to create notification: Cannot assign "<tests.test_utils.User object at 0x00000211C7B5ACF0>": "Notification.user" must be a "User" instance.
+ERROR 2025-08-04 12:07:48,705 transaction_service 18004 13368 Failed to create transaction: Account matching query does not exist.
+ERROR 2025-08-04 12:07:48,732 transaction_service 18004 7624 Failed to create transaction: Account matching query does not exist.
+ERROR 2025-08-04 12:07:48,772 transaction_service 18004 3396 Failed to create transaction: Account matching query does not exist.
+ERROR 2025-08-04 12:07:48,811 transaction_service 18004 9928 Failed to create transaction: Account matching query does not exist.
+ERROR 2025-08-04 12:07:48,853 transaction_service 18004 6940 Failed to create transaction: Account matching query does not exist.
+ERROR 2025-08-04 12:07:57,932 transaction_service 18004 5352 Failed to create transaction: ["Transaction is not balanced. Debits: 734.86, Credits: 959.11; Journal entry 'Entry 0' is not balanced. Debits: 734.86, Credits: 959.11"]
+ERROR 2025-08-04 12:08:02,738 report_generator 18004 5352 Failed to generate balance sheet: Unsupported lookup 'transaction_date' for ForeignKey or join on the field not permitted.
+ERROR 2025-08-04 12:08:27,649 report_generator 3892 9356 Failed to generate balance sheet: Unsupported lookup 'transaction_date' for ForeignKey or join on the field not permitted.
+ERROR 2025-08-04 12:08:28,626 report_generator 3892 9356 Failed to generate general ledger: 'str' object cannot be interpreted as an integer
+ERROR 2025-08-04 12:08:30,066 report_generator 3892 9356 Failed to generate trial balance: Unsupported lookup 'transaction_date' for ForeignKey or join on the field not permitted.
+ERROR 2025-08-04 12:08:31,571 transaction_service 3892 9356 Failed to create transaction: Account matching query does not exist.
+ERROR 2025-08-04 12:08:32,045 utils 3892 9356 Failed to create audit log: null value in column "user_agent" of relation "core_auditlog" violates not-null constraint
+DETAIL:  Failing row contains (4bac692b-dcde-4bad-86c1-8d5b89cea950, CREATE, Transaction, 15fed065-8367-4d6f-8b9d-57c7fd92b1f0, TXN202508040001 - Purchase office supplies, {"transaction_number": "TXN202508040001"}, null, null, 2025-08-04 10:08:32.044204+00, 12).
+
+INFO 2025-08-04 12:08:32,045 transaction_service 3892 9356 Transaction TXN202508040001 created by testuser
+ERROR 2025-08-04 12:08:32,525 transaction_service 3892 9356 Failed to create transaction: ["Transaction is not balanced. Debits: 500.00, Credits: 0.00; Journal entry 'Unbalanced entry' is not balanced. Debits: 500.00, Credits: 0.00"]
+ERROR 2025-08-04 12:08:32,982 transaction_service 3892 9356 Failed to post transaction TXN202508040001: ['Transaction must have at least one journal entry']
+ERROR 2025-08-04 12:08:33,479 utils 3892 9356 Failed to create audit log: null value in column "user_agent" of relation "core_auditlog" violates not-null constraint
+DETAIL:  Failing row contains (753742c2-480e-43e3-bdd4-d028cb7df19f, POST, Transaction, 9ee62948-0fe7-4c57-abdb-a6342efd7121, TXN202508040001 - Test transaction, {"status": "POSTED", "posted_date": "2025-08-04T10:08:33.478471+..., null, null, 2025-08-04 10:08:33.478655+00, 15).
+
+INFO 2025-08-04 12:08:33,479 transaction_service 3892 9356 Transaction TXN202508040001 posted successfully
+INFO 2025-08-04 12:08:33,479 transaction_service 3892 9356 Transaction TXN202508040001 posted by testuser
+ERROR 2025-08-04 12:08:33,960 transaction_service 3892 9356 Failed to post transaction TXN202508040001: ["Transaction is not balanced. Debits: 500.00, Credits: 0.00; Journal entry 'Unbalanced entry' is not balanced. Debits: 500.00, Credits: 0.00"]
+ERROR 2025-08-04 12:08:35,802 transaction_service 3892 9356 Failed to void transaction TXN202508040001: ['Only posted transactions can be voided']
+ERROR 2025-08-04 12:08:36,307 utils 3892 9356 Failed to create audit log: null value in column "user_agent" of relation "core_auditlog" violates not-null constraint
+DETAIL:  Failing row contains (a76615b4-35c9-4045-8ed3-12828a98ff15, POST, Transaction, 61c0ac6a-8757-41fd-ad60-60eb124f97fa, TXN202508040001 - Test transaction, {"status": "POSTED", "posted_date": "2025-08-04T10:08:36.306338+..., null, null, 2025-08-04 10:08:36.306516+00, 21).
+
+INFO 2025-08-04 12:08:36,307 transaction_service 3892 9356 Transaction TXN202508040001 posted successfully
+INFO 2025-08-04 12:08:36,307 transaction_service 3892 9356 Transaction TXN202508040001 posted by testuser
+ERROR 2025-08-04 12:08:36,311 transaction_service 3892 9356 Failed to void transaction TXN202508040001: 'JournalEntry' object has no attribute 'journalentry_set'
+WARNING 2025-08-04 12:13:25,316 log 19184 13236 Forbidden: /api/v1/accounts/
+WARNING 2025-08-04 12:13:25,768 log 19184 13236 Forbidden: /api/v1/accounts/
+ERROR 2025-08-04 12:13:26,274 utils 19184 13236 Failed to create audit log: null value in column "user_agent" of relation "core_auditlog" violates not-null constraint
+DETAIL:  Failing row contains (d2002711-288f-4627-b6ab-d3645774ef01, POST, Transaction, 5693ebea-6e3e-4ada-89e6-3b0f9c178b95, TXN202508040001 - Office supplies purchase, {"status": "POSTED", "posted_date": "2025-08-04T10:13:26.274073+..., null, null, 2025-08-04 10:13:26.2743+00, 3).
+
+INFO 2025-08-04 12:13:26,275 transaction_service 19184 13236 Transaction TXN202508040001 posted successfully
+INFO 2025-08-04 12:13:26,275 transaction_service 19184 13236 Transaction TXN202508040001 posted by testuser
+ERROR 2025-08-04 12:13:26,344 utils 19184 13236 Failed to create audit log: null value in column "user_agent" of relation "core_auditlog" violates not-null constraint
+DETAIL:  Failing row contains (c061a669-149e-451f-be4b-9abe945cce37, POST, Transaction, c374c15d-dece-46c3-868e-636dd34360b4, TXN202508040002 - Sales on credit, {"status": "POSTED", "posted_date": "2025-08-04T10:13:26.343541+..., null, null, 2025-08-04 10:13:26.343731+00, 3).
+
+INFO 2025-08-04 12:13:26,344 transaction_service 19184 13236 Transaction TXN202508040002 posted successfully
+INFO 2025-08-04 12:13:26,344 transaction_service 19184 13236 Transaction TXN202508040002 posted by testuser
+ERROR 2025-08-04 12:13:26,396 utils 19184 13236 Failed to create audit log: null value in column "user_agent" of relation "core_auditlog" violates not-null constraint
+DETAIL:  Failing row contains (3f226e74-290e-401a-b387-9699c33d20ec, POST, Transaction, 63515847-2d57-4b63-b355-5179fd460963, TXN202508040003 - Payment received, {"status": "POSTED", "posted_date": "2025-08-04T10:13:26.395683+..., null, null, 2025-08-04 10:13:26.395856+00, 3).
+
+INFO 2025-08-04 12:13:26,396 transaction_service 19184 13236 Transaction TXN202508040003 posted successfully
+INFO 2025-08-04 12:13:26,396 transaction_service 19184 13236 Transaction TXN202508040003 posted by testuser
+ERROR 2025-08-04 12:13:26,404 report_generator 19184 13236 Failed to generate balance sheet: Unsupported lookup 'transaction_date' for ForeignKey or join on the field not permitted.
+WARNING 2025-08-04 12:13:26,863 log 19184 13236 Forbidden: /api/v1/transactions/
+WARNING 2025-08-04 12:13:27,311 log 19184 13236 Forbidden: /api/v1/transactions/
+WARNING 2025-08-04 12:13:27,737 log 19184 13236 Forbidden: /api/v1/transactions/
+WARNING 2025-08-04 12:13:28,166 log 19184 13236 Forbidden: /api/v1/accounts/
+ERROR 2025-08-04 12:13:28,659 transaction_service 19184 13236 Failed to create transaction: ['Transaction must have at least one journal entry']
+ERROR 2025-08-04 12:13:29,119 utils 19184 13236 Failed to create audit log: null value in column "user_agent" of relation "core_auditlog" violates not-null constraint
+DETAIL:  Failing row contains (ca38fe09-e2e1-431f-ae28-3b7b4c0a5d46, CREATE, Transaction, 609e171e-5878-4bd2-a1f6-041cb16f454d, TXN202508040001 - Test transaction, {"transaction_number": "TXN202508040001"}, null, null, 2025-08-04 10:13:29.118422+00, 9).
+
+INFO 2025-08-04 12:13:29,119 transaction_service 19184 13236 Transaction TXN202508040001 created by testuser
+ERROR 2025-08-04 12:13:29,124 transaction_service 19184 13236 Failed to post transaction TXN202508040001: ['Transaction must have at least one journal entry']
+ERROR 2025-08-04 12:17:04,361 utils 4580 15308 Failed to create audit log: Cannot assign "<tests.test_utils.User object at 0x000001AAE544AE40>": "AuditLog.user" must be a "User" instance.
+ERROR 2025-08-04 12:17:04,364 utils 4580 15308 Failed to create audit log: Cannot assign "<tests.test_utils.User object at 0x000001AAE544AF90>": "AuditLog.user" must be a "User" instance.
+ERROR 2025-08-04 12:17:04,364 utils 4580 15308 Failed to create audit log: Cannot assign "<tests.test_utils.User object at 0x000001AAE544AF90>": "AuditLog.user" must be a "User" instance.
+ERROR 2025-08-04 12:17:04,366 utils 4580 15308 Failed to create audit log: Cannot assign "<tests.test_utils.User object at 0x000001AAE544B0E0>": "AuditLog.user" must be a "User" instance.
+ERROR 2025-08-04 12:17:04,702 utils 4580 15308 Failed to create notification: Cannot assign "<tests.test_utils.User object at 0x000001AAE544B230>": "Notification.user" must be a "User" instance.
+ERROR 2025-08-04 12:17:04,705 utils 4580 15308 Failed to create notification: Cannot assign "<tests.test_utils.User object at 0x000001AAE544AF90>": "Notification.user" must be a "User" instance.
+ERROR 2025-08-04 12:17:04,707 utils 4580 15308 Failed to create notification: Cannot assign "<tests.test_utils.User object at 0x000001AAE544AE40>": "Notification.user" must be a "User" instance.
+ERROR 2025-08-04 12:17:04,707 utils 4580 15308 Failed to create notification: Cannot assign "<tests.test_utils.User object at 0x000001AAE544AE40>": "Notification.user" must be a "User" instance.
+ERROR 2025-08-04 12:17:04,709 utils 4580 15308 Failed to create notification: Cannot assign "<tests.test_utils.User object at 0x000001AAE544ACF0>": "Notification.user" must be a "User" instance.
+ERROR 2025-08-04 12:43:24,558 utils 12704 5928 Failed to create audit log: Cannot assign "<tests.test_utils.User object at 0x0000019313CE7230>": "AuditLog.user" must be a "User" instance.
+ERROR 2025-08-04 12:43:24,560 utils 12704 5928 Failed to create audit log: Cannot assign "<tests.test_utils.User object at 0x0000019313CE7380>": "AuditLog.user" must be a "User" instance.
+ERROR 2025-08-04 12:43:24,561 utils 12704 5928 Failed to create audit log: Cannot assign "<tests.test_utils.User object at 0x0000019313CE7380>": "AuditLog.user" must be a "User" instance.
+ERROR 2025-08-04 12:43:24,562 utils 12704 5928 Failed to create audit log: Cannot assign "<tests.test_utils.User object at 0x0000019313CE7230>": "AuditLog.user" must be a "User" instance.
+ERROR 2025-08-04 12:43:24,824 utils 12704 5928 Failed to create notification: Cannot assign "<tests.test_utils.User object at 0x0000019313CE74D0>": "Notification.user" must be a "User" instance.
+ERROR 2025-08-04 12:43:24,825 utils 12704 5928 Failed to create notification: Cannot assign "<tests.test_utils.User object at 0x0000019313CE7770>": "Notification.user" must be a "User" instance.
+ERROR 2025-08-04 12:43:24,827 utils 12704 5928 Failed to create notification: Cannot assign "<tests.test_utils.User object at 0x0000019313CE78C0>": "Notification.user" must be a "User" instance.
+ERROR 2025-08-04 12:43:24,828 utils 12704 5928 Failed to create notification: Cannot assign "<tests.test_utils.User object at 0x0000019313CE78C0>": "Notification.user" must be a "User" instance.
+ERROR 2025-08-04 12:43:24,831 utils 12704 5928 Failed to create notification: Cannot assign "<tests.test_utils.User object at 0x0000019313CE7A10>": "Notification.user" must be a "User" instance.
+ERROR 2025-08-04 19:21:25,709 report_generator 21688 21032 Failed to generate balance sheet: Unsupported lookup 'transaction_date' for ForeignKey or join on the field not permitted.
+ERROR 2025-08-04 19:21:27,129 report_generator 21688 21032 Failed to generate general ledger: 'str' object cannot be interpreted as an integer
+ERROR 2025-08-04 19:21:29,260 report_generator 21688 21032 Failed to generate trial balance: Unsupported lookup 'transaction_date' for ForeignKey or join on the field not permitted.
+ERROR 2025-08-04 19:21:31,276 transaction_service 21688 21032 Failed to create transaction: Account matching query does not exist.
+ERROR 2025-08-04 19:21:31,959 utils 21688 21032 Failed to create audit log: null value in column "user_agent" of relation "core_auditlog" violates not-null constraint
+DETAIL:  Failing row contains (5225d293-7d15-4f3d-b234-272be70aff0b, CREATE, Transaction, 0ba6fd61-bd67-44a9-9c93-ce1c1dd05bf3, TXN202508040001 - Purchase office supplies, {"transaction_number": "TXN202508040001"}, null, null, 2025-08-04 17:21:31.941069+00, 12).
+
+INFO 2025-08-04 19:21:31,960 transaction_service 21688 21032 Transaction TXN202508040001 created by testuser
+ERROR 2025-08-04 19:21:32,690 transaction_service 21688 21032 Failed to create transaction: ["Transaction is not balanced. Debits: 500.00, Credits: 0.00; Journal entry 'Unbalanced entry' is not balanced. Debits: 500.00, Credits: 0.00"]
+ERROR 2025-08-04 19:21:33,410 transaction_service 21688 21032 Failed to post transaction TXN202508040001: ['Transaction must have at least one journal entry']
+ERROR 2025-08-04 19:21:34,261 utils 21688 21032 Failed to create audit log: null value in column "user_agent" of relation "core_auditlog" violates not-null constraint
+DETAIL:  Failing row contains (f4b9486f-f147-484f-b530-99dad7795652, POST, Transaction, c5aa805d-fcca-4edc-bcd6-0796b6891030, TXN202508040001 - Test transaction, {"status": "POSTED", "posted_date": "2025-08-04T17:21:34.260422+..., null, null, 2025-08-04 17:21:34.260815+00, 15).
+
+INFO 2025-08-04 19:21:34,262 transaction_service 21688 21032 Transaction TXN202508040001 posted successfully
+INFO 2025-08-04 19:21:34,262 transaction_service 21688 21032 Transaction TXN202508040001 posted by testuser
+ERROR 2025-08-04 19:21:34,915 transaction_service 21688 21032 Failed to post transaction TXN202508040001: ["Transaction is not balanced. Debits: 500.00, Credits: 0.00; Journal entry 'Unbalanced entry' is not balanced. Debits: 500.00, Credits: 0.00"]
+ERROR 2025-08-04 19:21:37,490 transaction_service 21688 21032 Failed to void transaction TXN202508040001: ['Only posted transactions can be voided']
+ERROR 2025-08-04 19:21:38,236 utils 21688 21032 Failed to create audit log: null value in column "user_agent" of relation "core_auditlog" violates not-null constraint
+DETAIL:  Failing row contains (1b185a63-3be7-4c0f-b9e1-200d39cc825f, POST, Transaction, 34ce37e1-b458-4b80-b56a-06c319f5b09b, TXN202508040001 - Test transaction, {"status": "POSTED", "posted_date": "2025-08-04T17:21:38.235060+..., null, null, 2025-08-04 17:21:38.235485+00, 21).
+
+INFO 2025-08-04 19:21:38,237 transaction_service 21688 21032 Transaction TXN202508040001 posted successfully
+INFO 2025-08-04 19:21:38,237 transaction_service 21688 21032 Transaction TXN202508040001 posted by testuser
+ERROR 2025-08-04 19:21:38,245 transaction_service 21688 21032 Failed to void transaction TXN202508040001: 'JournalEntry' object has no attribute 'journalentry_set'

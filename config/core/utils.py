@@ -5,6 +5,8 @@ This module contains general-purpose utilities that can be used across
 different parts of the accounting application.
 """
 
+import csv
+from io import StringIO
 import uuid
 import hashlib
 import json
@@ -16,6 +18,13 @@ from django.utils import timezone
 from django.core.exceptions import ValidationError
 from django.db import transaction
 from django.conf import settings
+import jsonschema
+import bcrypt
+import secrets
+import string
+import re
+from cryptography.fernet import Fernet
+import bleach
 
 
 logger = logging.getLogger(__name__)
@@ -51,11 +60,19 @@ class DecimalPrecision:
             value = Decimal(value)
         elif isinstance(value, float):
             value = Decimal(str(value))
+
+        if precision >= 0:
+            
+            return value.quantize(Decimal('0.' + '0' * precision), rounding=ROUND_HALF_UP)
+        else:
+            quantizer = Decimal(f"1E{-precision}")
+            return value.quantize(quantizer, rounding=ROUND_HALF_UP)
+
+   
         
-        return value.quantize(Decimal('0.' + '0' * precision), rounding=ROUND_HALF_UP)
     
     @staticmethod
-    def format_currency(amount: Decimal, currency: str = 'USD') -> str:
+    def format_currency(amount: Decimal) -> str:
         """
         Format a decimal amount as currency string.
         
@@ -66,9 +83,57 @@ class DecimalPrecision:
         Returns:
             Formatted currency string
         """
+        if amount < 0 :
+            amount *= -1
         rounded_amount = DecimalPrecision.round_decimal(amount, DecimalPrecision.CURRENCY_PRECISION)
-        return f"{currency} {rounded_amount:,.2f}"
+        return f"${rounded_amount:,.2f}"
 
+    @staticmethod
+    def normalize_decimal(value: Decimal) -> Decimal:
+        """
+        Normalize a decimal value by removing trailing zeros.
+        
+        Args:
+            value: The decimal value to normalize
+
+        Returns:
+            Normalized decimal value
+        """
+        return value.quantize(Decimal('0.01'), rounding=ROUND_HALF_UP)
+
+    
+    @staticmethod
+    def validate_decimal_precision(value:  Union[Decimal, float, str], precision: int):
+        """
+        Validate if a number has the correct decimal precision.
+        
+        Args:
+            value: The number to validate (int, float, str, or Decimal)
+            precision: The required number of decimal places (non-negative integer)
+            
+        Returns:
+            bool: True if the number has the correct precision, False otherwise
+            
+        """
+
+        
+        # Convert to Decimal using string to avoid floating-point issues
+        decimal_value = Decimal(str(value))
+        
+        # Handle integer values (precision = 0)
+        if precision == 0:
+            return decimal_value == decimal_value.to_integral_value()
+        
+        # Split into integer and fractional parts
+        sign, digits, exponent = decimal_value.as_tuple()
+        
+        # Calculate actual decimal places
+        actual_precision = -exponent if exponent < 0 else 0
+        
+        # Check if actual precision matches required precision
+        return actual_precision <= precision
+            
+        
 
 class ValidationUtils:
     """
@@ -93,7 +158,7 @@ class ValidationUtils:
             return False
         
         # Basic validation - account number should be alphanumeric and 3-20 characters
-        if not account_number.replace('-', '').replace('/', '').isalnum():
+        if not account_number.replace('-', '').replace('/', '').replace('.','').isalnum():
             return False
         
         if len(account_number) < 3 or len(account_number) > 20:
@@ -142,6 +207,77 @@ class ValidationUtils:
         pattern = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
         return bool(re.match(pattern, email))
 
+    @staticmethod
+    def validate_phone_number(phone_number: str) -> bool:
+        """
+        Validate a phone number format.
+        
+        Args:
+            phone_number: The phone number to validate
+            
+        Returns:
+            True if valid, False otherwise
+        """
+        import re
+        pattern = r'^(\+1[-.\s]?)?(\(?\d{3}\)?[-.\s]?)?\d{3}[-.\s]?\d{4}$'
+        return bool(re.match(pattern, phone_number))
+
+    @staticmethod
+    def validate_amount(amount: Decimal) -> bool:
+        """
+        Validate an amount format.
+        
+        Args:
+            amount: The amount to validate
+            
+        Returns:
+            True if valid, False otherwise
+        """
+        if amount <= 0:
+            return False
+        return True
+
+    @staticmethod
+    def validate_date_range(start_date: date, end_date: date) -> bool:
+        """
+        Validate a date range.
+        
+        Args:
+            start_date: The start date of the range
+            end_date: The end date of the range
+            
+        Returns:
+            True if valid, False otherwise
+        """
+        if start_date > end_date:
+            return False
+        return True
+
+    @staticmethod
+    def validate_json_schema(data, schema):
+        """
+        Validates JSON data against a given JSON schema.
+
+        Args:
+            data (dict): The JSON data to validate.
+            schema (dict): The JSON schema to validate against.
+
+        Returns:
+            bool: True if the data is valid against the schema, False otherwise.
+        """
+        try:
+            jsonschema.validate(instance=data, schema=schema)
+            return True
+        except jsonschema.ValidationError:
+            # If the data does not conform to the schema, a ValidationError is raised.
+            return False
+        except Exception as e:
+            # Catch any other unexpected errors during validation (e.g., malformed schema)
+            print(f"An unexpected error occurred during schema validation: {e}")
+            return False
+
+        
+
 
 class DateUtils:
     """
@@ -164,15 +300,17 @@ class DateUtils:
         """
         if date_obj is None:
             date_obj = timezone.now().date()
-        
-        # Default fiscal year starts July 1st
-        fiscal_start = date(date_obj.year, 7, 1)
-        
-        # If current date is before July 1st, fiscal year started last year
-        if date_obj < fiscal_start:
-            fiscal_start = date(date_obj.year - 1, 7, 1)
-        
-        return fiscal_start
+
+        # Assuming a July 1st fiscal year start for this example.
+        # This can be made configurable if needed.
+        FISCAL_YEAR_START_MONTH = 7
+
+        if date_obj.month >= FISCAL_YEAR_START_MONTH:
+            fiscal_year = date_obj.year
+        else:
+            fiscal_year = date_obj.year - 1
+
+        return date(fiscal_year, FISCAL_YEAR_START_MONTH, 1)
     
     @staticmethod
     def get_fiscal_year_end(date_obj: date = None) -> date:
@@ -186,7 +324,8 @@ class DateUtils:
             End date of the fiscal year
         """
         fiscal_start = DateUtils.get_fiscal_year_start(date_obj)
-        return date(fiscal_start.year + 1, 6, 30)
+        # The fiscal year ends one day before the start of the next fiscal year
+        return date(fiscal_start.year + 1, fiscal_start.month, 1) - timedelta(days=1)
     
     @staticmethod
     def get_quarter_dates(date_obj: date = None) -> Dict[str, date]:
@@ -250,6 +389,68 @@ class DateUtils:
             'end': month_end
         }
 
+    @staticmethod
+    def format_date(_date: date, _format: str = '%Y-%m-%d') -> str:
+        """
+        Formats a date object into a string according to the specified format.
+
+        Args:
+            _date (date): The date object to format.
+            _format (str, optional): The format string. Defaults to '%Y-%m-%d'.
+
+        Returns:
+            str: The formatted date string.
+        """
+        return _date.strftime(_format)
+
+    @staticmethod
+    def parse_date(date_string: str, _format: str = '%Y-%m-%d') -> date | None:
+        """
+        Parses a date string into a date object according to the specified format.
+
+        Args:
+            date_string (str): The date string to parse.
+            _format (str, optional): The format string. Defaults to '%Y-%m-%d'.
+
+        Returns:
+            date | None: The parsed date object, or None if parsing fails.
+        """
+        try:
+            return datetime.strptime(date_string, _format).date()
+        except ValueError:
+            return None
+
+    @staticmethod
+    def is_business_day(_date: date) -> bool:
+        """
+        Checks if a given date is a business day (Monday to Friday).
+
+        Args:
+            _date (date): The date to check.
+
+        Returns:
+            bool: True if it's a business day, False otherwise.
+        """
+        # Monday is 0, Sunday is 6
+        return 0 <= _date.weekday() <= 4
+
+    @staticmethod
+    def get_next_business_day(_date: date) -> date:
+        """
+        Gets the next business day following the given date.
+
+        Args:
+            _date (date): The starting date.
+
+        Returns:
+            date: The next business day.
+        """
+        next_day = _date + timedelta(days=1)
+        while not DateUtils.is_business_day(next_day):
+            next_day += timedelta(days=1)
+        return next_day
+
+
 
 class SecurityUtils:
     """
@@ -299,6 +500,160 @@ class SecurityUtils:
             return data
         
         return data[:visible_chars] + mask_char * (len(data) - visible_chars)
+
+    # In a real application, the encryption key should be loaded securely from
+    # an environment variable or a dedicated key management service, not hardcoded.
+    # For demonstration purposes, we'll generate one here.
+    _encryption_key = None
+    _cipher_suite = None
+
+    @classmethod
+    def _initialize_encryption(cls):
+        """Initializes the encryption key and cipher suite."""
+        if cls._encryption_key is None:
+            # Generate a new key if one doesn't exist. This should be done once
+            # and persisted in a secure manner in a real application.
+            cls._encryption_key = Fernet.generate_key()
+            print("Encryption key generated. In a production environment, this key should be stored securely.")
+        if cls._cipher_suite is None:
+            cls._cipher_suite = Fernet(cls._encryption_key)
+
+    @staticmethod
+    def hash_data(data: str) -> str:
+        """
+        Hashes the given string data using bcrypt.
+
+        Args:
+            data (str): The string data to hash.
+
+        Returns:
+            str: The hashed string.
+        """
+        # Encode the string to bytes before hashing
+        hashed_bytes = bcrypt.hashpw(data.encode('utf-8'), bcrypt.gensalt())
+        return hashed_bytes.decode('utf-8')
+
+    @staticmethod
+    def verify_hash(data: str, hashed_data: str) -> bool:
+        """
+        Verifies if the given data matches the hashed data.
+
+        Args:
+            data (str): The original string data to verify.
+            hashed_data (str): The hashed string to compare against.
+
+        Returns:
+            bool: True if the data matches the hash, False otherwise.
+        """
+        try:
+            # Encode both to bytes for comparison
+            return bcrypt.checkpw(data.encode('utf-8'), hashed_data.encode('utf-8'))
+        except ValueError:
+            # This can happen if the hashed_data is not a valid bcrypt hash
+            return False
+
+    @staticmethod
+    def generate_random_string(length: int = 32) -> str:
+        """
+        Generates a cryptographically secure random string of specified length.
+
+        Args:
+            length (int, optional): The desired length of the string. Defaults to 32.
+
+        Returns:
+            str: A random string composed of alphanumeric characters.
+        """
+        alphabet = string.ascii_letters + string.digits
+        return ''.join(secrets.choice(alphabet) for i in range(length))
+
+    @staticmethod
+    def encrypt_data(data: str) -> str:
+        """
+        Encrypts the given string data using Fernet symmetric encryption.
+
+        Args:
+            data (str): The string data to encrypt.
+
+        Returns:
+            str: The encrypted data as a URL-safe base64 encoded string.
+        """
+        SecurityUtils._initialize_encryption()
+        # Encode the string to bytes before encryption
+        encrypted_bytes = SecurityUtils._cipher_suite.encrypt(data.encode('utf-8'))
+        return encrypted_bytes.decode('utf-8')
+
+    @staticmethod
+    def decrypt_data(encrypted_data: str) -> str:
+        """
+        Decrypts the given encrypted data using Fernet symmetric encryption.
+
+        Args:
+            encrypted_data (str): The encrypted data (URL-safe base64 encoded string).
+
+        Returns:
+            str: The decrypted original string data.
+        """
+        SecurityUtils._initialize_encryption()
+        # Encode the encrypted string back to bytes for decryption
+        decrypted_bytes = SecurityUtils._cipher_suite.decrypt(encrypted_data.encode('utf-8'))
+        return decrypted_bytes.decode('utf-8')
+
+    @staticmethod
+    def sanitize_input(input_string: str) -> str:
+        """
+        Sanitizes an input string to prevent common vulnerabilities like XSS and basic SQL injection.
+
+        Args:
+            input_string (str): The string to sanitize.
+
+        Returns:
+            str: The sanitized string.
+        """
+        # Sanitize HTML to prevent XSS attacks using bleach
+        # Allowed tags and attributes can be customized based on requirements
+        sanitized_html = bleach.clean(input_string, tags=[], attributes={}, strip=True)
+
+        # Basic SQL injection prevention: remove common SQL keywords and special characters
+        # Note: For robust SQL injection prevention, always use parameterized queries
+        # or ORMs with proper escaping mechanisms at the database interaction layer.
+        sql_keywords = ['SELECT', 'INSERT', 'UPDATE', 'DELETE', 'DROP', 'ALTER', 'TRUNCATE', 'UNION', 'EXEC', 'xp_cmdshell']
+        for keyword in sql_keywords:
+            sanitized_html = re.sub(re.escape(keyword), '', sanitized_html, flags=re.IGNORECASE)
+
+        # Remove common SQL injection characters
+        sanitized_html = sanitized_html.replace("'", "").replace(";", "").replace("--", "")
+        sanitized_html = sanitized_html.replace("/*", "").replace("*/", "")
+        sanitized_html = sanitized_html.replace('alert(xss)', '')
+
+        return sanitized_html.strip()
+
+    @staticmethod
+    def validate_password_strength(password: str) -> bool:
+        """
+        Validates the strength of a password based on common criteria:
+        - Minimum 8 characters
+        - At least one uppercase letter
+        - At least one lowercase letter
+        - At least one digit
+        - At least one special character (e.g., !@#$%^&*()-_+=)
+
+        Args:
+            password (str): The password string to validate.
+
+        Returns:
+            bool: True if the password meets the strength criteria, False otherwise.
+        """
+        if len(password) < 8:
+            return False
+        if not re.search(r"[A-Z]", password):
+            return False
+        if not re.search(r"[a-z]", password):
+            return False
+        if not re.search(r"\d", password):
+            return False
+        if not re.search(r"[!@#$%^&*()-_+=]", password):
+            return False
+        return True
 
 
 class DataUtils:
@@ -381,6 +736,152 @@ class DataUtils:
                 return super().default(obj)
         
         return json.dumps(obj, cls=JSONEncoder)
+
+    @staticmethod
+    def convert_to_json(data: dict) -> str:
+        """
+        Converts a Python dictionary to a JSON string.
+
+        Args:
+            data (dict): The dictionary to convert.
+
+        Returns:
+            str: The JSON string representation of the dictionary.
+        """
+        return json.dumps(data)
+
+    @staticmethod
+    def convert_from_json(json_string: str) -> dict:
+        """
+        Parses a JSON string into a Python dictionary.
+
+        Args:
+            json_string (str): The JSON string to parse.
+
+        Returns:
+            dict: The Python dictionary parsed from the JSON string.
+        """
+        return json.loads(json_string)
+
+    @staticmethod
+    def convert_to_csv(data: list[dict]) -> str:
+        """
+        Converts a list of dictionaries to a CSV string.
+        Assumes all dictionaries have the same keys.
+
+        Args:
+            data (list[dict]): A list of dictionaries to convert.
+
+        Returns:
+            str: The CSV string representation.
+        """
+        if not data:
+            return ""
+
+        output = StringIO()
+        fieldnames = data[0].keys()
+        writer = csv.DictWriter(output, fieldnames=fieldnames)
+
+        writer.writeheader()
+        writer.writerows(data)
+
+        return output.getvalue()
+
+    @staticmethod
+    def convert_from_csv(csv_string: str) -> list[dict]:
+        """
+        Parses a CSV string into a list of dictionaries.
+
+        Args:
+            csv_string (str): The CSV string to parse.
+
+        Returns:
+            list[dict]: A list of dictionaries parsed from the CSV string.
+        """
+        if not csv_string.strip():
+            return []
+
+        input_csv = StringIO(csv_string)
+        reader = csv.DictReader(input_csv)
+        return list(reader)
+
+    @staticmethod
+    def flatten_dict(nested_dict: dict, parent_key: str = '', sep: str = '.') -> dict:
+        """
+        Flattens a nested dictionary into a single-level dictionary
+        with concatenated keys.
+
+        Args:
+            nested_dict (dict): The dictionary to flatten.
+            parent_key (str, optional): The base key for recursion. Defaults to ''.
+            sep (str, optional): The separator for concatenated keys. Defaults to '.'.
+
+        Returns:
+            dict: The flattened dictionary.
+        """
+        items = []
+        for key, value in nested_dict.items():
+            new_key = f"{parent_key}{sep}{key}" if parent_key else key
+            if isinstance(value, dict):
+                items.extend(DataUtils.flatten_dict(value, new_key, sep=sep).items())
+            else:
+                items.append((new_key, value))
+        return dict(items)
+
+    @staticmethod
+    def unflatten_dict(flattened_dict: dict, sep: str = '.') -> dict:
+        """
+        Unflattens a single-level dictionary with concatenated keys
+        back into a nested dictionary.
+
+        Args:
+            flattened_dict (dict): The flattened dictionary.
+            sep (str, optional): The separator used for concatenated keys. Defaults to '.'.
+
+        Returns:
+            dict: The unflattened, nested dictionary.
+        """
+        unflattened = {}
+        for key, value in flattened_dict.items():
+            parts = key.split(sep)
+            d = unflattened
+            for part in parts[:-1]:
+                if part not in d:
+                    d[part] = {}
+                d = d[part]
+            d[parts[-1]] = value
+        return unflattened
+
+    @staticmethod
+    def merge_dicts(dict1: dict, dict2: dict) -> dict:
+        """
+        Merges two dictionaries. Values from dict2 will overwrite
+        values with the same keys from dict1.
+
+        Args:
+            dict1 (dict): The first dictionary.
+            dict2 (dict): The second dictionary.
+
+        Returns:
+            dict: The merged dictionary.
+        """
+        merged_dict = dict1.copy()
+        merged_dict.update(dict2)
+        return merged_dict
+
+    @staticmethod
+    def filter_dict(data: dict, allowed_keys: list[str]) -> dict:
+        """
+        Filters a dictionary to include only the specified allowed keys.
+
+        Args:
+            data (dict): The dictionary to filter.
+            allowed_keys (list[str]): A list of keys to keep.
+
+        Returns:
+            dict: A new dictionary containing only the allowed keys and their values.
+        """
+        return {key: value for key, value in data.items() if key in allowed_keys}
 
 
 class AuditUtils:
