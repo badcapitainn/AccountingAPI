@@ -33,7 +33,7 @@ class AccountTypeSerializer(serializers.ModelSerializer):
     
     def validate_normal_balance(self, value):
         """Validate normal balance type."""
-        valid_choices = [choice[0] for choice in AccountType.ACCOUNT_TYPE_CHOICES]
+        valid_choices = ['DEBIT', 'CREDIT']
         if value not in valid_choices:
             raise serializers.ValidationError("Invalid normal balance type.")
         return value

@@ -6,6 +6,7 @@ and transaction types in the accounting system.
 """
 
 from rest_framework import viewsets, status, filters
+from rest_framework.exceptions import ValidationError as DRFValidationError
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from django_filters.rest_framework import DjangoFilterBackend
@@ -131,12 +132,20 @@ class TransactionViewSet(viewsets.ModelViewSet):
         return TransactionSerializer
     
     def perform_create(self, serializer):
-        """Create transaction with service layer."""
+        """Create transaction with service layer, returning 400 on validation errors."""
+        from django.core.exceptions import ValidationError as DjangoValidationError
         transaction_data = serializer.validated_data
-        transaction = self.transaction_service.create_transaction(
-            transaction_data, self.request.user
-        )
-        return transaction
+        try:
+            transaction = self.transaction_service.create_transaction(
+                transaction_data, self.request.user
+            )
+            # Ensure DRF has the created instance for the response
+            serializer.instance = transaction
+            return transaction
+        except DjangoValidationError as exc:
+            # Surface business-rule validation as a 400 response instead of 500
+            detail = getattr(exc, 'messages', None) or str(exc)
+            raise DRFValidationError(detail)
     
     @action(detail=True, methods=['post'])
     def post_transaction(self, request, pk=None):

@@ -181,11 +181,39 @@ class Report(TimeStampedModel, SoftDeleteModel):
     def complete_generation(self, data, file_path=None, file_size=0):
         """Mark the report as completed with data."""
         self.status = self.COMPLETED
-        self.report_data = data
+        
+        # Convert datetime objects to ISO format strings for JSON serialization
+        import json
+        from django.core.serializers.json import DjangoJSONEncoder
+        
+        # Convert data to JSON and back to ensure all objects are serializable
+        try:
+            json_data = json.dumps(data, cls=DjangoJSONEncoder)
+            self.report_data = json.loads(json_data)
+        except (TypeError, ValueError) as e:
+            # Fallback: convert datetime objects manually
+            self._convert_datetime_to_string(data)
+            self.report_data = data
+        
         self.file_path = file_path or ''
         self.file_size = file_size
         self.generation_completed = timezone.now()
         self.save()
+    
+    def _convert_datetime_to_string(self, obj):
+        """Recursively convert datetime objects to ISO format strings."""
+        if isinstance(obj, dict):
+            for key, value in obj.items():
+                if isinstance(value, (dict, list)):
+                    self._convert_datetime_to_string(value)
+                elif hasattr(value, 'isoformat'):
+                    obj[key] = value.isoformat()
+        elif isinstance(obj, list):
+            for i, item in enumerate(obj):
+                if isinstance(item, (dict, list)):
+                    self._convert_datetime_to_string(item)
+                elif hasattr(item, 'isoformat'):
+                    obj[i] = item.isoformat()
     
     def fail_generation(self, error_message):
         """Mark the report generation as failed."""

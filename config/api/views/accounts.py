@@ -79,7 +79,13 @@ class AccountCategoryViewSet(viewsets.ModelViewSet):
         # Filter by account type if specified
         account_type = self.request.query_params.get('account_type')
         if account_type:
-            queryset = queryset.filter(account_type__code=account_type)
+            # Try to filter by UUID first, then by code
+            try:
+                import uuid
+                uuid.UUID(account_type)
+                queryset = queryset.filter(account_type_id=account_type)
+            except ValueError:
+                queryset = queryset.filter(account_type__code=account_type)
         
         # Filter by active status if specified
         is_active = self.request.query_params.get('is_active')
@@ -136,12 +142,24 @@ class AccountViewSet(viewsets.ModelViewSet):
         # Filter by account type if specified
         account_type = self.request.query_params.get('account_type')
         if account_type:
-            queryset = queryset.filter(account_type__code=account_type)
+            # Try to filter by UUID first, then by code
+            try:
+                import uuid
+                uuid.UUID(account_type)
+                queryset = queryset.filter(account_type_id=account_type)
+            except ValueError:
+                queryset = queryset.filter(account_type__code=account_type)
         
         # Filter by category if specified
         category = self.request.query_params.get('category')
         if category:
-            queryset = queryset.filter(category__code=category)
+            # Try to filter by UUID first, then by code
+            try:
+                import uuid
+                uuid.UUID(category)
+                queryset = queryset.filter(category_id=category)
+            except ValueError:
+                queryset = queryset.filter(category__code=category)
         
         # Filter by active status if specified
         is_active = self.request.query_params.get('is_active')

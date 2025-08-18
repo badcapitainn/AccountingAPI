@@ -811,3 +811,924 @@ WARNING 2025-08-18 11:25:51,524 report_generator 13092 11484 Balance sheet does 
 ERROR 2025-08-18 11:31:54,675 report_generator 6468 4516 Failed to generate balance sheet: Database connection error
 WARNING 2025-08-18 11:31:55,662 report_generator 6468 4516 Balance sheet does not balance
 WARNING 2025-08-18 11:31:55,774 report_generator 6468 4516 Balance sheet does not balance
+WARNING 2025-08-18 11:37:03,419 report_generator 10668 1372 Balance sheet does not balance
+ERROR 2025-08-18 11:37:05,154 report_generator 10668 1372 Failed to generate general ledger: 'str' object cannot be interpreted as an integer
+ERROR 2025-08-18 11:37:09,462 transaction_service 10668 1372 Failed to create transaction: Account matching query does not exist.
+INFO 2025-08-18 11:37:10,145 transaction_service 10668 1372 Transaction TXN202508180001 created by testuser
+ERROR 2025-08-18 11:37:10,905 transaction_service 10668 1372 Failed to create transaction due to validation error: ["Transaction is not balanced. Debits: 500.00, Credits: 0.00.; Journal entry 'Unbalanced entry' is not balanced. Debits: 500.00, Credits: 0.00."]
+ERROR 2025-08-18 11:37:11,682 transaction_service 10668 1372 Failed to post transaction TXN202508180001: ['Transaction must have at least one journal entry.']
+INFO 2025-08-18 11:37:12,439 transaction_service 10668 1372 Notification sent for transaction TXN202508180001 posted by testuser.
+INFO 2025-08-18 11:37:12,440 transaction_service 10668 1372 Transaction TXN202508180001 posted by testuser
+ERROR 2025-08-18 11:37:13,187 transaction_service 10668 1372 Failed to post transaction TXN202508180001: ["Transaction is not balanced. Debits: 500.00, Credits: 0.00.; Journal entry 'Unbalanced entry' is not balanced. Debits: 500.00, Credits: 0.00."]
+ERROR 2025-08-18 11:37:15,864 transaction_service 10668 1372 Failed to void transaction TXN202508180001: ['Only posted transactions can be voided.']
+INFO 2025-08-18 11:37:16,629 transaction_service 10668 1372 Notification sent for transaction TXN202508180001 posted by testuser.
+INFO 2025-08-18 11:37:16,629 transaction_service 10668 1372 Transaction TXN202508180001 posted by testuser
+INFO 2025-08-18 11:37:16,730 transaction_service 10668 1372 Notification sent for transaction TXN202508180002 posted by testuser.
+INFO 2025-08-18 11:37:16,730 transaction_service 10668 1372 Transaction TXN202508180002 posted by testuser
+INFO 2025-08-18 11:37:16,734 transaction_service 10668 1372 Transaction TXN202508180001 voided by testuser
+INFO 2025-08-18 11:38:20,864 transaction_service 12616 22436 Transaction TXN202508180001 created by testuser
+ERROR 2025-08-18 11:38:21,719 transaction_service 12616 22436 Failed to create transaction due to validation error: ['Transaction must have at least one journal entry.']
+ERROR 2025-08-18 11:38:22,474 transaction_service 12616 22436 Failed to create transaction due to validation error: ['Account 9999 is not active or does not allow posting.; Account 9999 does not allow posting.']
+INFO 2025-08-18 11:38:23,255 transaction_service 12616 22436 Transaction TXN202508180001 created by testuser
+ERROR 2025-08-18 11:38:23,954 transaction_service 12616 22436 Failed to create transaction due to validation error: ["Transaction is not balanced. Debits: 500.00, Credits: 400.00.; Journal entry 'Unbalanced Entry' is not balanced. Debits: 500.00, Credits: 400.00."]
+INFO 2025-08-18 11:38:24,689 transaction_service 12616 22436 Transaction TXN202508180001 created by testuser
+INFO 2025-08-18 11:38:24,723 transaction_service 12616 22436 Transaction TXN202508180002 created by testuser
+INFO 2025-08-18 11:38:24,802 transaction_service 12616 22436 Notification sent for transaction TXN202508180001 posted by testuser.
+INFO 2025-08-18 11:38:24,802 transaction_service 12616 22436 Transaction TXN202508180001 posted by testuser
+INFO 2025-08-18 11:38:24,874 transaction_service 12616 22436 Notification sent for transaction TXN202508180002 posted by testuser.
+INFO 2025-08-18 11:38:24,875 transaction_service 12616 22436 Transaction TXN202508180002 posted by testuser
+INFO 2025-08-18 11:38:25,647 transaction_service 12616 22436 Transaction TXN202508180001 created by testuser
+INFO 2025-08-18 11:38:25,718 transaction_service 12616 22436 Notification sent for transaction TXN202508180001 posted by testuser.
+INFO 2025-08-18 11:38:25,718 transaction_service 12616 22436 Transaction TXN202508180001 posted by testuser
+INFO 2025-08-18 11:38:27,305 transaction_service 12616 22436 Transaction TXN202508180001 created by testuser
+INFO 2025-08-18 11:38:27,374 transaction_service 12616 22436 Notification sent for transaction TXN202508180001 posted by testuser.
+INFO 2025-08-18 11:38:27,374 transaction_service 12616 22436 Transaction TXN202508180001 posted by testuser
+ERROR 2025-08-18 11:38:27,421 transaction_service 12616 22436 Failed to post transaction TXN202508180001: ['Transaction is already posted.']
+INFO 2025-08-18 11:38:28,115 transaction_service 12616 22436 Transaction TXN202508180001 created by testuser
+INFO 2025-08-18 11:38:28,185 transaction_service 12616 22436 Notification sent for transaction TXN202508180001 posted by testuser.
+INFO 2025-08-18 11:38:28,186 transaction_service 12616 22436 Transaction TXN202508180001 posted by testuser
+INFO 2025-08-18 11:38:28,905 transaction_service 12616 22436 Transaction TXN202508180001 created by testuser
+INFO 2025-08-18 11:38:28,974 transaction_service 12616 22436 Notification sent for transaction TXN202508180001 posted by testuser.
+INFO 2025-08-18 11:38:28,975 transaction_service 12616 22436 Transaction TXN202508180001 posted by testuser
+INFO 2025-08-18 11:38:29,071 transaction_service 12616 22436 Notification sent for transaction TXN202508180002 posted by testuser.
+INFO 2025-08-18 11:38:29,071 transaction_service 12616 22436 Transaction TXN202508180002 posted by testuser
+INFO 2025-08-18 11:38:29,074 transaction_service 12616 22436 Transaction TXN202508180001 voided by testuser
+INFO 2025-08-18 11:38:29,788 transaction_service 12616 22436 Transaction TXN202508180001 created by testuser
+ERROR 2025-08-18 11:38:29,790 transaction_service 12616 22436 Failed to void transaction TXN202508180001: ['Only posted transactions can be voided.']
+ERROR 2025-08-18 11:41:57,171 log 17736 5488 Internal Server Error: /api/v1/accounts/3b27c9ef-3a28-498d-a0ac-af8bb0a096af/transactions/
+Traceback (most recent call last):
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\db\models\sql\query.py", line 1846, in transform
+    return self.try_transform(wrapped, name)
+           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\db\models\sql\query.py", line 1356, in try_transform
+    raise FieldError(
+    ...<2 lines>...
+    )
+django.core.exceptions.FieldError: Unsupported lookup 'transaction_date' for UUIDField or join on the field not permitted.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\views\decorators\csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\madza\Documents\Project\AccountingAPI\config\api\views\accounts.py", line 239, in transactions
+    page = self.paginate_queryset(transactions)
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\rest_framework\generics.py", line 171, in paginate_queryset
+    return self.paginator.paginate_queryset(queryset, self.request, view=self)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\rest_framework\pagination.py", line 216, in paginate_queryset
+    return list(self.page)
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\core\paginator.py", line 174, in __len__
+    return len(self.object_list)
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\db\models\query.py", line 380, in __len__
+    self._fetch_all()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\db\models\query.py", line 1881, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\db\models\query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+        chunked_fetch=self.chunked_fetch, chunk_size=self.chunk_size
+    )
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\db\models\sql\compiler.py", line 1549, in execute_sql
+    sql, params = self.as_sql()
+                  ~~~~~~~~~~~^^
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\db\models\sql\compiler.py", line 736, in as_sql
+    extra_select, order_by, group_by = self.pre_sql_setup(
+                                       ~~~~~~~~~~~~~~~~~~^
+        with_col_aliases=with_col_aliases or bool(combinator),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\db\models\sql\compiler.py", line 85, in pre_sql_setup
+    order_by = self.get_order_by()
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\db\models\sql\compiler.py", line 459, in get_order_by
+    for expr, is_ref in self._order_by_pairs():
+                        ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\db\models\sql\compiler.py", line 442, in _order_by_pairs
+    yield from self.find_ordering_name(
+               ~~~~~~~~~~~~~~~~~~~~~~~^
+        field,
+        ^^^^^^
+        self.query.get_meta(),
+        ^^^^^^^^^^^^^^^^^^^^^^
+        default_order=default_order,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\db\models\sql\compiler.py", line 1087, in find_ordering_name
+    (OrderBy(transform_function(t, alias), descending=descending), False)
+             ~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\db\models\sql\query.py", line 1850, in transform
+    raise last_field_exception
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\db\models\sql\query.py", line 1823, in setup_joins
+    path, final_field, targets, rest = self.names_to_path(
+                                       ~~~~~~~~~~~~~~~~~~^
+        names[:pivot],
+        ^^^^^^^^^^^^^^
+    ...<2 lines>...
+        fail_on_missing=True,
+        ^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\db\models\sql\query.py", line 1724, in names_to_path
+    raise FieldError(
+    ...<2 lines>...
+    )
+django.core.exceptions.FieldError: Cannot resolve keyword 'transaction_date' into field. Choices are: amount, created_at, description, id, items, sort_order, transaction, transaction_id, updated_at
+WARNING 2025-08-18 11:41:57,733 log 17736 5488 Forbidden: /api/v1/accounts/
+WARNING 2025-08-18 11:41:58,221 log 17736 5488 Forbidden: /api/v1/accounts/8ee08f80-9625-432a-b7de-3f917f34a233/
+WARNING 2025-08-18 11:41:59,669 log 17736 5488 Forbidden: /api/v1/accounts/d7198f1b-8f9f-4e7c-ba42-4f6d30bd755e/
+WARNING 2025-08-18 11:42:03,811 log 17736 5488 Unauthorized: /api/v1/accounts/
+WARNING 2025-08-18 11:42:04,314 log 17736 5488 Forbidden: /api/v1/reports/
+WARNING 2025-08-18 11:42:04,751 log 17736 5488 Forbidden: /api/v1/reports/
+WARNING 2025-08-18 11:42:05,632 log 17736 5488 Forbidden: /api/v1/transactions/
+WARNING 2025-08-18 12:00:51,442 log 17064 9240 Forbidden: /api/v1/accounts/
+WARNING 2025-08-18 12:00:51,448 log 17064 14408 Forbidden: /api/v1/accounts/
+WARNING 2025-08-18 12:00:51,457 log 17064 15128 Forbidden: /api/v1/accounts/
+WARNING 2025-08-18 12:00:51,462 log 17064 14204 Forbidden: /api/v1/accounts/
+WARNING 2025-08-18 12:00:51,463 log 17064 4184 Forbidden: /api/v1/accounts/
+WARNING 2025-08-18 12:00:57,095 log 17064 20976 Bad Request: /api/v1/accounts/
+WARNING 2025-08-18 12:00:58,848 log 17064 20976 Bad Request: /api/v1/accounts/
+WARNING 2025-08-18 12:01:06,230 log 17064 20976 Bad Request: /api/v1/accounts/
+WARNING 2025-08-18 12:01:13,457 log 17064 20976 Bad Request: /api/v1/accounts/
+ERROR 2025-08-18 12:01:17,062 log 17064 20976 Internal Server Error: /api/v1/accounts/
+Traceback (most recent call last):
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\views\decorators\csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\rest_framework\mixins.py", line 20, in create
+    headers = self.get_success_headers(serializer.data)
+                                       ^^^^^^^^^^^^^^^
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\rest_framework\serializers.py", line 555, in data
+    ret = super().data
+          ^^^^^^^^^^^^
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\rest_framework\serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+                 ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\madza\Documents\Project\AccountingAPI\config\api\serializers\accounts.py", line 161, in to_representation
+    data['formatted_balance'] = instance.get_formatted_balance()
+                                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\madza\Documents\Project\AccountingAPI\config\accounting\models\accounts.py", line 297, in get_formatted_balance
+    return DecimalPrecision.format_currency(self.current_balance)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\madza\Documents\Project\AccountingAPI\config\core\utils.py", line 88, in format_currency
+    rounded_amount = DecimalPrecision.round_decimal(amount, DecimalPrecision.CURRENCY_PRECISION)
+  File "C:\Users\madza\Documents\Project\AccountingAPI\config\core\utils.py", line 66, in round_decimal
+    return value.quantize(Decimal('0.' + '0' * precision), rounding=ROUND_HALF_UP)
+           ^^^^^^^^^^^^^^
+AttributeError: 'int' object has no attribute 'quantize'
+WARNING 2025-08-18 12:01:18,833 log 17064 20976 Bad Request: /api/v1/accounts/
+WARNING 2025-08-18 12:01:20,596 log 17064 20976 Bad Request: /api/v1/accounts/
+WARNING 2025-08-18 12:01:27,857 log 17064 20976 Forbidden: /api/v1/account-categories/
+WARNING 2025-08-18 12:01:29,650 log 17064 20976 Forbidden: /api/v1/account-categories/
+WARNING 2025-08-18 12:01:31,433 log 17064 20976 Bad Request: /api/v1/account-categories/
+WARNING 2025-08-18 12:01:36,862 log 17064 20976 Forbidden: /api/v1/account-types/
+WARNING 2025-08-18 12:01:38,676 log 17064 20976 Forbidden: /api/v1/account-types/
+WARNING 2025-08-18 12:01:40,581 log 17064 20976 Forbidden: /api/v1/account-types/
+WARNING 2025-08-18 12:01:42,334 log 17064 20976 Forbidden: /api/v1/account-types/734b4f79-5054-44f6-98ee-820068725a92/
+WARNING 2025-08-18 12:01:53,086 log 17064 20976 Forbidden: /api/v1/account-types/f4d39efb-238a-40d5-9067-a00a5e140eca/
+WARNING 2025-08-18 12:01:55,465 log 17064 20976 Unauthorized: /core/auth/token/
+WARNING 2025-08-18 12:02:07,059 log 17064 20976 Not Found: /api/v1/accounts/invalid-uuid/
+WARNING 2025-08-18 12:02:08,835 log 17064 20976 Not Found: /api/v1/accounts/dd5fe747-701d-4090-96a9-66271c1dac33/
+WARNING 2025-08-18 12:02:10,626 log 17064 20976 Bad Request: /api/v1/accounts/
+WARNING 2025-08-18 12:02:12,505 log 17064 20976 Bad Request: /api/v1/journal-entries/
+ERROR 2025-08-18 12:02:16,248 log 17064 20976 Internal Server Error: /api/v1/accounts/
+Traceback (most recent call last):
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\views\decorators\csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\rest_framework\mixins.py", line 20, in create
+    headers = self.get_success_headers(serializer.data)
+                                       ^^^^^^^^^^^^^^^
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\rest_framework\serializers.py", line 555, in data
+    ret = super().data
+          ^^^^^^^^^^^^
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\rest_framework\serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+                 ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\madza\Documents\Project\AccountingAPI\config\api\serializers\accounts.py", line 161, in to_representation
+    data['formatted_balance'] = instance.get_formatted_balance()
+                                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\madza\Documents\Project\AccountingAPI\config\accounting\models\accounts.py", line 297, in get_formatted_balance
+    return DecimalPrecision.format_currency(self.current_balance)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\madza\Documents\Project\AccountingAPI\config\core\utils.py", line 88, in format_currency
+    rounded_amount = DecimalPrecision.round_decimal(amount, DecimalPrecision.CURRENCY_PRECISION)
+  File "C:\Users\madza\Documents\Project\AccountingAPI\config\core\utils.py", line 66, in round_decimal
+    return value.quantize(Decimal('0.' + '0' * precision), rounding=ROUND_HALF_UP)
+           ^^^^^^^^^^^^^^
+AttributeError: 'int' object has no attribute 'quantize'
+WARNING 2025-08-18 12:02:18,005 log 17064 20976 Bad Request: /api/v1/account-types/
+WARNING 2025-08-18 12:02:19,792 log 17064 20976 Forbidden: /api/v1/accounts/
+WARNING 2025-08-18 12:02:21,600 log 17064 20976 Unauthorized: /api/v1/accounts/
+ERROR 2025-08-18 12:02:25,306 log 17064 20976 Internal Server Error: /api/v1/reports/4d31692e-938d-4f00-8f2d-306465760509/generate/
+Traceback (most recent call last):
+  File "C:\Users\madza\Documents\Project\AccountingAPI\config\api\views\reports.py", line 169, in generate
+    report.complete_generation(data)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\madza\Documents\Project\AccountingAPI\config\accounting\models\reports.py", line 188, in complete_generation
+    self.save()
+    ~~~~~~~~~^^
+  File "C:\Users\madza\Documents\Project\AccountingAPI\config\accounting\models\reports.py", line 156, in save
+    super().save(*args, **kwargs)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\db\models\base.py", line 814, in save
+    self.save_base(
+    ~~~~~~~~~~~~~~^
+        using=using,
+        ^^^^^^^^^^^^
+    ...<2 lines>...
+        update_fields=update_fields,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\db\models\base.py", line 877, in save_base
+    updated = self._save_table(
+        raw,
+    ...<4 lines>...
+        update_fields,
+    )
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\db\models\base.py", line 990, in _save_table
+    updated = self._do_update(
+        base_qs, using, pk_val, values, update_fields, forced_update
+    )
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\db\models\base.py", line 1054, in _do_update
+    return filtered._update(values) > 0
+           ~~~~~~~~~~~~~~~~^^^^^^^^
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\db\models\query.py", line 1231, in _update
+    return query.get_compiler(self.db).execute_sql(CURSOR)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\db\models\sql\compiler.py", line 1984, in execute_sql
+    cursor = super().execute_sql(result_type)
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\db\models\sql\compiler.py", line 1562, in execute_sql
+    cursor.execute(sql, params)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\db\backends\utils.py", line 67, in execute
+    return self._execute_with_wrappers(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sql, params, many=False, executor=self._execute
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\db\backends\utils.py", line 80, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\psycopg2\_json.py", line 78, in getquoted
+    s = self.dumps(self.adapted)
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\psycopg2\_json.py", line 72, in dumps
+    return self._dumps(obj)
+           ~~~~~~~~~~~^^^^^
+  File "C:\Python313\Lib\json\__init__.py", line 231, in dumps
+    return _default_encoder.encode(obj)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "C:\Python313\Lib\json\encoder.py", line 200, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+  File "C:\Python313\Lib\json\encoder.py", line 261, in iterencode
+    return _iterencode(o, 0)
+  File "C:\Python313\Lib\json\encoder.py", line 180, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+                    f'is not JSON serializable')
+TypeError: Object of type datetime is not JSON serializable
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\views\decorators\csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\madza\Documents\Project\AccountingAPI\config\api\views\reports.py", line 178, in generate
+    report.fail_generation(str(e))
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "C:\Users\madza\Documents\Project\AccountingAPI\config\accounting\models\reports.py", line 195, in fail_generation
+    self.save()
+    ~~~~~~~~~^^
+  File "C:\Users\madza\Documents\Project\AccountingAPI\config\accounting\models\reports.py", line 156, in save
+    super().save(*args, **kwargs)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\db\models\base.py", line 814, in save
+    self.save_base(
+    ~~~~~~~~~~~~~~^
+        using=using,
+        ^^^^^^^^^^^^
+    ...<2 lines>...
+        update_fields=update_fields,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\db\models\base.py", line 877, in save_base
+    updated = self._save_table(
+        raw,
+    ...<4 lines>...
+        update_fields,
+    )
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\db\models\base.py", line 990, in _save_table
+    updated = self._do_update(
+        base_qs, using, pk_val, values, update_fields, forced_update
+    )
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\db\models\base.py", line 1054, in _do_update
+    return filtered._update(values) > 0
+           ~~~~~~~~~~~~~~~~^^^^^^^^
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\db\models\query.py", line 1231, in _update
+    return query.get_compiler(self.db).execute_sql(CURSOR)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\db\models\sql\compiler.py", line 1984, in execute_sql
+    cursor = super().execute_sql(result_type)
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\db\models\sql\compiler.py", line 1562, in execute_sql
+    cursor.execute(sql, params)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\db\backends\utils.py", line 67, in execute
+    return self._execute_with_wrappers(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sql, params, many=False, executor=self._execute
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\db\backends\utils.py", line 80, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\db\backends\utils.py", line 83, in _execute
+    self.db.validate_no_broken_transaction()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\db\backends\base\base.py", line 531, in validate_no_broken_transaction
+    raise TransactionManagementError(
+    ...<2 lines>...
+    ) from self.rollback_exc
+django.db.transaction.TransactionManagementError: An error occurred in the current transaction. You can't execute queries until the end of the 'atomic' block.
+WARNING 2025-08-18 12:02:29,188 log 17064 20976 Forbidden: /api/v1/report-templates/
+ERROR 2025-08-18 12:02:34,690 transaction_service 17064 20976 Failed to create transaction due to validation error: ['Transaction must have at least one journal entry.']
+ERROR 2025-08-18 12:02:34,690 log 17064 20976 Internal Server Error: /api/v1/transactions/
+Traceback (most recent call last):
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\views\decorators\csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\rest_framework\mixins.py", line 19, in create
+    self.perform_create(serializer)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "C:\Users\madza\Documents\Project\AccountingAPI\config\api\views\transactions.py", line 136, in perform_create
+    transaction = self.transaction_service.create_transaction(
+        transaction_data, self.request.user
+    )
+  File "C:\Users\madza\Documents\Project\AccountingAPI\config\accounting\services\transaction_service.py", line 119, in create_transaction
+    raise e
+  File "C:\Users\madza\Documents\Project\AccountingAPI\config\accounting\services\transaction_service.py", line 66, in create_transaction
+    raise ValidationError("Transaction must have at least one journal entry.")
+django.core.exceptions.ValidationError: ['Transaction must have at least one journal entry.']
+WARNING 2025-08-18 12:02:43,931 log 17064 20976 Forbidden: /api/v1/transaction-types/
+WARNING 2025-08-18 12:10:03,429 log 2732 13348 Forbidden: /api/v1/accounts/
+WARNING 2025-08-18 12:10:03,430 log 2732 17440 Forbidden: /api/v1/accounts/
+WARNING 2025-08-18 12:10:03,440 log 2732 10744 Forbidden: /api/v1/accounts/
+WARNING 2025-08-18 12:10:03,444 log 2732 22116 Forbidden: /api/v1/accounts/
+WARNING 2025-08-18 12:10:03,446 log 2732 19056 Forbidden: /api/v1/accounts/
+WARNING 2025-08-18 12:10:09,648 log 2732 17616 Bad Request: /api/v1/accounts/
+WARNING 2025-08-18 12:10:13,621 log 2732 17616 Bad Request: /api/v1/accounts/
+WARNING 2025-08-18 12:10:21,550 log 2732 17616 Bad Request: /api/v1/accounts/
+WARNING 2025-08-18 12:10:29,083 log 2732 17616 Bad Request: /api/v1/accounts/
+WARNING 2025-08-18 12:10:32,886 log 2732 17616 Bad Request: /api/v1/accounts/
+WARNING 2025-08-18 12:10:34,743 log 2732 17616 Bad Request: /api/v1/accounts/
+WARNING 2025-08-18 12:10:36,543 log 2732 17616 Bad Request: /api/v1/accounts/
+WARNING 2025-08-18 12:10:44,224 log 2732 17616 Forbidden: /api/v1/account-categories/
+WARNING 2025-08-18 12:10:46,223 log 2732 17616 Forbidden: /api/v1/account-categories/
+WARNING 2025-08-18 12:10:48,052 log 2732 17616 Bad Request: /api/v1/account-categories/
+WARNING 2025-08-18 12:10:53,797 log 2732 17616 Forbidden: /api/v1/account-types/
+WARNING 2025-08-18 12:10:55,627 log 2732 17616 Forbidden: /api/v1/account-types/
+WARNING 2025-08-18 12:10:57,418 log 2732 17616 Forbidden: /api/v1/account-types/
+WARNING 2025-08-18 12:10:59,270 log 2732 17616 Forbidden: /api/v1/account-types/fca2b962-987a-429e-bee3-95d22f13f47b/
+WARNING 2025-08-18 12:11:10,673 log 2732 17616 Forbidden: /api/v1/account-types/d666c449-933e-4750-a5e3-3f593ca0a4d4/
+WARNING 2025-08-18 12:11:13,050 log 2732 17616 Unauthorized: /core/auth/token/
+WARNING 2025-08-18 12:11:24,730 log 2732 17616 Not Found: /api/v1/accounts/invalid-uuid/
+WARNING 2025-08-18 12:11:26,519 log 2732 17616 Not Found: /api/v1/accounts/16adb8ed-404d-4810-beb0-391e576347ef/
+WARNING 2025-08-18 12:11:28,390 log 2732 17616 Bad Request: /api/v1/accounts/
+WARNING 2025-08-18 12:11:30,311 log 2732 17616 Bad Request: /api/v1/journal-entries/
+WARNING 2025-08-18 12:11:34,052 log 2732 17616 Bad Request: /api/v1/accounts/
+WARNING 2025-08-18 12:11:37,725 log 2732 17616 Forbidden: /api/v1/accounts/
+WARNING 2025-08-18 12:11:39,546 log 2732 17616 Unauthorized: /api/v1/accounts/
+ERROR 2025-08-18 12:11:43,399 log 2732 17616 Internal Server Error: /api/v1/reports/9c28f2e3-a2f6-47c1-bab2-d4720ec97f9e/generate/
+Traceback (most recent call last):
+  File "C:\Users\madza\Documents\Project\AccountingAPI\config\api\views\reports.py", line 169, in generate
+    report.complete_generation(data)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\madza\Documents\Project\AccountingAPI\config\accounting\models\reports.py", line 188, in complete_generation
+    self.save()
+    ~~~~~~~~~^^
+  File "C:\Users\madza\Documents\Project\AccountingAPI\config\accounting\models\reports.py", line 156, in save
+    super().save(*args, **kwargs)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\db\models\base.py", line 814, in save
+    self.save_base(
+    ~~~~~~~~~~~~~~^
+        using=using,
+        ^^^^^^^^^^^^
+    ...<2 lines>...
+        update_fields=update_fields,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\db\models\base.py", line 877, in save_base
+    updated = self._save_table(
+        raw,
+    ...<4 lines>...
+        update_fields,
+    )
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\db\models\base.py", line 990, in _save_table
+    updated = self._do_update(
+        base_qs, using, pk_val, values, update_fields, forced_update
+    )
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\db\models\base.py", line 1054, in _do_update
+    return filtered._update(values) > 0
+           ~~~~~~~~~~~~~~~~^^^^^^^^
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\db\models\query.py", line 1231, in _update
+    return query.get_compiler(self.db).execute_sql(CURSOR)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\db\models\sql\compiler.py", line 1984, in execute_sql
+    cursor = super().execute_sql(result_type)
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\db\models\sql\compiler.py", line 1562, in execute_sql
+    cursor.execute(sql, params)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\db\backends\utils.py", line 67, in execute
+    return self._execute_with_wrappers(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sql, params, many=False, executor=self._execute
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\db\backends\utils.py", line 80, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\psycopg2\_json.py", line 78, in getquoted
+    s = self.dumps(self.adapted)
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\psycopg2\_json.py", line 72, in dumps
+    return self._dumps(obj)
+           ~~~~~~~~~~~^^^^^
+  File "C:\Python313\Lib\json\__init__.py", line 231, in dumps
+    return _default_encoder.encode(obj)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "C:\Python313\Lib\json\encoder.py", line 200, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+  File "C:\Python313\Lib\json\encoder.py", line 261, in iterencode
+    return _iterencode(o, 0)
+  File "C:\Python313\Lib\json\encoder.py", line 180, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+                    f'is not JSON serializable')
+TypeError: Object of type datetime is not JSON serializable
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\views\decorators\csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\madza\Documents\Project\AccountingAPI\config\api\views\reports.py", line 178, in generate
+    report.fail_generation(str(e))
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "C:\Users\madza\Documents\Project\AccountingAPI\config\accounting\models\reports.py", line 195, in fail_generation
+    self.save()
+    ~~~~~~~~~^^
+  File "C:\Users\madza\Documents\Project\AccountingAPI\config\accounting\models\reports.py", line 156, in save
+    super().save(*args, **kwargs)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\db\models\base.py", line 814, in save
+    self.save_base(
+    ~~~~~~~~~~~~~~^
+        using=using,
+        ^^^^^^^^^^^^
+    ...<2 lines>...
+        update_fields=update_fields,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\db\models\base.py", line 877, in save_base
+    updated = self._save_table(
+        raw,
+    ...<4 lines>...
+        update_fields,
+    )
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\db\models\base.py", line 990, in _save_table
+    updated = self._do_update(
+        base_qs, using, pk_val, values, update_fields, forced_update
+    )
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\db\models\base.py", line 1054, in _do_update
+    return filtered._update(values) > 0
+           ~~~~~~~~~~~~~~~~^^^^^^^^
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\db\models\query.py", line 1231, in _update
+    return query.get_compiler(self.db).execute_sql(CURSOR)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\db\models\sql\compiler.py", line 1984, in execute_sql
+    cursor = super().execute_sql(result_type)
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\db\models\sql\compiler.py", line 1562, in execute_sql
+    cursor.execute(sql, params)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\db\backends\utils.py", line 67, in execute
+    return self._execute_with_wrappers(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sql, params, many=False, executor=self._execute
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\db\backends\utils.py", line 80, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\db\backends\utils.py", line 83, in _execute
+    self.db.validate_no_broken_transaction()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\db\backends\base\base.py", line 531, in validate_no_broken_transaction
+    raise TransactionManagementError(
+    ...<2 lines>...
+    ) from self.rollback_exc
+django.db.transaction.TransactionManagementError: An error occurred in the current transaction. You can't execute queries until the end of the 'atomic' block.
+WARNING 2025-08-18 12:11:47,125 log 2732 17616 Forbidden: /api/v1/report-templates/
+ERROR 2025-08-18 12:11:52,674 transaction_service 2732 17616 Failed to create transaction due to validation error: ['Transaction must have at least one journal entry.']
+ERROR 2025-08-18 12:11:52,674 log 2732 17616 Internal Server Error: /api/v1/transactions/
+Traceback (most recent call last):
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\views\decorators\csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\rest_framework\mixins.py", line 19, in create
+    self.perform_create(serializer)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "C:\Users\madza\Documents\Project\AccountingAPI\config\api\views\transactions.py", line 136, in perform_create
+    transaction = self.transaction_service.create_transaction(
+        transaction_data, self.request.user
+    )
+  File "C:\Users\madza\Documents\Project\AccountingAPI\config\accounting\services\transaction_service.py", line 119, in create_transaction
+    raise e
+  File "C:\Users\madza\Documents\Project\AccountingAPI\config\accounting\services\transaction_service.py", line 66, in create_transaction
+    raise ValidationError("Transaction must have at least one journal entry.")
+django.core.exceptions.ValidationError: ['Transaction must have at least one journal entry.']
+WARNING 2025-08-18 12:12:00,255 log 2732 17616 Forbidden: /api/v1/transaction-types/
+WARNING 2025-08-18 12:27:36,856 log 17256 1296 Forbidden: /api/v1/accounts/
+WARNING 2025-08-18 12:27:36,859 log 17256 20412 Forbidden: /api/v1/accounts/
+WARNING 2025-08-18 12:27:36,867 log 17256 13068 Forbidden: /api/v1/accounts/
+WARNING 2025-08-18 12:27:36,871 log 17256 3936 Forbidden: /api/v1/accounts/
+WARNING 2025-08-18 12:27:36,873 log 17256 10304 Forbidden: /api/v1/accounts/
+WARNING 2025-08-18 12:28:00,312 log 17256 8544 Bad Request: /api/v1/accounts/
+WARNING 2025-08-18 12:28:05,715 log 17256 8544 Bad Request: /api/v1/accounts/
+WARNING 2025-08-18 12:28:16,473 log 17256 8544 Bad Request: /api/v1/account-categories/
+WARNING 2025-08-18 12:28:25,638 log 17256 8544 Bad Request: /api/v1/account-types/
+WARNING 2025-08-18 12:28:27,467 log 17256 8544 Bad Request: /api/v1/account-types/
+ERROR 2025-08-18 12:28:29,276 log 17256 8544 Internal Server Error: /api/v1/account-types/6900c858-2fe2-4c18-91f7-e970a8dd028a/
+Traceback (most recent call last):
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\views\decorators\csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\rest_framework\mixins.py", line 91, in destroy
+    self.perform_destroy(instance)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\rest_framework\mixins.py", line 95, in perform_destroy
+    instance.delete()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\db\models\base.py", line 1131, in delete
+    collector.collect([self], keep_parents=keep_parents)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\db\models\deletion.py", line 355, in collect
+    raise ProtectedError(
+    ...<7 lines>...
+    )
+django.db.models.deletion.ProtectedError: ("Cannot delete some instances of model 'AccountType' because they are referenced through protected foreign keys: 'AccountCategory.account_type', 'Account.account_type'.", {<Account: 1500 - Equipment>, <Account: 1000 - Cash>})
+WARNING 2025-08-18 12:28:42,359 log 17256 8544 Unauthorized: /core/auth/token/
+WARNING 2025-08-18 12:28:53,417 log 17256 8544 Not Found: /api/v1/accounts/invalid-uuid/
+WARNING 2025-08-18 12:28:55,211 log 17256 8544 Not Found: /api/v1/accounts/391e8379-42af-4b52-87c3-1a6bb94619ec/
+WARNING 2025-08-18 12:28:56,962 log 17256 8544 Bad Request: /api/v1/accounts/
+WARNING 2025-08-18 12:28:58,790 log 17256 8544 Bad Request: /api/v1/journal-entries/
+WARNING 2025-08-18 12:29:04,333 log 17256 8544 Bad Request: /api/v1/account-types/
+WARNING 2025-08-18 12:29:06,102 log 17256 8544 Forbidden: /api/v1/accounts/
+WARNING 2025-08-18 12:29:07,906 log 17256 8544 Unauthorized: /api/v1/accounts/
+ERROR 2025-08-18 12:29:20,669 transaction_service 17256 8544 Failed to create transaction due to validation error: ['Transaction must have at least one journal entry.']
+ERROR 2025-08-18 12:29:20,669 log 17256 8544 Internal Server Error: /api/v1/transactions/
+Traceback (most recent call last):
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\views\decorators\csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\rest_framework\mixins.py", line 19, in create
+    self.perform_create(serializer)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "C:\Users\madza\Documents\Project\AccountingAPI\config\api\views\transactions.py", line 136, in perform_create
+    transaction = self.transaction_service.create_transaction(
+        transaction_data, self.request.user
+    )
+  File "C:\Users\madza\Documents\Project\AccountingAPI\config\accounting\services\transaction_service.py", line 119, in create_transaction
+    raise e
+  File "C:\Users\madza\Documents\Project\AccountingAPI\config\accounting\services\transaction_service.py", line 66, in create_transaction
+    raise ValidationError("Transaction must have at least one journal entry.")
+django.core.exceptions.ValidationError: ['Transaction must have at least one journal entry.']
+WARNING 2025-08-18 12:33:33,461 log 22216 21828 Forbidden: /api/v1/accounts/
+WARNING 2025-08-18 12:33:33,472 log 22216 21016 Forbidden: /api/v1/accounts/
+WARNING 2025-08-18 12:33:33,488 log 22216 16208 Forbidden: /api/v1/accounts/
+WARNING 2025-08-18 12:33:33,490 log 22216 3856 Forbidden: /api/v1/accounts/
+WARNING 2025-08-18 12:33:33,493 log 22216 17544 Forbidden: /api/v1/accounts/
+WARNING 2025-08-18 12:33:58,664 log 22216 14188 Bad Request: /api/v1/accounts/
+WARNING 2025-08-18 12:34:04,397 log 22216 14188 Bad Request: /api/v1/accounts/
+WARNING 2025-08-18 12:34:15,533 log 22216 14188 Bad Request: /api/v1/account-categories/
+WARNING 2025-08-18 12:34:24,697 log 22216 14188 Bad Request: /api/v1/account-types/
+WARNING 2025-08-18 12:34:26,464 log 22216 14188 Bad Request: /api/v1/account-types/
+WARNING 2025-08-18 12:34:41,351 log 22216 14188 Unauthorized: /core/auth/token/
+WARNING 2025-08-18 12:34:53,721 log 22216 14188 Not Found: /api/v1/accounts/invalid-uuid/
+WARNING 2025-08-18 12:34:55,685 log 22216 14188 Not Found: /api/v1/accounts/17148437-29d9-4e6c-8ad6-be6ebb3cf61d/
+WARNING 2025-08-18 12:34:57,613 log 22216 14188 Bad Request: /api/v1/accounts/
+WARNING 2025-08-18 12:35:07,545 log 22216 14188 Forbidden: /api/v1/accounts/
+WARNING 2025-08-18 12:35:09,489 log 22216 14188 Unauthorized: /api/v1/accounts/
+ERROR 2025-08-18 12:35:23,328 transaction_service 22216 14188 Failed to create transaction due to validation error: ['Transaction must have at least one journal entry.']
+ERROR 2025-08-18 12:35:23,333 log 22216 14188 Internal Server Error: /api/v1/transactions/
+Traceback (most recent call last):
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\views\decorators\csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\rest_framework\mixins.py", line 19, in create
+    self.perform_create(serializer)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "C:\Users\madza\Documents\Project\AccountingAPI\config\api\views\transactions.py", line 136, in perform_create
+    transaction = self.transaction_service.create_transaction(
+        transaction_data, self.request.user
+    )
+  File "C:\Users\madza\Documents\Project\AccountingAPI\config\accounting\services\transaction_service.py", line 119, in create_transaction
+    raise e
+  File "C:\Users\madza\Documents\Project\AccountingAPI\config\accounting\services\transaction_service.py", line 66, in create_transaction
+    raise ValidationError("Transaction must have at least one journal entry.")
+django.core.exceptions.ValidationError: ['Transaction must have at least one journal entry.']
+WARNING 2025-08-18 12:40:23,517 log 792 12132 Forbidden: /api/v1/accounts/
+WARNING 2025-08-18 12:40:23,518 log 792 17428 Forbidden: /api/v1/accounts/
+WARNING 2025-08-18 12:40:23,518 log 792 3904 Forbidden: /api/v1/accounts/
+WARNING 2025-08-18 12:40:23,519 log 792 18912 Forbidden: /api/v1/accounts/
+WARNING 2025-08-18 12:40:23,522 log 792 8572 Forbidden: /api/v1/accounts/
+WARNING 2025-08-18 12:40:50,587 log 792 15532 Bad Request: /api/v1/accounts/
+WARNING 2025-08-18 12:40:58,701 log 792 15532 Bad Request: /api/v1/accounts/
+WARNING 2025-08-18 12:41:13,010 log 792 15532 Bad Request: /api/v1/account-categories/
+WARNING 2025-08-18 12:41:26,495 log 792 15532 Bad Request: /api/v1/account-types/
+WARNING 2025-08-18 12:41:28,930 log 792 15532 Bad Request: /api/v1/account-types/
+WARNING 2025-08-18 12:41:50,455 log 792 15532 Unauthorized: /core/auth/token/
+WARNING 2025-08-18 12:42:05,211 log 792 15532 Not Found: /api/v1/accounts/invalid-uuid/
+WARNING 2025-08-18 12:42:07,622 log 792 15532 Not Found: /api/v1/accounts/0cbe5880-a4bc-46c9-8629-daf9259889de/
+WARNING 2025-08-18 12:42:09,895 log 792 15532 Bad Request: /api/v1/accounts/
+WARNING 2025-08-18 12:42:23,098 log 792 15532 Forbidden: /api/v1/accounts/
+WARNING 2025-08-18 12:42:25,842 log 792 15532 Unauthorized: /api/v1/accounts/
+ERROR 2025-08-18 12:42:41,373 transaction_service 792 15532 Failed to create transaction due to validation error: ['Transaction must have at least one journal entry.']
+ERROR 2025-08-18 12:42:41,381 log 792 15532 Internal Server Error: /api/v1/transactions/
+Traceback (most recent call last):
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\views\decorators\csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\rest_framework\mixins.py", line 19, in create
+    self.perform_create(serializer)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "C:\Users\madza\Documents\Project\AccountingAPI\config\api\views\transactions.py", line 136, in perform_create
+    transaction = self.transaction_service.create_transaction(
+        transaction_data, self.request.user
+    )
+  File "C:\Users\madza\Documents\Project\AccountingAPI\config\accounting\services\transaction_service.py", line 119, in create_transaction
+    raise e
+  File "C:\Users\madza\Documents\Project\AccountingAPI\config\accounting\services\transaction_service.py", line 66, in create_transaction
+    raise ValidationError("Transaction must have at least one journal entry.")
+django.core.exceptions.ValidationError: ['Transaction must have at least one journal entry.']
+ERROR 2025-08-18 12:42:43,681 transaction_service 792 15532 Failed to create transaction due to validation error: ['Transaction must have at least one journal entry.']
+ERROR 2025-08-18 12:42:43,681 log 792 15532 Internal Server Error: /api/v1/transactions/
+Traceback (most recent call last):
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\views\decorators\csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\rest_framework\mixins.py", line 19, in create
+    self.perform_create(serializer)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "C:\Users\madza\Documents\Project\AccountingAPI\config\api\views\transactions.py", line 136, in perform_create
+    transaction = self.transaction_service.create_transaction(
+        transaction_data, self.request.user
+    )
+  File "C:\Users\madza\Documents\Project\AccountingAPI\config\accounting\services\transaction_service.py", line 119, in create_transaction
+    raise e
+  File "C:\Users\madza\Documents\Project\AccountingAPI\config\accounting\services\transaction_service.py", line 66, in create_transaction
+    raise ValidationError("Transaction must have at least one journal entry.")
+django.core.exceptions.ValidationError: ['Transaction must have at least one journal entry.']
+WARNING 2025-08-18 12:45:29,937 log 15928 14464 Forbidden: /api/v1/accounts/
+WARNING 2025-08-18 12:45:30,013 log 15928 8248 Forbidden: /api/v1/accounts/
+WARNING 2025-08-18 12:45:30,021 log 15928 19968 Forbidden: /api/v1/accounts/
+WARNING 2025-08-18 12:45:30,081 log 15928 7676 Forbidden: /api/v1/accounts/
+WARNING 2025-08-18 12:45:30,081 log 15928 19496 Forbidden: /api/v1/accounts/
+WARNING 2025-08-18 12:46:04,257 log 15928 10956 Bad Request: /api/v1/accounts/
+WARNING 2025-08-18 12:46:12,114 log 15928 10956 Bad Request: /api/v1/accounts/
+WARNING 2025-08-18 12:46:25,691 log 15928 10956 Bad Request: /api/v1/account-categories/
+WARNING 2025-08-18 12:46:36,798 log 15928 10956 Bad Request: /api/v1/account-types/
+WARNING 2025-08-18 12:46:39,031 log 15928 10956 Bad Request: /api/v1/account-types/
+WARNING 2025-08-18 12:46:59,057 log 15928 10956 Unauthorized: /core/auth/token/
+WARNING 2025-08-18 12:47:13,823 log 15928 10956 Not Found: /api/v1/accounts/invalid-uuid/
+WARNING 2025-08-18 12:47:15,937 log 15928 10956 Not Found: /api/v1/accounts/d7f67c48-d023-40fa-b5c4-aaec9345b7d0/
+WARNING 2025-08-18 12:47:18,115 log 15928 10956 Bad Request: /api/v1/accounts/
+WARNING 2025-08-18 12:47:30,196 log 15928 10956 Forbidden: /api/v1/accounts/
+WARNING 2025-08-18 12:47:32,737 log 15928 10956 Unauthorized: /api/v1/accounts/
+ERROR 2025-08-18 12:47:49,282 transaction_service 15928 10956 Failed to create transaction due to validation error: ['Transaction must have at least one journal entry.']
+WARNING 2025-08-18 12:47:49,283 log 15928 10956 Bad Request: /api/v1/transactions/
+ERROR 2025-08-18 12:47:51,778 transaction_service 15928 10956 Failed to create transaction due to validation error: ['Transaction must have at least one journal entry.']
+WARNING 2025-08-18 12:47:51,778 log 15928 10956 Bad Request: /api/v1/transactions/
+INFO 2025-08-18 12:49:10,016 transaction_service 10176 14428 Transaction TXN202508180001 created by testuser
+ERROR 2025-08-18 12:49:10,489 transaction_service 10176 14428 Failed to create transaction due to validation error: ['Transaction must have at least one journal entry.']
+ERROR 2025-08-18 12:49:10,994 transaction_service 10176 14428 Failed to create transaction due to validation error: ['Account 9999 is not active or does not allow posting.; Account 9999 does not allow posting.']
+INFO 2025-08-18 12:49:11,500 transaction_service 10176 14428 Transaction TXN202508180001 created by testuser
+ERROR 2025-08-18 12:49:11,993 transaction_service 10176 14428 Failed to create transaction due to validation error: ["Transaction is not balanced. Debits: 500.00, Credits: 400.00.; Journal entry 'Unbalanced Entry' is not balanced. Debits: 500.00, Credits: 400.00."]
+INFO 2025-08-18 12:49:12,528 transaction_service 10176 14428 Transaction TXN202508180001 created by testuser
+INFO 2025-08-18 12:49:12,550 transaction_service 10176 14428 Transaction TXN202508180002 created by testuser
+INFO 2025-08-18 12:49:12,595 transaction_service 10176 14428 Notification sent for transaction TXN202508180001 posted by testuser.
+INFO 2025-08-18 12:49:12,595 transaction_service 10176 14428 Transaction TXN202508180001 posted by testuser
+INFO 2025-08-18 12:49:12,642 transaction_service 10176 14428 Notification sent for transaction TXN202508180002 posted by testuser.
+INFO 2025-08-18 12:49:12,643 transaction_service 10176 14428 Transaction TXN202508180002 posted by testuser
+INFO 2025-08-18 12:49:13,158 transaction_service 10176 14428 Transaction TXN202508180001 created by testuser
+INFO 2025-08-18 12:49:13,193 transaction_service 10176 14428 Notification sent for transaction TXN202508180001 posted by testuser.
+INFO 2025-08-18 12:49:13,193 transaction_service 10176 14428 Transaction TXN202508180001 posted by testuser
+INFO 2025-08-18 12:49:14,223 transaction_service 10176 14428 Transaction TXN202508180001 created by testuser
+INFO 2025-08-18 12:49:14,260 transaction_service 10176 14428 Notification sent for transaction TXN202508180001 posted by testuser.
+INFO 2025-08-18 12:49:14,260 transaction_service 10176 14428 Transaction TXN202508180001 posted by testuser
+ERROR 2025-08-18 12:49:14,291 transaction_service 10176 14428 Failed to post transaction TXN202508180001: ['Transaction is already posted.']
+INFO 2025-08-18 12:49:14,840 transaction_service 10176 14428 Transaction TXN202508180001 created by testuser
+INFO 2025-08-18 12:49:14,868 transaction_service 10176 14428 Notification sent for transaction TXN202508180001 posted by testuser.
+INFO 2025-08-18 12:49:14,869 transaction_service 10176 14428 Transaction TXN202508180001 posted by testuser
+INFO 2025-08-18 12:49:15,383 transaction_service 10176 14428 Transaction TXN202508180001 created by testuser
+INFO 2025-08-18 12:49:15,411 transaction_service 10176 14428 Notification sent for transaction TXN202508180001 posted by testuser.
+INFO 2025-08-18 12:49:15,411 transaction_service 10176 14428 Transaction TXN202508180001 posted by testuser
+INFO 2025-08-18 12:49:15,471 transaction_service 10176 14428 Notification sent for transaction TXN202508180002 posted by testuser.
+INFO 2025-08-18 12:49:15,472 transaction_service 10176 14428 Transaction TXN202508180002 posted by testuser
+INFO 2025-08-18 12:49:15,475 transaction_service 10176 14428 Transaction TXN202508180001 voided by testuser
+INFO 2025-08-18 12:49:15,988 transaction_service 10176 14428 Transaction TXN202508180001 created by testuser
+ERROR 2025-08-18 12:49:15,989 transaction_service 10176 14428 Failed to void transaction TXN202508180001: ['Only posted transactions can be voided.']
+ERROR 2025-08-18 12:50:06,739 report_generator 20308 5288 Failed to generate balance sheet: Database connection error
+WARNING 2025-08-18 12:50:07,372 report_generator 20308 5288 Balance sheet does not balance
+WARNING 2025-08-18 12:50:07,463 report_generator 20308 5288 Balance sheet does not balance

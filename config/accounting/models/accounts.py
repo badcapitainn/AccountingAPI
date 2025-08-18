@@ -35,11 +35,20 @@ class AccountType(models.Model):
         (EXPENSE, 'Expense'),
     ]
     
+    # Balance choices for normal_balance field
+    DEBIT = 'DEBIT'
+    CREDIT = 'CREDIT'
+    
+    BALANCE_CHOICES = [
+        (DEBIT, 'Debit'),
+        (CREDIT, 'Credit'),
+    ]
+    
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=100, unique=True, verbose_name="Account Type Name")
     code = models.CharField(max_length=10, unique=True, verbose_name="Account Type Code")
     description = models.TextField(blank=True, verbose_name="Description")
-    normal_balance = models.CharField(max_length=10, choices=ACCOUNT_TYPE_CHOICES, verbose_name="Normal Balance")
+    normal_balance = models.CharField(max_length=10, choices=BALANCE_CHOICES, verbose_name="Normal Balance")
     is_active = models.BooleanField(default=True, verbose_name="Is Active")
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Created At")
     updated_at = models.DateTimeField(auto_now=True, verbose_name="Updated At")
@@ -54,7 +63,7 @@ class AccountType(models.Model):
     
     def clean(self):
         """Validate account type data."""
-        if self.normal_balance not in dict(self.ACCOUNT_TYPE_CHOICES):
+        if self.normal_balance not in dict(self.BALANCE_CHOICES):
             raise ValidationError("Invalid normal balance type.")
     
     def get_accounts(self):
