@@ -78,6 +78,18 @@ class Transaction(TimeStampedModel, SoftDeleteModel):
     # Metadata
     notes = models.TextField(blank=True, verbose_name="Notes")
     attachments = models.JSONField(default=list, blank=True, verbose_name="Attachments")
+
+    #For reversal Transactions
+    is_reversal = models.BooleanField(default=False, help_text="Indicates if this transaction is a reversal of another.")
+    original_transaction = models.ForeignKey(
+        'self',
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name='reversal_transaction',
+        help_text="The original transaction that this transaction reverses."
+    )
+
     
     class Meta:
         verbose_name = "Transaction"
@@ -175,33 +187,35 @@ class Transaction(TimeStampedModel, SoftDeleteModel):
             user: The user creating the reversal
             reason: Reason for the reversal
         """
-        # Create a new transaction that reverses this one
-        reversal = Transaction.objects.create(
+        # Create a new reversal transaction
+        reversal_transaction = Transaction.objects.create(
+            transaction_type=self.transaction_type,
             description=f"Reversal of {self.transaction_number} - {reason}",
             transaction_date=timezone.now().date(),
-            transaction_type=self.transaction_type,
             amount=self.amount,
-            status=self.DRAFT
+            is_reversal=True,
+            original_transaction=self,
         )
-        
-        # Create reversing journal entries
-        for entry in self.journal_entries.all():
-            reversal_entry = entry.journalentry_set.create(
-                transaction=reversal,
-                description=entry.description,
-                amount=-entry.amount  # Reverse the amount
+
+        for original_entry in self.journal_entries.all():
+            # Create a new journal entry linked to the reversal transaction
+            reversal_entry = JournalEntry.objects.create(
+                transaction=reversal_transaction, # <- Correctly linking to the new reversal transaction
+                description=f"Reversal entry for {original_entry.description}",
+                amount=original_entry.amount,
+                sort_order=original_entry.sort_order,
             )
-            
-            # Create reversing journal items
-            for item in entry.items.all():
-                reversal_entry.items.create(
-                    account=item.account,
-                    debit_amount=item.credit_amount,  # Swap debit and credit
-                    credit_amount=item.debit_amount,
-                    description=item.description
+
+            for original_item in original_entry.items.all():
+                # Reverse the debit and credit amounts for the reversal item
+                JournalItem.objects.create(
+                    journal_entry=reversal_entry, # <- Correctly linking to the new reversal entry
+                    account=original_item.account,
+                    debit_amount=original_item.credit_amount, # <- Swapped
+                    credit_amount=original_item.debit_amount, # <- Swapped
                 )
-        
-        return reversal
+
+        return reversal_transaction
     
     def validate_balance(self):
         """Validate that debits equal credits."""

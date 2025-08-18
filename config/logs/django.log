@@ -438,3 +438,376 @@ DETAIL:  Failing row contains (1b185a63-3be7-4c0f-b9e1-200d39cc825f, POST, Trans
 INFO 2025-08-04 19:21:38,237 transaction_service 21688 21032 Transaction TXN202508040001 posted successfully
 INFO 2025-08-04 19:21:38,237 transaction_service 21688 21032 Transaction TXN202508040001 posted by testuser
 ERROR 2025-08-04 19:21:38,245 transaction_service 21688 21032 Failed to void transaction TXN202508040001: 'JournalEntry' object has no attribute 'journalentry_set'
+ERROR 2025-08-07 09:12:42,899 report_generator 24504 13504 Failed to generate balance sheet: Unsupported lookup 'transaction_date' for ForeignKey or join on the field not permitted.
+ERROR 2025-08-07 09:12:43,867 report_generator 24504 13504 Failed to generate general ledger: 'str' object cannot be interpreted as an integer
+ERROR 2025-08-07 09:12:45,317 report_generator 24504 13504 Failed to generate trial balance: Unsupported lookup 'transaction_date' for ForeignKey or join on the field not permitted.
+ERROR 2025-08-07 09:12:46,795 transaction_service 24504 13504 Failed to create transaction: Account matching query does not exist.
+ERROR 2025-08-07 09:12:47,244 utils 24504 13504 Failed to create audit log: null value in column "user_agent" of relation "core_auditlog" violates not-null constraint
+DETAIL:  Failing row contains (0f78a819-17d7-4500-932a-753ad06256c1, CREATE, Transaction, c5c93dd3-70c5-493c-b1a3-c4710d6689ef, TXN202508070001 - Purchase office supplies, {"transaction_number": "TXN202508070001"}, null, null, 2025-08-07 07:12:47.226918+00, 12).
+
+INFO 2025-08-07 09:12:47,245 transaction_service 24504 13504 Transaction TXN202508070001 created by testuser
+ERROR 2025-08-07 09:12:47,684 transaction_service 24504 13504 Failed to create transaction: ["Transaction is not balanced. Debits: 500.00, Credits: 0.00; Journal entry 'Unbalanced entry' is not balanced. Debits: 500.00, Credits: 0.00"]
+ERROR 2025-08-07 09:12:48,122 transaction_service 24504 13504 Failed to post transaction TXN202508070001: ['Transaction must have at least one journal entry']
+ERROR 2025-08-07 09:12:48,556 utils 24504 13504 Failed to create audit log: null value in column "user_agent" of relation "core_auditlog" violates not-null constraint
+DETAIL:  Failing row contains (1761d44f-374a-4927-9296-0513268ea449, POST, Transaction, cc444eb6-d1cc-422f-94c3-46a9ead940bb, TXN202508070001 - Test transaction, {"status": "POSTED", "posted_date": "2025-08-07T07:12:48.555780+..., null, null, 2025-08-07 07:12:48.555972+00, 15).
+
+INFO 2025-08-07 09:12:48,557 transaction_service 24504 13504 Transaction TXN202508070001 posted successfully
+INFO 2025-08-07 09:12:48,557 transaction_service 24504 13504 Transaction TXN202508070001 posted by testuser
+ERROR 2025-08-07 09:12:48,981 transaction_service 24504 13504 Failed to post transaction TXN202508070001: ["Transaction is not balanced. Debits: 500.00, Credits: 0.00; Journal entry 'Unbalanced entry' is not balanced. Debits: 500.00, Credits: 0.00"]
+ERROR 2025-08-07 09:12:50,592 transaction_service 24504 13504 Failed to void transaction TXN202508070001: ['Only posted transactions can be voided']
+ERROR 2025-08-07 09:12:51,027 utils 24504 13504 Failed to create audit log: null value in column "user_agent" of relation "core_auditlog" violates not-null constraint
+DETAIL:  Failing row contains (ea65c20b-b4e6-464b-a5f3-ebbade4dc7e6, POST, Transaction, 5b525f4a-ec2f-4c10-8027-70299c161860, TXN202508070001 - Test transaction, {"status": "POSTED", "posted_date": "2025-08-07T07:12:51.026728+..., null, null, 2025-08-07 07:12:51.026876+00, 21).
+
+INFO 2025-08-07 09:12:51,027 transaction_service 24504 13504 Transaction TXN202508070001 posted successfully
+INFO 2025-08-07 09:12:51,027 transaction_service 24504 13504 Transaction TXN202508070001 posted by testuser
+ERROR 2025-08-07 09:12:51,031 transaction_service 24504 13504 Failed to void transaction TXN202508070001: 'JournalEntry' object has no attribute 'journalentry_set'
+ERROR 2025-08-07 10:01:18,248 report_generator 19704 800 Failed to generate balance sheet: Unsupported lookup 'transaction_date' for ForeignKey or join on the field not permitted.
+ERROR 2025-08-07 10:01:19,991 report_generator 19704 800 Failed to generate general ledger: 'str' object cannot be interpreted as an integer
+ERROR 2025-08-07 10:01:22,209 report_generator 19704 800 Failed to generate trial balance: Unsupported lookup 'transaction_date' for ForeignKey or join on the field not permitted.
+ERROR 2025-08-07 10:01:24,379 transaction_service 19704 800 Failed to create transaction: Account matching query does not exist.
+ERROR 2025-08-07 10:01:25,130 utils 19704 800 Failed to create audit log: null value in column "user_agent" of relation "core_auditlog" violates not-null constraint
+DETAIL:  Failing row contains (8fc19d07-5aac-42d4-8258-6f2778d6c795, CREATE, Transaction, 9a63bf13-7965-4702-9706-126d7fef3566, TXN202508070001 - Purchase office supplies, {"transaction_number": "TXN202508070001"}, null, null, 2025-08-07 08:01:25.12888+00, 12).
+
+INFO 2025-08-07 10:01:25,130 transaction_service 19704 800 Transaction TXN202508070001 created by testuser
+ERROR 2025-08-07 10:01:25,772 transaction_service 19704 800 Failed to create transaction due to validation error: ["Transaction is not balanced. Debits: 500.00, Credits: 0.00.; Journal entry 'Unbalanced entry' is not balanced. Debits: 500.00, Credits: 0.00."]
+ERROR 2025-08-07 10:01:26,427 transaction_service 19704 800 Failed to post transaction TXN202508070001: ['Transaction must have at least one journal entry.']
+ERROR 2025-08-07 10:01:27,096 utils 19704 800 Failed to create audit log: null value in column "user_agent" of relation "core_auditlog" violates not-null constraint
+DETAIL:  Failing row contains (908b7b66-e62c-4802-b8b1-b45d75f38307, POST, Transaction, 6f9ee5cc-4c96-4391-8aa8-6b9055a17e79, TXN202508070001 - Test transaction, {"status": "POSTED", "posted_date": "2025-08-07T08:01:27.095391+..., null, null, 2025-08-07 08:01:27.095701+00, 15).
+
+ERROR 2025-08-07 10:01:27,097 transaction_service 19704 800 Failed to post transaction TXN202508070001: 'NotificationUtils' object has no attribute 'send_notification'
+ERROR 2025-08-07 10:01:27,822 transaction_service 19704 800 Failed to post transaction TXN202508070001: ["Transaction is not balanced. Debits: 500.00, Credits: 0.00.; Journal entry 'Unbalanced entry' is not balanced. Debits: 500.00, Credits: 0.00."]
+ERROR 2025-08-07 10:01:30,405 transaction_service 19704 800 Failed to void transaction TXN202508070001: ['Only posted transactions can be voided.']
+ERROR 2025-08-07 10:01:31,097 utils 19704 800 Failed to create audit log: null value in column "user_agent" of relation "core_auditlog" violates not-null constraint
+DETAIL:  Failing row contains (e4f7baad-4106-47f0-8e77-cbc3026577d6, POST, Transaction, f0d357b8-9a91-447a-806b-c45d433f249b, TXN202508070001 - Test transaction, {"status": "POSTED", "posted_date": "2025-08-07T08:01:31.096086+..., null, null, 2025-08-07 08:01:31.096352+00, 21).
+
+ERROR 2025-08-07 10:01:31,098 transaction_service 19704 800 Failed to post transaction TXN202508070001: 'NotificationUtils' object has no attribute 'send_notification'
+ERROR 2025-08-07 10:32:39,165 utils 18464 18328 Failed to create audit log: null value in column "user_agent" of relation "core_auditlog" violates not-null constraint
+DETAIL:  Failing row contains (7e1b5c3b-7aa9-42fd-b53e-aa0a579bbf98, CREATE, Transaction, 21331ae6-19d1-406a-8b55-f070bafb9e6e, TXN202508070001 - Recurring Test, {"transaction_number": "TXN202508070001"}, null, null, 2025-08-07 08:32:39.165127+00, 1).
+
+INFO 2025-08-07 10:32:39,166 transaction_service 18464 18328 Transaction TXN202508070001 created by testuser
+ERROR 2025-08-07 10:32:39,626 transaction_service 18464 18328 Failed to create transaction due to validation error: ['Transaction must have at least one journal entry.']
+ERROR 2025-08-07 10:32:40,106 transaction_service 18464 18328 Failed to create transaction due to validation error: ['Account 9999 is not active or does not allow posting.; Account 9999 does not allow posting.']
+ERROR 2025-08-07 10:32:40,574 utils 18464 18328 Failed to create audit log: null value in column "user_agent" of relation "core_auditlog" violates not-null constraint
+DETAIL:  Failing row contains (695327c9-341b-43ab-b457-d78c186f0a6b, CREATE, Transaction, fcf3c1b7-4dbe-4394-a33e-18dfe3c99b26, TXN202508070001 - Test Sale Transaction, {"transaction_number": "TXN202508070001"}, null, null, 2025-08-07 08:32:40.573849+00, 4).
+
+INFO 2025-08-07 10:32:40,574 transaction_service 18464 18328 Transaction TXN202508070001 created by testuser
+ERROR 2025-08-07 10:32:41,090 transaction_service 18464 18328 Failed to create transaction due to validation error: ["Transaction is not balanced. Debits: 500.00, Credits: 400.00.; Journal entry 'Unbalanced Entry' is not balanced. Debits: 500.00, Credits: 400.00."]
+ERROR 2025-08-07 10:32:41,582 utils 18464 18328 Failed to create audit log: null value in column "user_agent" of relation "core_auditlog" violates not-null constraint
+DETAIL:  Failing row contains (8c176c03-2671-4642-ac80-f66bee43f347, CREATE, Transaction, e9270bd3-e685-4469-9e99-fd7555b7b10d, TXN202508070001 - Txn 1, {"transaction_number": "TXN202508070001"}, null, null, 2025-08-07 08:32:41.582468+00, 6).
+
+INFO 2025-08-07 10:32:41,583 transaction_service 18464 18328 Transaction TXN202508070001 created by testuser
+ERROR 2025-08-07 10:32:41,605 utils 18464 18328 Failed to create audit log: null value in column "user_agent" of relation "core_auditlog" violates not-null constraint
+DETAIL:  Failing row contains (ce02c259-d510-4dc1-bce1-8bf1a20d81df, CREATE, Transaction, 61928c7b-635f-4b2c-a0c2-604ff2a64f8c, TXN202508070001 - Txn 2, {"transaction_number": "TXN202508070001"}, null, null, 2025-08-07 08:32:41.604615+00, 6).
+
+INFO 2025-08-07 10:32:41,605 transaction_service 18464 18328 Transaction TXN202508070001 created by testuser
+ERROR 2025-08-07 10:32:41,612 transaction_service 18464 18328 Failed to post transaction TXN202508070001: ['Transaction must have at least one journal entry.']
+ERROR 2025-08-07 10:32:42,081 utils 18464 18328 Failed to create audit log: null value in column "user_agent" of relation "core_auditlog" violates not-null constraint
+DETAIL:  Failing row contains (498a44bf-99da-41d6-b159-dc2d4df113a4, CREATE, Transaction, 4246ec4d-d130-4e47-a62c-63c653358acf, TXN202508070001 - Summary Test, {"transaction_number": "TXN202508070001"}, null, null, 2025-08-07 08:32:42.081518+00, 7).
+
+INFO 2025-08-07 10:32:42,082 transaction_service 18464 18328 Transaction TXN202508070001 created by testuser
+ERROR 2025-08-07 10:32:42,087 transaction_service 18464 18328 Failed to post transaction TXN202508070001: ['Transaction must have at least one journal entry.']
+ERROR 2025-08-07 10:32:42,971 utils 18464 18328 Failed to create audit log: null value in column "user_agent" of relation "core_auditlog" violates not-null constraint
+DETAIL:  Failing row contains (3e80b2cd-0728-43c9-908c-84ee2cc86ef3, CREATE, Transaction, 8f06b10e-420f-42d9-9c2c-a51414c65a8f, TXN202508070001 - Already Posted, {"transaction_number": "TXN202508070001"}, null, null, 2025-08-07 08:32:42.970793+00, 9).
+
+INFO 2025-08-07 10:32:42,971 transaction_service 18464 18328 Transaction TXN202508070001 created by testuser
+ERROR 2025-08-07 10:32:42,976 transaction_service 18464 18328 Failed to post transaction TXN202508070001: ['Transaction must have at least one journal entry.']
+ERROR 2025-08-07 10:32:43,416 utils 18464 18328 Failed to create audit log: null value in column "user_agent" of relation "core_auditlog" violates not-null constraint
+DETAIL:  Failing row contains (356d67aa-f03d-444c-92bc-2d212d7d8475, CREATE, Transaction, 50a08a1c-f42a-402e-84d6-977d9f99c294, TXN202508070001 - Postable Transaction, {"transaction_number": "TXN202508070001"}, null, null, 2025-08-07 08:32:43.416368+00, 10).
+
+INFO 2025-08-07 10:32:43,417 transaction_service 18464 18328 Transaction TXN202508070001 created by testuser
+ERROR 2025-08-07 10:32:43,869 utils 18464 18328 Failed to create audit log: null value in column "user_agent" of relation "core_auditlog" violates not-null constraint
+DETAIL:  Failing row contains (d565fae6-1759-4044-970f-f07771c0dd2c, CREATE, Transaction, 543c9473-e844-442f-b6e4-4951ac0074aa, TXN202508070001 - To be voided, {"transaction_number": "TXN202508070001"}, null, null, 2025-08-07 08:32:43.868662+00, 11).
+
+INFO 2025-08-07 10:32:43,869 transaction_service 18464 18328 Transaction TXN202508070001 created by testuser
+ERROR 2025-08-07 10:32:43,874 transaction_service 18464 18328 Failed to post transaction TXN202508070001: ['Transaction must have at least one journal entry.']
+ERROR 2025-08-07 10:32:44,317 utils 18464 18328 Failed to create audit log: null value in column "user_agent" of relation "core_auditlog" violates not-null constraint
+DETAIL:  Failing row contains (3a0639e6-ba7f-4116-94bd-190222cfdaad, CREATE, Transaction, c323c9cd-c693-4822-94bd-b2892861e077, TXN202508070001 - Unposted transaction, {"transaction_number": "TXN202508070001"}, null, null, 2025-08-07 08:32:44.316751+00, 12).
+
+INFO 2025-08-07 10:32:44,317 transaction_service 18464 18328 Transaction TXN202508070001 created by testuser
+ERROR 2025-08-07 10:32:44,318 transaction_service 18464 18328 Failed to void transaction TXN202508070001: ['Only posted transactions can be voided.']
+INFO 2025-08-07 10:45:35,602 transaction_service 18100 13044 Transaction TXN202508070001 created by testuser
+ERROR 2025-08-07 10:45:36,031 transaction_service 18100 13044 Failed to create transaction due to validation error: ['Transaction must have at least one journal entry.']
+ERROR 2025-08-07 10:45:36,486 transaction_service 18100 13044 Failed to create transaction due to validation error: ['Account 9999 is not active or does not allow posting.; Account 9999 does not allow posting.']
+INFO 2025-08-07 10:45:36,926 transaction_service 18100 13044 Transaction TXN202508070001 created by testuser
+ERROR 2025-08-07 10:45:37,352 transaction_service 18100 13044 Failed to create transaction due to validation error: ["Transaction is not balanced. Debits: 500.00, Credits: 400.00.; Journal entry 'Unbalanced Entry' is not balanced. Debits: 500.00, Credits: 400.00."]
+INFO 2025-08-07 10:45:37,768 transaction_service 18100 13044 Transaction TXN202508070001 created by testuser
+INFO 2025-08-07 10:45:37,795 transaction_service 18100 13044 Transaction TXN202508070002 created by testuser
+ERROR 2025-08-07 10:45:37,829 transaction_service 18100 13044 Failed to post transaction TXN202508070001: 'NotificationUtils' object has no attribute 'send_notification'
+INFO 2025-08-07 10:45:38,278 transaction_service 18100 13044 Transaction TXN202508070001 created by testuser
+ERROR 2025-08-07 10:45:38,307 transaction_service 18100 13044 Failed to post transaction TXN202508070001: 'NotificationUtils' object has no attribute 'send_notification'
+INFO 2025-08-07 10:45:39,136 transaction_service 18100 13044 Transaction TXN202508070001 created by testuser
+ERROR 2025-08-07 10:45:39,160 transaction_service 18100 13044 Failed to post transaction TXN202508070001: 'NotificationUtils' object has no attribute 'send_notification'
+INFO 2025-08-07 10:45:39,578 transaction_service 18100 13044 Transaction TXN202508070001 created by testuser
+INFO 2025-08-07 10:45:39,997 transaction_service 18100 13044 Transaction TXN202508070001 created by testuser
+ERROR 2025-08-07 10:45:40,021 transaction_service 18100 13044 Failed to post transaction TXN202508070001: 'NotificationUtils' object has no attribute 'send_notification'
+INFO 2025-08-07 10:45:40,441 transaction_service 18100 13044 Transaction TXN202508070001 created by testuser
+ERROR 2025-08-07 10:45:40,442 transaction_service 18100 13044 Failed to void transaction TXN202508070001: ['Only posted transactions can be voided.']
+INFO 2025-08-07 11:05:06,776 transaction_service 21028 8252 Transaction TXN202508070001 created by testuser
+ERROR 2025-08-07 11:05:07,227 transaction_service 21028 8252 Failed to create transaction due to validation error: ['Transaction must have at least one journal entry.']
+ERROR 2025-08-07 11:05:07,701 transaction_service 21028 8252 Failed to create transaction due to validation error: ['Account 9999 is not active or does not allow posting.; Account 9999 does not allow posting.']
+INFO 2025-08-07 11:05:08,171 transaction_service 21028 8252 Transaction TXN202508070001 created by testuser
+ERROR 2025-08-07 11:05:08,644 transaction_service 21028 8252 Failed to create transaction due to validation error: ["Transaction is not balanced. Debits: 500.00, Credits: 400.00.; Journal entry 'Unbalanced Entry' is not balanced. Debits: 500.00, Credits: 400.00."]
+INFO 2025-08-07 11:05:09,112 transaction_service 21028 8252 Transaction TXN202508070001 created by testuser
+INFO 2025-08-07 11:05:09,136 transaction_service 21028 8252 Transaction TXN202508070002 created by testuser
+ERROR 2025-08-07 11:05:09,182 transaction_service 21028 8252 Failed to post transaction TXN202508070001: 'NotificationUtils' object has no attribute 'send_notification'
+INFO 2025-08-07 11:05:09,629 transaction_service 21028 8252 Transaction TXN202508070001 created by testuser
+ERROR 2025-08-07 11:05:09,658 transaction_service 21028 8252 Failed to post transaction TXN202508070001: 'NotificationUtils' object has no attribute 'send_notification'
+INFO 2025-08-07 11:05:10,508 transaction_service 21028 8252 Transaction TXN202508070001 created by testuser
+ERROR 2025-08-07 11:05:10,541 transaction_service 21028 8252 Failed to post transaction TXN202508070001: 'NotificationUtils' object has no attribute 'send_notification'
+INFO 2025-08-07 11:05:10,969 transaction_service 21028 8252 Transaction TXN202508070001 created by testuser
+INFO 2025-08-07 11:05:11,402 transaction_service 21028 8252 Transaction TXN202508070001 created by testuser
+ERROR 2025-08-07 11:05:11,431 transaction_service 21028 8252 Failed to post transaction TXN202508070001: 'NotificationUtils' object has no attribute 'send_notification'
+INFO 2025-08-07 11:05:11,870 transaction_service 21028 8252 Transaction TXN202508070001 created by testuser
+ERROR 2025-08-07 11:05:11,871 transaction_service 21028 8252 Failed to void transaction TXN202508070001: ['Only posted transactions can be voided.']
+INFO 2025-08-07 11:07:37,714 transaction_service 12320 12340 Transaction TXN202508070001 created by testuser
+ERROR 2025-08-07 11:07:38,166 transaction_service 12320 12340 Failed to create transaction due to validation error: ['Transaction must have at least one journal entry.']
+ERROR 2025-08-07 11:07:38,642 transaction_service 12320 12340 Failed to create transaction due to validation error: ['Account 9999 is not active or does not allow posting.; Account 9999 does not allow posting.']
+INFO 2025-08-07 11:07:39,094 transaction_service 12320 12340 Transaction TXN202508070001 created by testuser
+ERROR 2025-08-07 11:07:39,557 transaction_service 12320 12340 Failed to create transaction due to validation error: ["Transaction is not balanced. Debits: 500.00, Credits: 400.00.; Journal entry 'Unbalanced Entry' is not balanced. Debits: 500.00, Credits: 400.00."]
+INFO 2025-08-07 11:07:40,045 transaction_service 12320 12340 Transaction TXN202508070001 created by testuser
+INFO 2025-08-07 11:07:40,068 transaction_service 12320 12340 Transaction TXN202508070002 created by testuser
+ERROR 2025-08-07 11:07:40,106 transaction_service 12320 12340 Failed to post transaction TXN202508070001: NotificationUtils.create_notification() missing 1 required positional argument: 'title'
+INFO 2025-08-07 11:07:40,571 transaction_service 12320 12340 Transaction TXN202508070001 created by testuser
+ERROR 2025-08-07 11:07:40,604 transaction_service 12320 12340 Failed to post transaction TXN202508070001: NotificationUtils.create_notification() missing 1 required positional argument: 'title'
+INFO 2025-08-07 11:07:41,487 transaction_service 12320 12340 Transaction TXN202508070001 created by testuser
+ERROR 2025-08-07 11:07:41,522 transaction_service 12320 12340 Failed to post transaction TXN202508070001: NotificationUtils.create_notification() missing 1 required positional argument: 'title'
+INFO 2025-08-07 11:07:41,960 transaction_service 12320 12340 Transaction TXN202508070001 created by testuser
+INFO 2025-08-07 11:07:42,401 transaction_service 12320 12340 Transaction TXN202508070001 created by testuser
+ERROR 2025-08-07 11:07:42,426 transaction_service 12320 12340 Failed to post transaction TXN202508070001: NotificationUtils.create_notification() missing 1 required positional argument: 'title'
+INFO 2025-08-07 11:07:42,860 transaction_service 12320 12340 Transaction TXN202508070001 created by testuser
+ERROR 2025-08-07 11:07:42,861 transaction_service 12320 12340 Failed to void transaction TXN202508070001: ['Only posted transactions can be voided.']
+INFO 2025-08-07 11:12:01,667 transaction_service 13324 9112 Transaction TXN202508070001 created by testuser
+ERROR 2025-08-07 11:12:02,156 transaction_service 13324 9112 Failed to create transaction due to validation error: ['Transaction must have at least one journal entry.']
+ERROR 2025-08-07 11:12:02,619 transaction_service 13324 9112 Failed to create transaction due to validation error: ['Account 9999 is not active or does not allow posting.; Account 9999 does not allow posting.']
+INFO 2025-08-07 11:12:03,070 transaction_service 13324 9112 Transaction TXN202508070001 created by testuser
+ERROR 2025-08-07 11:12:03,517 transaction_service 13324 9112 Failed to create transaction due to validation error: ["Transaction is not balanced. Debits: 500.00, Credits: 400.00.; Journal entry 'Unbalanced Entry' is not balanced. Debits: 500.00, Credits: 400.00."]
+INFO 2025-08-07 11:12:03,946 transaction_service 13324 9112 Transaction TXN202508070001 created by testuser
+INFO 2025-08-07 11:12:03,965 transaction_service 13324 9112 Transaction TXN202508070002 created by testuser
+INFO 2025-08-07 11:12:03,999 transaction_service 13324 9112 Notification sent for transaction TXN202508070001 posted by testuser.
+INFO 2025-08-07 11:12:04,000 transaction_service 13324 9112 Transaction TXN202508070001 posted by testuser
+INFO 2025-08-07 11:12:04,035 transaction_service 13324 9112 Notification sent for transaction TXN202508070002 posted by testuser.
+INFO 2025-08-07 11:12:04,036 transaction_service 13324 9112 Transaction TXN202508070002 posted by testuser
+INFO 2025-08-07 11:12:04,478 transaction_service 13324 9112 Transaction TXN202508070001 created by testuser
+INFO 2025-08-07 11:12:04,506 transaction_service 13324 9112 Notification sent for transaction TXN202508070001 posted by testuser.
+INFO 2025-08-07 11:12:04,507 transaction_service 13324 9112 Transaction TXN202508070001 posted by testuser
+INFO 2025-08-07 11:12:05,372 transaction_service 13324 9112 Transaction TXN202508070001 created by testuser
+INFO 2025-08-07 11:12:05,402 transaction_service 13324 9112 Notification sent for transaction TXN202508070001 posted by testuser.
+INFO 2025-08-07 11:12:05,402 transaction_service 13324 9112 Transaction TXN202508070001 posted by testuser
+ERROR 2025-08-07 11:12:05,421 transaction_service 13324 9112 Failed to post transaction TXN202508070001: ['Transaction is already posted.']
+INFO 2025-08-07 11:12:05,869 transaction_service 13324 9112 Transaction TXN202508070001 created by testuser
+INFO 2025-08-07 11:12:06,311 transaction_service 13324 9112 Transaction TXN202508070001 created by testuser
+INFO 2025-08-07 11:12:06,341 transaction_service 13324 9112 Notification sent for transaction TXN202508070001 posted by testuser.
+INFO 2025-08-07 11:12:06,341 transaction_service 13324 9112 Transaction TXN202508070001 posted by testuser
+INFO 2025-08-07 11:12:06,805 transaction_service 13324 9112 Transaction TXN202508070001 created by testuser
+ERROR 2025-08-07 11:12:06,806 transaction_service 13324 9112 Failed to void transaction TXN202508070001: ['Only posted transactions can be voided.']
+INFO 2025-08-07 11:14:41,648 transaction_service 9172 21612 Transaction TXN202508070001 created by testuser
+ERROR 2025-08-07 11:14:42,101 transaction_service 9172 21612 Failed to create transaction due to validation error: ['Transaction must have at least one journal entry.']
+ERROR 2025-08-07 11:14:42,557 transaction_service 9172 21612 Failed to create transaction due to validation error: ['Account 9999 is not active or does not allow posting.; Account 9999 does not allow posting.']
+INFO 2025-08-07 11:14:43,025 transaction_service 9172 21612 Transaction TXN202508070001 created by testuser
+ERROR 2025-08-07 11:14:43,498 transaction_service 9172 21612 Failed to create transaction due to validation error: ["Transaction is not balanced. Debits: 500.00, Credits: 400.00.; Journal entry 'Unbalanced Entry' is not balanced. Debits: 500.00, Credits: 400.00."]
+INFO 2025-08-07 11:14:44,033 transaction_service 9172 21612 Transaction TXN202508070001 created by testuser
+INFO 2025-08-07 11:14:44,052 transaction_service 9172 21612 Transaction TXN202508070002 created by testuser
+INFO 2025-08-07 11:14:44,085 transaction_service 9172 21612 Notification sent for transaction TXN202508070001 posted by testuser.
+INFO 2025-08-07 11:14:44,085 transaction_service 9172 21612 Transaction TXN202508070001 posted by testuser
+INFO 2025-08-07 11:14:44,122 transaction_service 9172 21612 Notification sent for transaction TXN202508070002 posted by testuser.
+INFO 2025-08-07 11:14:44,123 transaction_service 9172 21612 Transaction TXN202508070002 posted by testuser
+INFO 2025-08-07 11:14:44,590 transaction_service 9172 21612 Transaction TXN202508070001 created by testuser
+INFO 2025-08-07 11:14:44,617 transaction_service 9172 21612 Notification sent for transaction TXN202508070001 posted by testuser.
+INFO 2025-08-07 11:14:44,617 transaction_service 9172 21612 Transaction TXN202508070001 posted by testuser
+INFO 2025-08-07 11:14:45,497 transaction_service 9172 21612 Transaction TXN202508070001 created by testuser
+INFO 2025-08-07 11:14:45,530 transaction_service 9172 21612 Notification sent for transaction TXN202508070001 posted by testuser.
+INFO 2025-08-07 11:14:45,530 transaction_service 9172 21612 Transaction TXN202508070001 posted by testuser
+ERROR 2025-08-07 11:14:45,552 transaction_service 9172 21612 Failed to post transaction TXN202508070001: ['Transaction is already posted.']
+INFO 2025-08-07 11:14:45,984 transaction_service 9172 21612 Transaction TXN202508070001 created by testuser
+INFO 2025-08-07 11:14:46,008 transaction_service 9172 21612 Notification sent for transaction TXN202508070001 posted by testuser.
+INFO 2025-08-07 11:14:46,008 transaction_service 9172 21612 Transaction TXN202508070001 posted by testuser
+INFO 2025-08-07 11:14:46,451 transaction_service 9172 21612 Transaction TXN202508070001 created by testuser
+INFO 2025-08-07 11:14:46,487 transaction_service 9172 21612 Notification sent for transaction TXN202508070001 posted by testuser.
+INFO 2025-08-07 11:14:46,487 transaction_service 9172 21612 Transaction TXN202508070001 posted by testuser
+ERROR 2025-08-07 11:14:46,494 transaction_service 9172 21612 Failed to void transaction TXN202508070001: 'JournalEntry' object has no attribute 'journalentry_set'
+INFO 2025-08-07 11:14:46,944 transaction_service 9172 21612 Transaction TXN202508070001 created by testuser
+ERROR 2025-08-07 11:14:46,946 transaction_service 9172 21612 Failed to void transaction TXN202508070001: ['Only posted transactions can be voided.']
+INFO 2025-08-07 11:28:00,569 transaction_service 23292 18864 Transaction TXN202508070001 created by testuser
+ERROR 2025-08-07 11:28:01,007 transaction_service 23292 18864 Failed to create transaction due to validation error: ['Transaction must have at least one journal entry.']
+ERROR 2025-08-07 11:28:01,468 transaction_service 23292 18864 Failed to create transaction due to validation error: ['Account 9999 is not active or does not allow posting.; Account 9999 does not allow posting.']
+INFO 2025-08-07 11:28:01,919 transaction_service 23292 18864 Transaction TXN202508070001 created by testuser
+ERROR 2025-08-07 11:28:02,385 transaction_service 23292 18864 Failed to create transaction due to validation error: ["Transaction is not balanced. Debits: 500.00, Credits: 400.00.; Journal entry 'Unbalanced Entry' is not balanced. Debits: 500.00, Credits: 400.00."]
+INFO 2025-08-07 11:28:02,838 transaction_service 23292 18864 Transaction TXN202508070001 created by testuser
+INFO 2025-08-07 11:28:02,859 transaction_service 23292 18864 Transaction TXN202508070002 created by testuser
+INFO 2025-08-07 11:28:02,904 transaction_service 23292 18864 Notification sent for transaction TXN202508070001 posted by testuser.
+INFO 2025-08-07 11:28:02,904 transaction_service 23292 18864 Transaction TXN202508070001 posted by testuser
+INFO 2025-08-07 11:28:02,948 transaction_service 23292 18864 Notification sent for transaction TXN202508070002 posted by testuser.
+INFO 2025-08-07 11:28:02,948 transaction_service 23292 18864 Transaction TXN202508070002 posted by testuser
+INFO 2025-08-07 11:28:03,409 transaction_service 23292 18864 Transaction TXN202508070001 created by testuser
+INFO 2025-08-07 11:28:03,441 transaction_service 23292 18864 Notification sent for transaction TXN202508070001 posted by testuser.
+INFO 2025-08-07 11:28:03,442 transaction_service 23292 18864 Transaction TXN202508070001 posted by testuser
+INFO 2025-08-07 11:28:04,303 transaction_service 23292 18864 Transaction TXN202508070001 created by testuser
+INFO 2025-08-07 11:28:04,332 transaction_service 23292 18864 Notification sent for transaction TXN202508070001 posted by testuser.
+INFO 2025-08-07 11:28:04,332 transaction_service 23292 18864 Transaction TXN202508070001 posted by testuser
+ERROR 2025-08-07 11:28:04,355 transaction_service 23292 18864 Failed to post transaction TXN202508070001: ['Transaction is already posted.']
+INFO 2025-08-07 11:28:04,781 transaction_service 23292 18864 Transaction TXN202508070001 created by testuser
+INFO 2025-08-07 11:28:04,813 transaction_service 23292 18864 Notification sent for transaction TXN202508070001 posted by testuser.
+INFO 2025-08-07 11:28:04,813 transaction_service 23292 18864 Transaction TXN202508070001 posted by testuser
+INFO 2025-08-07 11:28:05,247 transaction_service 23292 18864 Transaction TXN202508070001 created by testuser
+INFO 2025-08-07 11:28:05,276 transaction_service 23292 18864 Notification sent for transaction TXN202508070001 posted by testuser.
+INFO 2025-08-07 11:28:05,277 transaction_service 23292 18864 Transaction TXN202508070001 posted by testuser
+ERROR 2025-08-07 11:28:05,279 transaction_service 23292 18864 Failed to void transaction TXN202508070001: Transaction() got unexpected keyword arguments: 'is_reversal', 'original_transaction'
+INFO 2025-08-07 11:28:05,746 transaction_service 23292 18864 Transaction TXN202508070001 created by testuser
+ERROR 2025-08-07 11:28:05,747 transaction_service 23292 18864 Failed to void transaction TXN202508070001: ['Only posted transactions can be voided.']
+INFO 2025-08-07 11:35:30,313 transaction_service 16860 23164 Transaction TXN202508070001 created by testuser
+ERROR 2025-08-07 11:35:30,756 transaction_service 16860 23164 Failed to create transaction due to validation error: ['Transaction must have at least one journal entry.']
+ERROR 2025-08-07 11:35:31,234 transaction_service 16860 23164 Failed to create transaction due to validation error: ['Account 9999 is not active or does not allow posting.; Account 9999 does not allow posting.']
+INFO 2025-08-07 11:35:31,678 transaction_service 16860 23164 Transaction TXN202508070001 created by testuser
+ERROR 2025-08-07 11:35:32,127 transaction_service 16860 23164 Failed to create transaction due to validation error: ["Transaction is not balanced. Debits: 500.00, Credits: 400.00.; Journal entry 'Unbalanced Entry' is not balanced. Debits: 500.00, Credits: 400.00."]
+INFO 2025-08-07 11:35:32,586 transaction_service 16860 23164 Transaction TXN202508070001 created by testuser
+INFO 2025-08-07 11:35:32,605 transaction_service 16860 23164 Transaction TXN202508070002 created by testuser
+INFO 2025-08-07 11:35:32,646 transaction_service 16860 23164 Notification sent for transaction TXN202508070001 posted by testuser.
+INFO 2025-08-07 11:35:32,646 transaction_service 16860 23164 Transaction TXN202508070001 posted by testuser
+INFO 2025-08-07 11:35:32,686 transaction_service 16860 23164 Notification sent for transaction TXN202508070002 posted by testuser.
+INFO 2025-08-07 11:35:32,686 transaction_service 16860 23164 Transaction TXN202508070002 posted by testuser
+INFO 2025-08-07 11:35:33,131 transaction_service 16860 23164 Transaction TXN202508070001 created by testuser
+INFO 2025-08-07 11:35:33,164 transaction_service 16860 23164 Notification sent for transaction TXN202508070001 posted by testuser.
+INFO 2025-08-07 11:35:33,165 transaction_service 16860 23164 Transaction TXN202508070001 posted by testuser
+INFO 2025-08-07 11:35:34,026 transaction_service 16860 23164 Transaction TXN202508070001 created by testuser
+INFO 2025-08-07 11:35:34,051 transaction_service 16860 23164 Notification sent for transaction TXN202508070001 posted by testuser.
+INFO 2025-08-07 11:35:34,051 transaction_service 16860 23164 Transaction TXN202508070001 posted by testuser
+ERROR 2025-08-07 11:35:34,079 transaction_service 16860 23164 Failed to post transaction TXN202508070001: ['Transaction is already posted.']
+INFO 2025-08-07 11:35:34,527 transaction_service 16860 23164 Transaction TXN202508070001 created by testuser
+INFO 2025-08-07 11:35:34,556 transaction_service 16860 23164 Notification sent for transaction TXN202508070001 posted by testuser.
+INFO 2025-08-07 11:35:34,556 transaction_service 16860 23164 Transaction TXN202508070001 posted by testuser
+INFO 2025-08-07 11:35:34,998 transaction_service 16860 23164 Transaction TXN202508070001 created by testuser
+INFO 2025-08-07 11:35:35,031 transaction_service 16860 23164 Notification sent for transaction TXN202508070001 posted by testuser.
+INFO 2025-08-07 11:35:35,032 transaction_service 16860 23164 Transaction TXN202508070001 posted by testuser
+INFO 2025-08-07 11:35:35,078 transaction_service 16860 23164 Notification sent for transaction TXN202508070002 posted by testuser.
+INFO 2025-08-07 11:35:35,079 transaction_service 16860 23164 Transaction TXN202508070002 posted by testuser
+INFO 2025-08-07 11:35:35,083 transaction_service 16860 23164 Transaction TXN202508070001 voided by testuser
+INFO 2025-08-07 11:35:35,518 transaction_service 16860 23164 Transaction TXN202508070001 created by testuser
+ERROR 2025-08-07 11:35:35,519 transaction_service 16860 23164 Failed to void transaction TXN202508070001: ['Only posted transactions can be voided.']
+ERROR 2025-08-07 12:32:04,266 report_generator 19204 1420 Failed to generate balance sheet: Unsupported lookup 'transaction_date' for ForeignKey or join on the field not permitted.
+ERROR 2025-08-07 12:32:04,307 report_generator 19204 1420 Failed to generate balance sheet: Unsupported lookup 'transaction_date' for ForeignKey or join on the field not permitted.
+ERROR 2025-08-07 12:32:04,381 report_generator 19204 1420 Failed to generate cash flow statement: Unsupported lookup 'transaction_date' for ForeignKey or join on the field not permitted.
+ERROR 2025-08-07 12:32:04,402 report_generator 19204 1420 Failed to generate general ledger: Unsupported lookup 'transaction_date' for ForeignKey or join on the field not permitted.
+ERROR 2025-08-07 12:32:04,523 report_generator 19204 1420 Failed to generate trial balance: Unsupported lookup 'transaction_date' for ForeignKey or join on the field not permitted.
+WARNING 2025-08-07 12:41:28,447 report_generator 16164 23968 Balance sheet does not balance
+WARNING 2025-08-07 12:41:28,505 report_generator 16164 23968 Balance sheet does not balance
+WARNING 2025-08-08 10:15:27,933 report_generator 14912 20424 Balance sheet does not balance
+WARNING 2025-08-08 10:15:28,043 report_generator 14912 20424 Balance sheet does not balance
+WARNING 2025-08-17 11:24:51,947 report_generator 15692 13328 Balance sheet does not balance
+WARNING 2025-08-17 11:24:52,050 report_generator 15692 13328 Balance sheet does not balance
+INFO 2025-08-17 11:25:31,112 transaction_service 15848 20504 Transaction TXN202508170001 created by testuser
+ERROR 2025-08-17 11:25:31,948 transaction_service 15848 20504 Failed to create transaction due to validation error: ['Transaction must have at least one journal entry.']
+ERROR 2025-08-17 11:25:32,972 transaction_service 15848 20504 Failed to create transaction due to validation error: ['Account 9999 is not active or does not allow posting.; Account 9999 does not allow posting.']
+INFO 2025-08-17 11:25:33,791 transaction_service 15848 20504 Transaction TXN202508170001 created by testuser
+ERROR 2025-08-17 11:25:34,672 transaction_service 15848 20504 Failed to create transaction due to validation error: ["Transaction is not balanced. Debits: 500.00, Credits: 400.00.; Journal entry 'Unbalanced Entry' is not balanced. Debits: 500.00, Credits: 400.00."]
+INFO 2025-08-17 11:25:35,411 transaction_service 15848 20504 Transaction TXN202508170001 created by testuser
+INFO 2025-08-17 11:25:35,463 transaction_service 15848 20504 Transaction TXN202508170002 created by testuser
+INFO 2025-08-17 11:25:35,540 transaction_service 15848 20504 Notification sent for transaction TXN202508170001 posted by testuser.
+INFO 2025-08-17 11:25:35,541 transaction_service 15848 20504 Transaction TXN202508170001 posted by testuser
+INFO 2025-08-17 11:25:35,631 transaction_service 15848 20504 Notification sent for transaction TXN202508170002 posted by testuser.
+INFO 2025-08-17 11:25:35,632 transaction_service 15848 20504 Transaction TXN202508170002 posted by testuser
+INFO 2025-08-17 11:25:36,462 transaction_service 15848 20504 Transaction TXN202508170001 created by testuser
+INFO 2025-08-17 11:25:36,535 transaction_service 15848 20504 Notification sent for transaction TXN202508170001 posted by testuser.
+INFO 2025-08-17 11:25:36,536 transaction_service 15848 20504 Transaction TXN202508170001 posted by testuser
+INFO 2025-08-17 11:25:37,913 transaction_service 15848 20504 Transaction TXN202508170001 created by testuser
+INFO 2025-08-17 11:25:37,982 transaction_service 15848 20504 Notification sent for transaction TXN202508170001 posted by testuser.
+INFO 2025-08-17 11:25:37,983 transaction_service 15848 20504 Transaction TXN202508170001 posted by testuser
+ERROR 2025-08-17 11:25:38,030 transaction_service 15848 20504 Failed to post transaction TXN202508170001: ['Transaction is already posted.']
+INFO 2025-08-17 11:25:38,759 transaction_service 15848 20504 Transaction TXN202508170001 created by testuser
+INFO 2025-08-17 11:25:38,831 transaction_service 15848 20504 Notification sent for transaction TXN202508170001 posted by testuser.
+INFO 2025-08-17 11:25:38,831 transaction_service 15848 20504 Transaction TXN202508170001 posted by testuser
+INFO 2025-08-17 11:25:39,572 transaction_service 15848 20504 Transaction TXN202508170001 created by testuser
+INFO 2025-08-17 11:25:39,644 transaction_service 15848 20504 Notification sent for transaction TXN202508170001 posted by testuser.
+INFO 2025-08-17 11:25:39,645 transaction_service 15848 20504 Transaction TXN202508170001 posted by testuser
+INFO 2025-08-17 11:25:39,756 transaction_service 15848 20504 Notification sent for transaction TXN202508170002 posted by testuser.
+INFO 2025-08-17 11:25:39,756 transaction_service 15848 20504 Transaction TXN202508170002 posted by testuser
+INFO 2025-08-17 11:25:39,760 transaction_service 15848 20504 Transaction TXN202508170001 voided by testuser
+INFO 2025-08-17 11:25:40,508 transaction_service 15848 20504 Transaction TXN202508170001 created by testuser
+ERROR 2025-08-17 11:25:40,510 transaction_service 15848 20504 Failed to void transaction TXN202508170001: ['Only posted transactions can be voided.']
+WARNING 2025-08-17 11:26:08,022 report_generator 16248 7804 Balance sheet does not balance
+WARNING 2025-08-17 11:26:08,158 report_generator 16248 7804 Balance sheet does not balance
+WARNING 2025-08-18 10:41:38,730 report_generator 6036 22080 Balance sheet does not balance
+WARNING 2025-08-18 10:41:38,782 report_generator 6036 22080 Balance sheet does not balance
+WARNING 2025-08-18 10:41:39,141 report_generator 6036 22080 Balance sheet does not balance
+WARNING 2025-08-18 10:41:39,205 report_generator 6036 22080 Balance sheet does not balance
+WARNING 2025-08-18 10:41:39,310 report_generator 6036 22080 Balance sheet does not balance
+WARNING 2025-08-18 10:41:39,328 report_generator 6036 22080 Balance sheet does not balance
+ERROR 2025-08-18 10:41:39,362 report_generator 6036 22080 Failed to generate balance sheet: Database connection error
+WARNING 2025-08-18 10:41:39,527 report_generator 6036 22080 Balance sheet does not balance
+WARNING 2025-08-18 10:41:39,681 report_generator 6036 22080 Balance sheet does not balance
+WARNING 2025-08-18 10:41:39,738 report_generator 6036 22080 Balance sheet does not balance
+WARNING 2025-08-18 10:44:22,605 report_generator 6308 21932 Balance sheet does not balance
+WARNING 2025-08-18 10:44:22,655 report_generator 6308 21932 Balance sheet does not balance
+WARNING 2025-08-18 10:44:23,001 report_generator 6308 21932 Balance sheet does not balance
+WARNING 2025-08-18 10:44:23,066 report_generator 6308 21932 Balance sheet does not balance
+WARNING 2025-08-18 10:44:23,173 report_generator 6308 21932 Balance sheet does not balance
+WARNING 2025-08-18 10:44:23,188 report_generator 6308 21932 Balance sheet does not balance
+ERROR 2025-08-18 10:44:23,204 report_generator 6308 21932 Failed to generate balance sheet: Database connection error
+WARNING 2025-08-18 10:44:23,317 report_generator 6308 21932 Balance sheet does not balance
+WARNING 2025-08-18 10:44:23,437 report_generator 6308 21932 Balance sheet does not balance
+WARNING 2025-08-18 10:44:23,483 report_generator 6308 21932 Balance sheet does not balance
+WARNING 2025-08-18 10:54:17,092 report_generator 17772 20152 Balance sheet does not balance
+WARNING 2025-08-18 10:54:17,143 report_generator 17772 20152 Balance sheet does not balance
+WARNING 2025-08-18 10:54:17,490 report_generator 17772 20152 Balance sheet does not balance
+WARNING 2025-08-18 10:54:17,569 report_generator 17772 20152 Balance sheet does not balance
+WARNING 2025-08-18 10:54:17,668 report_generator 17772 20152 Balance sheet does not balance
+WARNING 2025-08-18 10:54:17,701 report_generator 17772 20152 Balance sheet does not balance
+ERROR 2025-08-18 10:54:17,734 report_generator 17772 20152 Failed to generate balance sheet: Database connection error
+WARNING 2025-08-18 10:54:18,082 report_generator 17772 20152 Balance sheet does not balance
+WARNING 2025-08-18 10:54:18,150 report_generator 17772 20152 Balance sheet does not balance
+WARNING 2025-08-18 10:54:18,202 report_generator 17772 20152 Balance sheet does not balance
+WARNING 2025-08-18 10:54:18,371 report_generator 17772 20152 Balance sheet does not balance
+WARNING 2025-08-18 10:54:18,417 report_generator 17772 20152 Balance sheet does not balance
+WARNING 2025-08-18 10:56:20,141 report_generator 19144 21996 Balance sheet does not balance
+WARNING 2025-08-18 10:56:20,204 report_generator 19144 21996 Balance sheet does not balance
+WARNING 2025-08-18 10:56:20,574 report_generator 19144 21996 Balance sheet does not balance
+WARNING 2025-08-18 10:56:20,671 report_generator 19144 21996 Balance sheet does not balance
+WARNING 2025-08-18 10:56:20,793 report_generator 19144 21996 Balance sheet does not balance
+WARNING 2025-08-18 10:56:20,814 report_generator 19144 21996 Balance sheet does not balance
+ERROR 2025-08-18 10:56:20,849 report_generator 19144 21996 Failed to generate balance sheet: Database connection error
+WARNING 2025-08-18 10:56:21,270 report_generator 19144 21996 Balance sheet does not balance
+WARNING 2025-08-18 10:56:21,340 report_generator 19144 21996 Balance sheet does not balance
+WARNING 2025-08-18 10:56:21,404 report_generator 19144 21996 Balance sheet does not balance
+WARNING 2025-08-18 10:56:21,571 report_generator 19144 21996 Balance sheet does not balance
+WARNING 2025-08-18 10:56:21,616 report_generator 19144 21996 Balance sheet does not balance
+WARNING 2025-08-18 11:07:22,659 report_generator 14968 312 Balance sheet does not balance
+WARNING 2025-08-18 11:07:22,759 report_generator 14968 312 Balance sheet does not balance
+WARNING 2025-08-18 11:07:23,432 report_generator 14968 312 Balance sheet does not balance
+WARNING 2025-08-18 11:07:23,581 report_generator 14968 312 Balance sheet does not balance
+WARNING 2025-08-18 11:07:23,771 report_generator 14968 312 Balance sheet does not balance
+WARNING 2025-08-18 11:07:23,816 report_generator 14968 312 Balance sheet does not balance
+ERROR 2025-08-18 11:07:23,869 report_generator 14968 312 Failed to generate balance sheet: Database connection error
+WARNING 2025-08-18 11:07:24,714 report_generator 14968 312 Balance sheet does not balance
+WARNING 2025-08-18 11:07:24,827 report_generator 14968 312 Balance sheet does not balance
+WARNING 2025-08-18 11:07:24,926 report_generator 14968 312 Balance sheet does not balance
+WARNING 2025-08-18 11:07:25,199 report_generator 14968 312 Balance sheet does not balance
+WARNING 2025-08-18 11:07:25,298 report_generator 14968 312 Balance sheet does not balance
+WARNING 2025-08-18 11:17:22,131 report_generator 20356 16644 Balance sheet does not balance
+WARNING 2025-08-18 11:17:22,254 report_generator 20356 16644 Balance sheet does not balance
+WARNING 2025-08-18 11:17:22,922 report_generator 20356 16644 Balance sheet does not balance
+WARNING 2025-08-18 11:17:23,054 report_generator 20356 16644 Balance sheet does not balance
+WARNING 2025-08-18 11:17:23,240 report_generator 20356 16644 Balance sheet does not balance
+WARNING 2025-08-18 11:17:23,290 report_generator 20356 16644 Balance sheet does not balance
+ERROR 2025-08-18 11:17:23,350 report_generator 20356 16644 Failed to generate balance sheet: Database connection error
+WARNING 2025-08-18 11:17:24,196 report_generator 20356 16644 Balance sheet does not balance
+WARNING 2025-08-18 11:17:24,315 report_generator 20356 16644 Balance sheet does not balance
+WARNING 2025-08-18 11:17:24,402 report_generator 20356 16644 Balance sheet does not balance
+WARNING 2025-08-18 11:17:24,685 report_generator 20356 16644 Balance sheet does not balance
+WARNING 2025-08-18 11:17:24,798 report_generator 20356 16644 Balance sheet does not balance
+WARNING 2025-08-18 11:20:43,431 report_generator 11744 7280 Balance sheet does not balance
+WARNING 2025-08-18 11:20:43,541 report_generator 11744 7280 Balance sheet does not balance
+WARNING 2025-08-18 11:20:44,274 report_generator 11744 7280 Balance sheet does not balance
+WARNING 2025-08-18 11:20:44,425 report_generator 11744 7280 Balance sheet does not balance
+WARNING 2025-08-18 11:20:44,615 report_generator 11744 7280 Balance sheet does not balance
+WARNING 2025-08-18 11:20:44,657 report_generator 11744 7280 Balance sheet does not balance
+ERROR 2025-08-18 11:20:44,715 report_generator 11744 7280 Failed to generate balance sheet: Database connection error
+WARNING 2025-08-18 11:20:45,434 report_generator 11744 7280 Balance sheet does not balance
+WARNING 2025-08-18 11:20:45,569 report_generator 11744 7280 Balance sheet does not balance
+WARNING 2025-08-18 11:20:45,657 report_generator 11744 7280 Balance sheet does not balance
+WARNING 2025-08-18 11:20:45,919 report_generator 11744 7280 Balance sheet does not balance
+WARNING 2025-08-18 11:20:46,024 report_generator 11744 7280 Balance sheet does not balance
+ERROR 2025-08-18 11:25:50,527 report_generator 13092 11484 Failed to generate balance sheet: Database connection error
+WARNING 2025-08-18 11:25:51,401 report_generator 13092 11484 Balance sheet does not balance
+WARNING 2025-08-18 11:25:51,524 report_generator 13092 11484 Balance sheet does not balance
+ERROR 2025-08-18 11:31:54,675 report_generator 6468 4516 Failed to generate balance sheet: Database connection error
+WARNING 2025-08-18 11:31:55,662 report_generator 6468 4516 Balance sheet does not balance
+WARNING 2025-08-18 11:31:55,774 report_generator 6468 4516 Balance sheet does not balance

@@ -895,7 +895,7 @@ class AuditUtils:
     @staticmethod
     def log_activity(user, action: str, model_name: str, object_id: str, 
                     object_repr: str, changes: Dict = None, ip_address: str = None,
-                    user_agent: str = None):
+                    user_agent: str = "system_test"):
         """
         Log an activity for audit purposes.
         

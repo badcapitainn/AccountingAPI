@@ -51,14 +51,19 @@ class ReportGenerator:
             assets = self._get_account_balances_by_type('ASSET', as_of_date)
             liabilities = self._get_account_balances_by_type('LIABILITY', as_of_date)
             equity = self._get_account_balances_by_type('EQUITY', as_of_date)
+            revenue = self._get_account_balances_by_type('REVENUE', as_of_date)
+            expenses = self._get_account_balances_by_type('EXPENSE', as_of_date)
             
             # Calculate totals
             total_assets = sum(account['balance'] for account in assets)
             total_liabilities = sum(account['balance'] for account in liabilities)
             total_equity = sum(account['balance'] for account in equity)
+            total_revenue = sum(account['balance'] for account in revenue)
+            total_expenses = sum(account['balance'] for account in expenses)
+            net_income = total_revenue - total_expenses
             
-            # Validate accounting equation
-            if abs(total_assets - (total_liabilities + total_equity)) > Decimal('0.01'):
+            # Validate accounting equation: Assets = Liabilities + Equity + Net Income
+            if abs(total_assets - (total_liabilities + total_equity + net_income)) > Decimal('0.01'):
                 logger.warning("Balance sheet does not balance")
             
             report_data = {
@@ -68,11 +73,16 @@ class ReportGenerator:
                 'assets': assets,
                 'liabilities': liabilities,
                 'equity': equity,
+                'revenue': revenue,
+                'expenses': expenses,
                 'totals': {
                     'total_assets': total_assets,
                     'total_liabilities': total_liabilities,
                     'total_equity': total_equity,
-                    'total_liabilities_and_equity': total_liabilities + total_equity
+                    'total_revenue': total_revenue,
+                    'total_expenses': total_expenses,
+                    'net_income': net_income,
+                    'total_liabilities_and_equity': total_liabilities + total_equity + net_income
                 }
             }
             

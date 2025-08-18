@@ -210,7 +210,7 @@ class Account(TimeStampedModel, SoftDeleteModel):
         if as_of_date:
             items = JournalItem.objects.filter(
                 account=self,
-                journal_entry__transaction_date__lte=as_of_date,
+                journal_entry__transaction__transaction_date__lte=as_of_date,
                 journal_entry__transaction__is_posted=True
             )
         else:
@@ -225,7 +225,13 @@ class Account(TimeStampedModel, SoftDeleteModel):
             else:
                 balance -= item.credit_amount
 
-        return balance
+        # Adjust balance based on account balance type
+        # For CREDIT balance accounts (liabilities, equity, revenue), 
+        # we need to return the opposite of the calculated balance
+        if self.balance_type == self.CREDIT:
+            return -balance
+        else:
+            return balance
     
     def update_balance(self):
         """Update the current balance based on posted journal items."""
@@ -246,7 +252,12 @@ class Account(TimeStampedModel, SoftDeleteModel):
             else:
                 converted_balance -= Decimal(str(item.credit_amount))
         
-        self.current_balance = converted_balance
+        # Adjust balance based on account balance type
+        if self.balance_type == self.CREDIT:
+            self.current_balance = -converted_balance
+        else:
+            self.current_balance = converted_balance
+            
         self.save(update_fields=['current_balance'])
     
     def get_transaction_history(self, start_date=None, end_date=None):
