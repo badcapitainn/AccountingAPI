@@ -11,6 +11,7 @@ from rest_framework.response import Response
 from django_filters.rest_framework import DjangoFilterBackend
 from django.db.models import Q
 from django.utils import timezone
+from django.core.cache import cache
 
 from accounting.models import Report, ReportTemplate, ReportSchedule
 from accounting.services.report_generator import ReportGenerator
@@ -19,6 +20,7 @@ from api.serializers.reports import (
     ReportTemplateSerializer, ReportScheduleSerializer
 )
 from core.permissions import IsAccountantOrReadOnly, IsManagerOrReadOnly
+from core.cache_utils import CacheManager
 
 
 class ReportTemplateViewSet(viewsets.ModelViewSet):
@@ -87,6 +89,7 @@ class ReportViewSet(viewsets.ModelViewSet):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.report_generator = ReportGenerator()
+        self.cache_manager = CacheManager('reports')
     
     def get_queryset(self):
         """Get filtered queryset."""
@@ -167,6 +170,9 @@ class ReportViewSet(viewsets.ModelViewSet):
             
             # Mark report as completed
             report.complete_generation(data)
+            
+            # Invalidate related cache
+            self.cache_manager.invalidate_report_cache()
             
             return Response({
                 'message': 'Report generated successfully.',

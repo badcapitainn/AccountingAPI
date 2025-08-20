@@ -1784,3 +1784,6 @@ ERROR 2025-08-20 10:30:38,022 transaction_service 6112 16312 Failed to void tran
 ERROR 2025-08-20 10:31:04,648 report_generator 23176 22612 Failed to generate balance sheet: Database connection error
 WARNING 2025-08-20 10:31:05,642 report_generator 23176 22612 Balance sheet does not balance
 WARNING 2025-08-20 10:31:05,759 report_generator 23176 22612 Balance sheet does not balance
+ERROR 2025-08-20 11:12:20,234 report_generator 7208 16024 Failed to generate balance sheet: Database connection error
+WARNING 2025-08-20 11:12:21,083 report_generator 7208 16024 Balance sheet does not balance
+WARNING 2025-08-20 11:12:21,171 report_generator 7208 16024 Balance sheet does not balance

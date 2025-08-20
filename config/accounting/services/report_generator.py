@@ -15,6 +15,7 @@ from django.utils import timezone
 
 from accounting.models import Account, Transaction, JournalItem, Report, ReportTemplate
 from core.utils import DateUtils, DecimalPrecision
+from core.cache_utils import cache_method_result, CacheManager
 
 logger = logging.getLogger(__name__)
 
@@ -31,7 +32,9 @@ class ReportGenerator:
         """Initialize the report generator."""
         self.date_utils = DateUtils()
         self.decimal_precision = DecimalPrecision()
+        self.cache_manager = CacheManager('reports')
     
+    @cache_method_result(timeout=1800, key_prefix="balance_sheet", cache_alias="reports")
     def generate_balance_sheet(self, as_of_date: date = None, include_comparative: bool = False) -> Dict[str, Any]:
         """
         Generate a Balance Sheet report.
@@ -97,6 +100,7 @@ class ReportGenerator:
             logger.error(f"Failed to generate balance sheet: {e}")
             raise ValidationError(f"Failed to generate balance sheet: {str(e)}")
     
+    @cache_method_result(timeout=1800, key_prefix="income_statement", cache_alias="reports")
     def generate_income_statement(self, start_date: date = None, end_date: date = None, 
                                 include_comparative: bool = False) -> Dict[str, Any]:
         """
@@ -155,6 +159,7 @@ class ReportGenerator:
             logger.error(f"Failed to generate income statement: {e}")
             raise ValidationError(f"Failed to generate income statement: {str(e)}")
     
+    @cache_method_result(timeout=1800, key_prefix="trial_balance", cache_alias="reports")
     def generate_trial_balance(self, as_of_date: date = None) -> Dict[str, Any]:
         """
         Generate a Trial Balance report.
@@ -262,6 +267,7 @@ class ReportGenerator:
             logger.error(f"Failed to generate general ledger: {e}")
             raise ValidationError(f"Failed to generate general ledger: {str(e)}")
     
+    @cache_method_result(timeout=1800, key_prefix="cash_flow", cache_alias="reports")
     def generate_cash_flow_statement(self, start_date: date = None, end_date: date = None) -> Dict[str, Any]:
         """
         Generate a Cash Flow Statement.

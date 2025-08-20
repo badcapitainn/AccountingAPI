@@ -16,6 +16,7 @@ from rest_framework_simplejwt.views import (
 from api.views.accounts import AccountViewSet, AccountTypeViewSet, AccountCategoryViewSet
 from api.views.transactions import TransactionViewSet, JournalEntryViewSet, TransactionTypeViewSet
 from api.views.reports import ReportViewSet, ReportTemplateViewSet, ReportScheduleViewSet
+from api.views.cache_management import CacheManagementViewSet
 from core.views import DashboardView, SystemHealthView
 
 # Create router and register viewsets
@@ -35,6 +36,9 @@ router.register(r'transaction-types', TransactionTypeViewSet, basename='transact
 router.register(r'reports', ReportViewSet, basename='report')
 router.register(r'report-templates', ReportTemplateViewSet, basename='report-template')
 router.register(r'report-schedules', ReportScheduleViewSet, basename='report-schedule')
+
+# Cache management endpoints
+router.register(r'cache', CacheManagementViewSet, basename='cache')
 
 # Authentication endpoints
 auth_patterns = [
