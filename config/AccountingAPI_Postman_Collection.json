@@ -1,0 +1,1155 @@
+{
+	"info": {
+		"_postman_id": "accounting-api-collection",
+		"name": "Accounting API",
+		"description": "Complete API collection for the Accounting System with sample data and expected responses",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "Get JWT Token",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"admin\",\n    \"password\": \"admin123\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/auth/token/",
+							"host": ["{{base_url}}"],
+							"path": ["auth", "token", ""]
+						},
+						"description": "Get JWT access token for authentication. Use the returned 'access' token in the Authorization header for subsequent requests."
+					},
+					"response": [
+						{
+							"name": "Success Response",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"username\": \"admin\",\n    \"password\": \"admin123\"\n}"
+								},
+								"url": {
+									"raw": "{{base_url}}/auth/token/",
+									"host": ["{{base_url}}"],
+									"path": ["auth", "token", ""]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"access\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9...\",\n    \"refresh\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9...\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Refresh Token",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"refresh\": \"{{refresh_token}}\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/auth/token/refresh/",
+							"host": ["{{base_url}}"],
+							"path": ["auth", "token", "refresh", ""]
+						},
+						"description": "Refresh the access token using the refresh token"
+					}
+				},
+				{
+					"name": "Verify Token",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"token\": \"{{access_token}}\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/auth/token/verify/",
+							"host": ["{{base_url}}"],
+							"path": ["auth", "token", "verify", ""]
+						},
+						"description": "Verify if the current access token is still valid"
+					}
+				}
+			]
+		},
+		{
+			"name": "Account Types",
+			"item": [
+				{
+					"name": "List Account Types",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/account-types/?is_active=true",
+							"host": ["{{base_url}}"],
+							"path": ["account-types", ""],
+							"query": [
+								{
+									"key": "is_active",
+									"value": "true"
+								}
+							]
+						},
+						"description": "Get all active account types"
+					},
+					"response": [
+						{
+							"name": "Success Response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/account-types/?is_active=true",
+									"host": ["{{base_url}}"],
+									"path": ["account-types", ""],
+									"query": [
+										{
+											"key": "is_active",
+											"value": "true"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": \"uuid-here\",\n        \"name\": \"Asset\",\n        \"code\": \"ASSET\",\n        \"description\": \"Assets are economic resources owned by the business\",\n        \"normal_balance\": \"DEBIT\",\n        \"is_active\": true,\n        \"created_at\": \"2024-01-01T00:00:00Z\",\n        \"updated_at\": \"2024-01-01T00:00:00Z\"\n    },\n    {\n        \"id\": \"uuid-here\",\n        \"name\": \"Liability\",\n        \"code\": \"LIABILITY\",\n        \"description\": \"Liabilities are obligations of the business\",\n        \"normal_balance\": \"CREDIT\",\n        \"is_active\": true,\n        \"created_at\": \"2024-01-01T00:00:00Z\",\n        \"updated_at\": \"2024-01-01T00:00:00Z\"\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Create Account Type",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Revenue\",\n    \"code\": \"REVENUE\",\n    \"description\": \"Revenue accounts track income from business operations\",\n    \"normal_balance\": \"CREDIT\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/account-types/",
+							"host": ["{{base_url}}"],
+							"path": ["account-types", ""]
+						},
+						"description": "Create a new account type"
+					}
+				},
+				{
+					"name": "Get Account Type Details",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/account-types/{{account_type_id}}/",
+							"host": ["{{base_url}}"],
+							"path": ["account-types", "{{account_type_id}}", ""]
+						},
+						"description": "Get detailed information about a specific account type"
+					}
+				},
+				{
+					"name": "Get Accounts by Type",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/account-types/{{account_type_id}}/accounts/",
+							"host": ["{{base_url}}"],
+							"path": ["account-types", "{{account_type_id}}", "accounts", ""]
+						},
+						"description": "Get all accounts of a specific type"
+					}
+				}
+			]
+		},
+		{
+			"name": "Account Categories",
+			"item": [
+				{
+					"name": "List Account Categories",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/account-categories/?account_type=ASSET&is_active=true",
+							"host": ["{{base_url}}"],
+							"path": ["account-categories", ""],
+							"query": [
+								{
+									"key": "account_type",
+									"value": "ASSET"
+								},
+								{
+									"key": "is_active",
+									"value": "true"
+								}
+							]
+						},
+						"description": "Get all active account categories for a specific account type"
+					}
+				},
+				{
+					"name": "Create Account Category",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Current Assets\",\n    \"code\": \"CURRENT_ASSETS\",\n    \"description\": \"Assets expected to be converted to cash within one year\",\n    \"account_type\": \"{{asset_account_type_id}}\",\n    \"sort_order\": 1\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/account-categories/",
+							"host": ["{{base_url}}"],
+							"path": ["account-categories", ""]
+						},
+						"description": "Create a new account category"
+					}
+				},
+				{
+					"name": "Get Category Subcategories",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/account-categories/{{category_id}}/subcategories/",
+							"host": ["{{base_url}}"],
+							"path": ["account-categories", "{{category_id}}", "subcategories", ""]
+						},
+						"description": "Get all subcategories of a specific category"
+					}
+				}
+			]
+		},
+		{
+			"name": "Accounts",
+			"item": [
+				{
+					"name": "List Accounts",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/accounts/?is_active=true&account_type=ASSET",
+							"host": ["{{base_url}}"],
+							"path": ["accounts", ""],
+							"query": [
+								{
+									"key": "is_active",
+									"value": "true"
+								},
+								{
+									"key": "account_type",
+									"value": "ASSET"
+								}
+							]
+						},
+						"description": "Get all active accounts with optional filtering"
+					}
+				},
+				{
+					"name": "Create Account",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"account_number\": \"1000\",\n    \"name\": \"Cash\",\n    \"description\": \"Main cash account\",\n    \"account_type\": \"{{asset_account_type_id}}\",\n    \"category\": \"{{current_assets_category_id}}\",\n    \"balance_type\": \"DEBIT\",\n    \"is_bank_account\": false,\n    \"is_cash_account\": true,\n    \"is_reconcilable\": true,\n    \"sort_order\": 1\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/accounts/",
+							"host": ["{{base_url}}"],
+							"path": ["accounts", ""]
+						},
+						"description": "Create a new account in the chart of accounts"
+					}
+				},
+				{
+					"name": "Get Account Details",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/accounts/{{account_id}}/",
+							"host": ["{{base_url}}"],
+							"path": ["accounts", "{{account_id}}", ""]
+						},
+						"description": "Get detailed information about a specific account"
+					}
+				},
+				{
+					"name": "Get Account Balance",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/accounts/{{account_id}}/balance/?as_of_date=2024-12-31",
+							"host": ["{{base_url}}"],
+							"path": ["accounts", "{{account_id}}", "balance", ""],
+							"query": [
+								{
+									"key": "as_of_date",
+									"value": "2024-12-31"
+								}
+							]
+						},
+						"description": "Get account balance as of a specific date"
+					},
+					"response": [
+						{
+							"name": "Success Response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/accounts/{{account_id}}/balance/?as_of_date=2024-12-31",
+									"host": ["{{base_url}}"],
+									"path": ["accounts", "{{account_id}}", "balance", ""],
+									"query": [
+										{
+											"key": "as_of_date",
+											"value": "2024-12-31"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"account_number\": \"1000\",\n    \"account_name\": \"Cash\",\n    \"as_of_date\": \"2024-12-31\",\n    \"balance\": 15000.00,\n    \"formatted_balance\": \"$15,000.00\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Account Transactions",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/accounts/{{account_id}}/transactions/?start_date=2024-01-01&end_date=2024-12-31",
+							"host": ["{{base_url}}"],
+							"path": ["accounts", "{{account_id}}", "transactions", ""],
+							"query": [
+								{
+									"key": "start_date",
+									"value": "2024-01-01"
+								},
+								{
+									"key": "end_date",
+									"value": "2024-12-31"
+								}
+							]
+						},
+						"description": "Get transaction history for a specific account within a date range"
+					}
+				},
+				{
+					"name": "Update Account Balance",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/accounts/{{account_id}}/update_balance/",
+							"host": ["{{base_url}}"],
+							"path": ["accounts", "{{account_id}}", "update_balance", ""]
+						},
+						"description": "Manually update account balance based on transactions"
+					}
+				},
+				{
+					"name": "Get Chart of Accounts",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/accounts/chart_of_accounts/",
+							"host": ["{{base_url}}"],
+							"path": ["accounts", "chart_of_accounts", ""]
+						},
+						"description": "Get the complete chart of accounts organized by type and category"
+					}
+				},
+				{
+					"name": "Get Balance Sheet Accounts",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/accounts/balance_sheet_accounts/",
+							"host": ["{{base_url}}"],
+							"path": ["accounts", "balance_sheet_accounts", ""]
+						},
+						"description": "Get accounts organized for balance sheet (Asset, Liability, Equity)"
+					}
+				},
+				{
+					"name": "Get Income Statement Accounts",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/accounts/income_statement_accounts/",
+							"host": ["{{base_url}}"],
+							"path": ["accounts", "income_statement_accounts", ""]
+						},
+						"description": "Get accounts organized for income statement (Revenue, Expense)"
+					}
+				}
+			]
+		},
+		{
+			"name": "Transaction Types",
+			"item": [
+				{
+					"name": "List Transaction Types",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/transaction-types/?is_active=true",
+							"host": ["{{base_url}}"],
+							"path": ["transaction-types", ""],
+							"query": [
+								{
+									"key": "is_active",
+									"value": "true"
+								}
+							]
+						},
+						"description": "Get all active transaction types"
+					}
+				},
+				{
+					"name": "Create Transaction Type",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Sale\",\n    \"code\": \"SALE\",\n    \"description\": \"Sales transactions\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/transaction-types/",
+							"host": ["{{base_url}}"],
+							"path": ["transaction-types", ""]
+						},
+						"description": "Create a new transaction type"
+					}
+				}
+			]
+		},
+		{
+			"name": "Transactions",
+			"item": [
+				{
+					"name": "List Transactions",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/transactions/?status=PENDING&start_date=2024-01-01&end_date=2024-12-31",
+							"host": ["{{base_url}}"],
+							"path": ["transactions", ""],
+							"query": [
+								{
+									"key": "status",
+									"value": "PENDING"
+								},
+								{
+									"key": "start_date",
+									"value": "2024-01-01"
+								},
+								{
+									"key": "end_date",
+									"value": "2024-12-31"
+								}
+							]
+						},
+						"description": "Get transactions with optional filtering by status and date range"
+					}
+				},
+				{
+					"name": "Create Transaction",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"transaction_number\": \"TXN-001\",\n    \"reference_number\": \"REF-001\",\n    \"description\": \"Cash sale\",\n    \"transaction_date\": \"2024-01-15\",\n    \"amount\": 1000.00,\n    \"transaction_type\": \"{{sale_transaction_type_id}}\",\n    \"status\": \"PENDING\",\n    \"is_posted\": false\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/transactions/",
+							"host": ["{{base_url}}"],
+							"path": ["transactions", ""]
+						},
+						"description": "Create a new transaction"
+					}
+				},
+				{
+					"name": "Post Transaction",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/transactions/{{transaction_id}}/post_transaction/",
+							"host": ["{{base_url}}"],
+							"path": ["transactions", "{{transaction_id}}", "post_transaction", ""]
+						},
+						"description": "Post a transaction to the general ledger"
+					}
+				},
+				{
+					"name": "Void Transaction",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"reason\": \"Customer returned item\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/transactions/{{transaction_id}}/void_transaction/",
+							"host": ["{{base_url}}"],
+							"path": ["transactions", "{{transaction_id}}", "void_transaction", ""]
+						},
+						"description": "Void a posted transaction"
+					}
+				},
+				{
+					"name": "Get Recent Transactions",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/transactions/recent_transactions/?days=30",
+							"host": ["{{base_url}}"],
+							"path": ["transactions", "recent_transactions", ""],
+							"query": [
+								{
+									"key": "days",
+									"value": "30"
+								}
+							]
+						},
+						"description": "Get recent transactions within specified days"
+					}
+				},
+				{
+					"name": "Get Pending Transactions",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/transactions/pending_transactions/",
+							"host": ["{{base_url}}"],
+							"path": ["transactions", "pending_transactions", ""]
+						},
+						"description": "Get all pending transactions"
+					}
+				}
+			]
+		},
+		{
+			"name": "Journal Entries",
+			"item": [
+				{
+					"name": "List Journal Entries",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/journal-entries/?transaction={{transaction_id}}",
+							"host": ["{{base_url}}"],
+							"path": ["journal-entries", ""],
+							"query": [
+								{
+									"key": "transaction",
+									"value": "{{transaction_id}}"
+								}
+							]
+						},
+						"description": "Get journal entries for a specific transaction"
+					}
+				},
+				{
+					"name": "Create Journal Entry",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"transaction\": \"{{transaction_id}}\",\n    \"description\": \"Debit cash, credit revenue\",\n    \"amount\": 1000.00,\n    \"sort_order\": 1\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/journal-entries/",
+							"host": ["{{base_url}}"],
+							"path": ["journal-entries", ""]
+						},
+						"description": "Create a new journal entry"
+					}
+				}
+			]
+		},
+		{
+			"name": "Report Templates",
+			"item": [
+				{
+					"name": "List Report Templates",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/report-templates/?is_active=true&report_type=BALANCE_SHEET",
+							"host": ["{{base_url}}"],
+							"path": ["report-templates", ""],
+							"query": [
+								{
+									"key": "is_active",
+									"value": "true"
+								},
+								{
+									"key": "report_type",
+									"value": "BALANCE_SHEET"
+								}
+							]
+						},
+						"description": "Get all active report templates for a specific report type"
+					}
+				},
+				{
+					"name": "Create Report Template",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Monthly Balance Sheet\",\n    \"description\": \"Standard monthly balance sheet template\",\n    \"report_type\": \"BALANCE_SHEET\",\n    \"template_data\": {\n        \"sections\": [\"assets\", \"liabilities\", \"equity\"]\n    },\n    \"sort_order\": 1\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/report-templates/",
+							"host": ["{{base_url}}"],
+							"path": ["report-templates", ""]
+						},
+						"description": "Create a new report template"
+					}
+				}
+			]
+		},
+		{
+			"name": "Reports",
+			"item": [
+				{
+					"name": "List Reports",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/reports/?status=COMPLETED&template={{template_id}}",
+							"host": ["{{base_url}}"],
+							"path": ["reports", ""],
+							"query": [
+								{
+									"key": "status",
+									"value": "COMPLETED"
+								},
+								{
+									"key": "template",
+									"value": "{{template_id}}"
+								}
+							]
+						},
+						"description": "Get reports with optional filtering by status and template"
+					}
+				},
+				{
+					"name": "Create Report",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"December 2024 Balance Sheet\",\n    \"description\": \"Balance sheet as of December 31, 2024\",\n    \"template\": \"{{balance_sheet_template_id}}\",\n    \"parameters\": {\n        \"as_of_date\": \"2024-12-31\"\n    },\n    \"filters\": {},\n    \"format\": \"PDF\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/reports/",
+							"host": ["{{base_url}}"],
+							"path": ["reports", ""]
+						},
+						"description": "Create a new report"
+					}
+				},
+				{
+					"name": "Generate Report",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/reports/{{report_id}}/generate/",
+							"host": ["{{base_url}}"],
+							"path": ["reports", "{{report_id}}", "generate", ""]
+						},
+						"description": "Generate a report based on its template and parameters"
+					}
+				},
+				{
+					"name": "Download Report",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/reports/{{report_id}}/download/",
+							"host": ["{{base_url}}"],
+							"path": ["reports", "{{report_id}}", "download", ""]
+						},
+						"description": "Download a generated report"
+					}
+				},
+				{
+					"name": "Cancel Report Generation",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/reports/{{report_id}}/cancel/",
+							"host": ["{{base_url}}"],
+							"path": ["reports", "{{report_id}}", "cancel", ""]
+						},
+						"description": "Cancel a report generation in progress"
+					}
+				},
+				{
+					"name": "Get Completed Reports",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/reports/completed_reports/",
+							"host": ["{{base_url}}"],
+							"path": ["reports", "completed_reports", ""]
+						},
+						"description": "Get all completed reports"
+					}
+				}
+			]
+		},
+		{
+			"name": "Report Schedules",
+			"item": [
+				{
+					"name": "List Report Schedules",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/report-schedules/?is_active=true&frequency=MONTHLY",
+							"host": ["{{base_url}}"],
+							"path": ["report-schedules", ""],
+							"query": [
+								{
+									"key": "is_active",
+									"value": "true"
+								},
+								{
+									"key": "frequency",
+									"value": "MONTHLY"
+								}
+							]
+						},
+						"description": "Get all active report schedules with optional filtering"
+					}
+				},
+				{
+					"name": "Create Report Schedule",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Monthly Financial Reports\",\n    \"description\": \"Generate monthly financial reports automatically\",\n    \"template\": \"{{balance_sheet_template_id}}\",\n    \"frequency\": \"MONTHLY\",\n    \"parameters\": {\n        \"as_of_date\": \"last_day_of_month\"\n    },\n    \"filters\": {},\n    \"format\": \"PDF\",\n    \"is_active\": true\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/report-schedules/",
+							"host": ["{{base_url}}"],
+							"path": ["report-schedules", ""]
+						},
+						"description": "Create a new report schedule"
+					}
+				},
+				{
+					"name": "Activate Schedule",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/report-schedules/{{schedule_id}}/activate/",
+							"host": ["{{base_url}}"],
+							"path": ["report-schedules", "{{schedule_id}}", "activate", ""]
+						},
+						"description": "Activate a report schedule"
+					}
+				},
+				{
+					"name": "Run Schedule Now",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/report-schedules/{{schedule_id}}/run_now/",
+							"host": ["{{base_url}}"],
+							"path": ["report-schedules", "{{schedule_id}}", "run_now", ""]
+						},
+						"description": "Run a scheduled report immediately"
+					}
+				}
+			]
+		},
+		{
+			"name": "System",
+			"item": [
+				{
+					"name": "Dashboard",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/../dashboard/",
+							"host": ["{{base_url}}"],
+							"path": ["..", "dashboard", ""]
+						},
+						"description": "Get system dashboard information"
+					}
+				},
+				{
+					"name": "System Health",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/../system/health/",
+							"host": ["{{base_url}}"],
+							"path": ["..", "system", "health", ""]
+						},
+						"description": "Check system health status"
+					}
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"// Set base URL for the collection",
+					"pm.collectionVariables.set(\"base_url\", \"http://localhost:8000/api/v1\");"
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:8000/api/v1",
+			"type": "string"
+		},
+		{
+			"key": "access_token",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "refresh_token",
+			"value": "",
+			"type": "string"
+		}
+	]
+}
