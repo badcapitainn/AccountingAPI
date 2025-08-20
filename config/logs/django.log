@@ -1732,3 +1732,55 @@ ERROR 2025-08-18 12:49:15,989 transaction_service 10176 14428 Failed to void tra
 ERROR 2025-08-18 12:50:06,739 report_generator 20308 5288 Failed to generate balance sheet: Database connection error
 WARNING 2025-08-18 12:50:07,372 report_generator 20308 5288 Balance sheet does not balance
 WARNING 2025-08-18 12:50:07,463 report_generator 20308 5288 Balance sheet does not balance
+WARNING 2025-08-20 10:26:36,779 log 1444 11136 Forbidden: /api/v1/accounts/
+WARNING 2025-08-20 10:26:36,789 log 1444 23132 Forbidden: /api/v1/accounts/
+WARNING 2025-08-20 10:26:36,794 log 1444 19928 Forbidden: /api/v1/accounts/
+WARNING 2025-08-20 10:26:36,796 log 1444 23084 Forbidden: /api/v1/accounts/
+WARNING 2025-08-20 10:26:36,858 log 1444 17548 Forbidden: /api/v1/accounts/
+WARNING 2025-08-20 10:27:11,132 log 1444 7592 Bad Request: /api/v1/accounts/
+WARNING 2025-08-20 10:27:18,964 log 1444 7592 Bad Request: /api/v1/accounts/
+WARNING 2025-08-20 10:27:33,896 log 1444 7592 Bad Request: /api/v1/account-categories/
+WARNING 2025-08-20 10:27:47,006 log 1444 7592 Bad Request: /api/v1/account-types/
+WARNING 2025-08-20 10:27:49,536 log 1444 7592 Bad Request: /api/v1/account-types/
+WARNING 2025-08-20 10:28:10,209 log 1444 7592 Unauthorized: /core/auth/token/
+WARNING 2025-08-20 10:28:26,364 log 1444 7592 Not Found: /api/v1/accounts/invalid-uuid/
+WARNING 2025-08-20 10:28:28,655 log 1444 7592 Not Found: /api/v1/accounts/9c901d73-3a77-4744-9116-874ea0616258/
+WARNING 2025-08-20 10:28:30,966 log 1444 7592 Bad Request: /api/v1/accounts/
+WARNING 2025-08-20 10:28:52,438 log 1444 7592 Forbidden: /api/v1/accounts/
+WARNING 2025-08-20 10:28:58,125 log 1444 7592 Unauthorized: /api/v1/accounts/
+ERROR 2025-08-20 10:29:16,935 transaction_service 1444 7592 Failed to create transaction due to validation error: ['Transaction must have at least one journal entry.']
+WARNING 2025-08-20 10:29:16,936 log 1444 7592 Bad Request: /api/v1/transactions/
+ERROR 2025-08-20 10:29:19,485 transaction_service 1444 7592 Failed to create transaction due to validation error: ['Transaction must have at least one journal entry.']
+WARNING 2025-08-20 10:29:19,485 log 1444 7592 Bad Request: /api/v1/transactions/
+INFO 2025-08-20 10:30:28,849 transaction_service 6112 16312 Transaction TXN202508200001 created by testuser
+ERROR 2025-08-20 10:30:29,604 transaction_service 6112 16312 Failed to create transaction due to validation error: ['Transaction must have at least one journal entry.']
+ERROR 2025-08-20 10:30:30,480 transaction_service 6112 16312 Failed to create transaction due to validation error: ['Account 9999 is not active or does not allow posting.; Account 9999 does not allow posting.']
+INFO 2025-08-20 10:30:31,275 transaction_service 6112 16312 Transaction TXN202508200001 created by testuser
+ERROR 2025-08-20 10:30:32,057 transaction_service 6112 16312 Failed to create transaction due to validation error: ["Transaction is not balanced. Debits: 500.00, Credits: 400.00.; Journal entry 'Unbalanced Entry' is not balanced. Debits: 500.00, Credits: 400.00."]
+INFO 2025-08-20 10:30:32,750 transaction_service 6112 16312 Transaction TXN202508200001 created by testuser
+INFO 2025-08-20 10:30:32,792 transaction_service 6112 16312 Transaction TXN202508200002 created by testuser
+INFO 2025-08-20 10:30:32,845 transaction_service 6112 16312 Notification sent for transaction TXN202508200001 posted by testuser.
+INFO 2025-08-20 10:30:32,845 transaction_service 6112 16312 Transaction TXN202508200001 posted by testuser
+INFO 2025-08-20 10:30:32,894 transaction_service 6112 16312 Notification sent for transaction TXN202508200002 posted by testuser.
+INFO 2025-08-20 10:30:32,894 transaction_service 6112 16312 Transaction TXN202508200002 posted by testuser
+INFO 2025-08-20 10:30:33,817 transaction_service 6112 16312 Transaction TXN202508200001 created by testuser
+INFO 2025-08-20 10:30:33,886 transaction_service 6112 16312 Notification sent for transaction TXN202508200001 posted by testuser.
+INFO 2025-08-20 10:30:33,886 transaction_service 6112 16312 Transaction TXN202508200001 posted by testuser
+INFO 2025-08-20 10:30:35,470 transaction_service 6112 16312 Transaction TXN202508200001 created by testuser
+INFO 2025-08-20 10:30:35,533 transaction_service 6112 16312 Notification sent for transaction TXN202508200001 posted by testuser.
+INFO 2025-08-20 10:30:35,534 transaction_service 6112 16312 Transaction TXN202508200001 posted by testuser
+ERROR 2025-08-20 10:30:35,578 transaction_service 6112 16312 Failed to post transaction TXN202508200001: ['Transaction is already posted.']
+INFO 2025-08-20 10:30:36,308 transaction_service 6112 16312 Transaction TXN202508200001 created by testuser
+INFO 2025-08-20 10:30:36,377 transaction_service 6112 16312 Notification sent for transaction TXN202508200001 posted by testuser.
+INFO 2025-08-20 10:30:36,378 transaction_service 6112 16312 Transaction TXN202508200001 posted by testuser
+INFO 2025-08-20 10:30:37,072 transaction_service 6112 16312 Transaction TXN202508200001 created by testuser
+INFO 2025-08-20 10:30:37,136 transaction_service 6112 16312 Notification sent for transaction TXN202508200001 posted by testuser.
+INFO 2025-08-20 10:30:37,136 transaction_service 6112 16312 Transaction TXN202508200001 posted by testuser
+INFO 2025-08-20 10:30:37,225 transaction_service 6112 16312 Notification sent for transaction TXN202508200002 posted by testuser.
+INFO 2025-08-20 10:30:37,225 transaction_service 6112 16312 Transaction TXN202508200002 posted by testuser
+INFO 2025-08-20 10:30:37,228 transaction_service 6112 16312 Transaction TXN202508200001 voided by testuser
+INFO 2025-08-20 10:30:38,020 transaction_service 6112 16312 Transaction TXN202508200001 created by testuser
+ERROR 2025-08-20 10:30:38,022 transaction_service 6112 16312 Failed to void transaction TXN202508200001: ['Only posted transactions can be voided.']
+ERROR 2025-08-20 10:31:04,648 report_generator 23176 22612 Failed to generate balance sheet: Database connection error
+WARNING 2025-08-20 10:31:05,642 report_generator 23176 22612 Balance sheet does not balance
+WARNING 2025-08-20 10:31:05,759 report_generator 23176 22612 Balance sheet does not balance

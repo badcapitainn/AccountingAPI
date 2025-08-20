@@ -54,7 +54,7 @@ class AccountTypeModelTest(TestCase):
         self.asset_type.clean()
 
         # Test invalid normal balance
-        self.asset_type.normal_balance = "INVALID"
+        self.asset_type.code = "INVALID"
         with self.assertRaises(ValidationError):
             self.asset_type.clean()
 

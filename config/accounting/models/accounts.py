@@ -63,8 +63,8 @@ class AccountType(models.Model):
     
     def clean(self):
         """Validate account type data."""
-        if self.normal_balance not in dict(self.BALANCE_CHOICES):
-            raise ValidationError("Invalid normal balance type.")
+        if self.code not in dict(self.ACCOUNT_TYPE_CHOICES):
+            raise ValidationError("Invalid account type data.")
     
     def get_accounts(self):
         """Get all accounts of this type."""
