@@ -14,7 +14,7 @@ from django.db.models import Q
 from accounting.models import Account, AccountType, AccountCategory
 from api.serializers.accounts import (
     AccountSerializer, AccountDetailSerializer, AccountSummarySerializer,
-    AccountTypeSerializer, AccountCategorySerializer
+    AccountTypeSerializer, AccountCategorySerializer, AccountBalanceSerializer
 )
 from core.permissions import IsAccountantOrReadOnly, IsManagerOrReadOnly
 
@@ -37,19 +37,24 @@ class AccountTypeViewSet(viewsets.ModelViewSet):
     
     def get_queryset(self):
         """Get filtered queryset."""
-        queryset = super().get_queryset()
+        #queryset = super().get_queryset()
+        queryset = AccountType.objects.all()
         
         # Filter by active status if specified
         is_active = self.request.query_params.get('is_active')
         if is_active is not None:
-            queryset = queryset.filter(is_active=is_active.lower() == 'true')
+            if is_active.lower() in ['true', '1', 'yes']:
+                queryset = queryset.filter(is_active=True)
+            elif is_active.lower() in ['false', '0', 'no']:
+                queryset = queryset.filter(is_active=False)
         
         return queryset
     
     @action(detail=True, methods=['get'])
     def accounts(self, request, pk=None):
         """Get all accounts of this type."""
-        account_type = self.get_object()
+        #account_type = self.get_object() # getting the wrong object value, requires the account type id 
+        account_type = AccountType.objects.get(id=pk)
         accounts = account_type.get_accounts()
         
         serializer = AccountSummarySerializer(accounts, many=True)
@@ -67,14 +72,15 @@ class AccountCategoryViewSet(viewsets.ModelViewSet):
     serializer_class = AccountCategorySerializer
     permission_classes = [IsManagerOrReadOnly]
     filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
-    filterset_fields = ['is_active', 'account_type']
+    filterset_fields = ['is_active']
     search_fields = ['name', 'code', 'description']
     ordering_fields = ['name', 'code', 'sort_order', 'created_at']
     ordering = ['account_type', 'sort_order', 'name']
     
     def get_queryset(self):
         """Get filtered queryset."""
-        queryset = super().get_queryset()
+        #queryset = super().get_queryset()
+        queryset = AccountCategory.objects.all()
         
         # Filter by account type if specified
         account_type = self.request.query_params.get('account_type')
@@ -90,14 +96,18 @@ class AccountCategoryViewSet(viewsets.ModelViewSet):
         # Filter by active status if specified
         is_active = self.request.query_params.get('is_active')
         if is_active is not None:
-            queryset = queryset.filter(is_active=is_active.lower() == 'true')
+            if is_active.lower() in ['true', '1', 'yes']:
+                queryset = queryset.filter(is_active=True)
+            elif is_active.lower() in ['false', '0', 'no']:
+                queryset = queryset.filter(is_active=False)
         
         return queryset
     
     @action(detail=True, methods=['get'])
     def accounts(self, request, pk=None):
         """Get all accounts in this category."""
-        category = self.get_object()
+        #category = self.get_object()
+        category = AccountCategory.objects.get(id=pk)
         accounts = category.get_accounts()
         
         serializer = AccountSummarySerializer(accounts, many=True)
@@ -106,7 +116,8 @@ class AccountCategoryViewSet(viewsets.ModelViewSet):
     @action(detail=True, methods=['get'])
     def subcategories(self, request, pk=None):
         """Get all subcategories of this category."""
-        category = self.get_object()
+        #category = self.get_object()
+        category = AccountCategory.objects.get(id=pk)
         subcategories = category.get_subcategories()
         
         serializer = self.get_serializer(subcategories, many=True)
@@ -126,7 +137,7 @@ class AccountViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAccountantOrReadOnly]
     filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
     filterset_fields = [
-        'is_active', 'account_type', 'category', 'balance_type',
+        'is_active', 'category', 'balance_type',
         'is_bank_account', 'is_cash_account', 'is_reconcilable'
     ]
     search_fields = ['account_number', 'name', 'description']
@@ -137,7 +148,8 @@ class AccountViewSet(viewsets.ModelViewSet):
     
     def get_queryset(self):
         """Get filtered queryset."""
-        queryset = super().get_queryset()
+        #queryset = super().get_queryset()
+        queryset = Account.objects.all()
         
         # Filter by account type if specified
         account_type = self.request.query_params.get('account_type')
@@ -164,7 +176,10 @@ class AccountViewSet(viewsets.ModelViewSet):
         # Filter by active status if specified
         is_active = self.request.query_params.get('is_active')
         if is_active is not None:
-            queryset = queryset.filter(is_active=is_active.lower() == 'true')
+            if is_active.lower() in ['true', '1', 'yes']:
+                queryset = queryset.filter(is_active=True)
+            elif is_active.lower() in ['false', '0', 'no']:
+                queryset = queryset.filter(is_active=False)
         
         # Filter by balance type if specified
         balance_type = self.request.query_params.get('balance_type')
@@ -174,15 +189,24 @@ class AccountViewSet(viewsets.ModelViewSet):
         # Filter by account properties
         is_bank_account = self.request.query_params.get('is_bank_account')
         if is_bank_account is not None:
-            queryset = queryset.filter(is_bank_account=is_bank_account.lower() == 'true')
+            if is_bank_account.lower() in ['true', '1', 'yes']:
+                queryset = queryset.filter(is_bank_account=True)
+            elif is_bank_account.lower() in ['false', '0', 'no']:
+                queryset = queryset.filter(is_bank_account=False)
         
         is_cash_account = self.request.query_params.get('is_cash_account')
         if is_cash_account is not None:
-            queryset = queryset.filter(is_cash_account=is_cash_account.lower() == 'true')
+            if is_cash_account.lower() in ['true', '1', 'yes']:
+                queryset = queryset.filter(is_cash_account=True)
+            elif is_cash_account.lower() in ['false', '0', 'no']:
+                queryset = queryset.filter(is_cash_account=False)
         
         is_reconcilable = self.request.query_params.get('is_reconcilable')
         if is_reconcilable is not None:
-            queryset = queryset.filter(is_reconcilable=is_reconcilable.lower() == 'true')
+            if is_reconcilable.lower() in ['true', '1', 'yes']:
+                queryset = queryset.filter(is_reconcilable=True)
+            elif is_reconcilable.lower() in ['false', '0', 'no']:
+                queryset = queryset.filter(is_reconcilable=False)
         
         return queryset
     
@@ -197,7 +221,8 @@ class AccountViewSet(viewsets.ModelViewSet):
     @action(detail=True, methods=['get'])
     def balance(self, request, pk=None):
         """Get account balance as of a specific date."""
-        account = self.get_object()
+        #account = self.get_object()
+        account = Account.objects.get(id=pk)
         as_of_date = request.query_params.get('as_of_date')
         
         if as_of_date:
@@ -223,7 +248,8 @@ class AccountViewSet(viewsets.ModelViewSet):
     @action(detail=True, methods=['get'])
     def transactions(self, request, pk=None):
         """Get transaction history for this account."""
-        account = self.get_object()
+        #account = self.get_object()
+        account = Account.objects.get(id=pk)
         
         # Get date range parameters
         start_date = request.query_params.get('start_date')
@@ -267,7 +293,8 @@ class AccountViewSet(viewsets.ModelViewSet):
     @action(detail=True, methods=['post'])
     def update_balance(self, request, pk=None):
         """Update account balance."""
-        account = self.get_object()
+        #account = self.get_object()
+        account = Account.objects.get(id=pk)
         
         try:
             account.update_balance()

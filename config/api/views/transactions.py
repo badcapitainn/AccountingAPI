@@ -40,7 +40,8 @@ class TransactionTypeViewSet(viewsets.ModelViewSet):
     
     def get_queryset(self):
         """Get filtered queryset."""
-        queryset = super().get_queryset()
+        #queryset = super().get_queryset()
+        queryset = TransactionType.objects.all()
         
         # Filter by active status if specified
         is_active = self.request.query_params.get('is_active')
@@ -52,7 +53,8 @@ class TransactionTypeViewSet(viewsets.ModelViewSet):
     @action(detail=True, methods=['get'])
     def transactions(self, request, pk=None):
         """Get all transactions of this type."""
-        transaction_type = self.get_object()
+        #transaction_type = self.get_object()
+        transaction_type = TransactionType.objects.get(id=pk)
         transactions = transaction_type.transactions.filter(is_deleted=False)
         
         serializer = TransactionSummarySerializer(transactions, many=True)
@@ -86,7 +88,8 @@ class TransactionViewSet(viewsets.ModelViewSet):
     
     def get_queryset(self):
         """Get filtered queryset."""
-        queryset = super().get_queryset()
+        #queryset = super().get_queryset()
+        queryset = Transaction.objects.all()
         
         # Filter by transaction type if specified
         transaction_type = self.request.query_params.get('transaction_type')
@@ -150,7 +153,8 @@ class TransactionViewSet(viewsets.ModelViewSet):
     @action(detail=True, methods=['post'])
     def post_transaction(self, request, pk=None):
         """Post a transaction to the general ledger."""
-        transaction = self.get_object()
+        #transaction = self.get_object()
+        transaction = Transaction.objects.get(id=pk)
         
         try:
             self.transaction_service.post_transaction(transaction, request.user)
@@ -168,7 +172,8 @@ class TransactionViewSet(viewsets.ModelViewSet):
     @action(detail=True, methods=['post'])
     def void_transaction(self, request, pk=None):
         """Void a posted transaction."""
-        transaction = self.get_object()
+        #transaction = self.get_object()
+        transaction = Transaction.objects.get(id=pk)
         reason = request.data.get('reason', '')
         
         try:
@@ -188,14 +193,16 @@ class TransactionViewSet(viewsets.ModelViewSet):
     @action(detail=True, methods=['get'])
     def summary(self, request, pk=None):
         """Get transaction summary."""
-        transaction = self.get_object()
+        #transaction = self.get_object()
+        transaction = Transaction.objects.get(id=pk)
         summary = self.transaction_service.get_transaction_summary(transaction)
         return Response(summary)
     
     @action(detail=True, methods=['get'])
     def journal_entries(self, request, pk=None):
         """Get journal entries for this transaction."""
-        transaction = self.get_object()
+        #transaction = self.get_object()
+        transaction = Transaction.objects.get(id=pk)
         journal_entries = transaction.journal_entries.all()
         
         serializer = JournalEntrySerializer(journal_entries, many=True)
@@ -251,7 +258,8 @@ class JournalEntryViewSet(viewsets.ModelViewSet):
     
     def get_queryset(self):
         """Get filtered queryset."""
-        queryset = super().get_queryset()
+        #queryset = super().get_queryset()
+        queryset = JournalEntry.objects.all()
         
         # Filter by transaction if specified
         transaction_id = self.request.query_params.get('transaction')
@@ -263,7 +271,8 @@ class JournalEntryViewSet(viewsets.ModelViewSet):
     @action(detail=True, methods=['get'])
     def items(self, request, pk=None):
         """Get journal items for this entry."""
-        journal_entry = self.get_object()
+        #journal_entry = self.get_object()
+        journal_entry = JournalEntry.objects.get(id=pk)
         items = journal_entry.items.all()
         
         serializer = JournalItemSerializer(items, many=True)
@@ -272,7 +281,8 @@ class JournalEntryViewSet(viewsets.ModelViewSet):
     @action(detail=True, methods=['get'])
     def summary(self, request, pk=None):
         """Get journal entry summary."""
-        journal_entry = self.get_object()
+        #journal_entry = self.get_object()
+        journal_entry = JournalEntry.objects.get(id=pk)
         
         return Response({
             'id': str(journal_entry.id),

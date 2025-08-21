@@ -57,11 +57,14 @@ class TransactionService:
                     'reference_number': data.get('reference_number', ''),
                     'notes': data.get('notes', ''),
                 }
+                print(f"Transaction data: {transaction_data}")
 
                 # Create the transaction
                 transaction = Transaction.objects.create(**transaction_data)
                 
-                journal_entries_data = data.get('journal_entries', [])
+                
+                journal_entries_data = data.get('journal_entries_data', [])
+                print(f"Journal entries data: {journal_entries_data}")
                 if not journal_entries_data:
                     raise ValidationError("Transaction must have at least one journal entry.")
 

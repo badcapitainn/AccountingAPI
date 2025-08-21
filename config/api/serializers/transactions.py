@@ -121,6 +121,7 @@ class TransactionSerializer(serializers.ModelSerializer):
     transaction_type = TransactionTypeSerializer(read_only=True)
     transaction_type_id = serializers.UUIDField(write_only=True)
     journal_entries = JournalEntrySerializer(many=True, read_only=True)
+    journal_entries_data = serializers.ListField(write_only=True, required=False)
     total_debits = serializers.DecimalField(max_digits=15, decimal_places=2, read_only=True)
     total_credits = serializers.DecimalField(max_digits=15, decimal_places=2, read_only=True)
     is_balanced = serializers.BooleanField(read_only=True)
@@ -131,7 +132,7 @@ class TransactionSerializer(serializers.ModelSerializer):
             'id', 'transaction_number', 'reference_number', 'description',
             'transaction_date', 'transaction_type', 'transaction_type_id',
             'amount', 'status', 'is_posted', 'posted_date', 'posted_by',
-            'notes', 'attachments', 'journal_entries', 'total_debits',
+            'notes', 'attachments', 'journal_entries', 'journal_entries_data', 'total_debits',
             'total_credits', 'is_balanced', 'created_at', 'updated_at'
         ]
         read_only_fields = [
