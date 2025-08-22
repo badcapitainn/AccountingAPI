@@ -41,7 +41,8 @@ class ReportTemplateViewSet(viewsets.ModelViewSet):
     
     def get_queryset(self):
         """Get filtered queryset."""
-        queryset = super().get_queryset()
+        #queryset = super().get_queryset()
+        queryset = ReportTemplate.objects.all()
         
         # Filter by report type if specified
         report_type = self.request.query_params.get('report_type')
@@ -58,7 +59,8 @@ class ReportTemplateViewSet(viewsets.ModelViewSet):
     @action(detail=True, methods=['get'])
     def reports(self, request, pk=None):
         """Get all reports generated from this template."""
-        template = self.get_object()
+        #   template = self.get_object()
+        template = ReportTemplate.objects.get(id=pk)
         reports = template.reports.filter(is_deleted=False)
         
         serializer = ReportSummarySerializer(reports, many=True)
@@ -93,7 +95,8 @@ class ReportViewSet(viewsets.ModelViewSet):
     
     def get_queryset(self):
         """Get filtered queryset."""
-        queryset = super().get_queryset()
+        #queryset = super().get_queryset()
+        queryset = Report.objects.all()
         
         # Filter by template if specified
         template = self.request.query_params.get('template')
@@ -141,7 +144,8 @@ class ReportViewSet(viewsets.ModelViewSet):
     @action(detail=True, methods=['post'])
     def generate(self, request, pk=None):
         """Generate a report."""
-        report = self.get_object()
+        #  report = self.get_object()
+        report = Report.objects.get(id=pk)
         
         try:
             report.start_generation(request.user)
@@ -190,25 +194,75 @@ class ReportViewSet(viewsets.ModelViewSet):
     @action(detail=True, methods=['get'])
     def download(self, request, pk=None):
         """Download a generated report."""
-        report = self.get_object()
+        #report = self.get_object()
+        report = Report.objects.get(id=pk)
         
-        if not report.is_downloadable():
+        if report.status != 'COMPLETED':
             return Response(
-                {'error': 'Report is not available for download.'},
+                {'error': 'Report is not completed yet.'},
                 status=status.HTTP_400_BAD_REQUEST
             )
         
-        # In a real implementation, you would serve the file
-        # For now, return the file URL
-        return Response({
-            'download_url': report.get_file_url(),
-            'file_size': report.file_size
-        })
+        # Get the requested format
+        requested_format = request.query_params.get('format', report.format).upper()
+        
+        # For now, return the report data in the requested format
+        # In a real implementation, you would generate actual files
+        if requested_format == 'JSON':
+            return Response(report.report_data)
+        elif requested_format == 'HTML':
+            # Return HTML representation
+            html_content = self._generate_html_report(report)
+            return Response({
+                'content': html_content,
+                'format': 'HTML',
+                'filename': f"{report.report_number}.html"
+            })
+        else:
+            # For other formats, return the data with instructions
+            return Response({
+                'message': f'Report data available in {requested_format} format',
+                'report_data': report.report_data,
+                'format': requested_format,
+                'filename': f"{report.report_number}.{requested_format.lower()}"
+            })
+    
+    def _generate_html_report(self, report):
+        """Generate a simple HTML representation of the report."""
+        data = report.report_data
+        
+        if report.template.report_type == 'BALANCE_SHEET':
+            html = f"""
+            <html>
+            <head><title>Balance Sheet - {report.name}</title></head>
+            <body>
+                <h1>Balance Sheet</h1>
+                <p>As of: {data.get('as_of_date', 'N/A')}</p>
+                <h2>Assets</h2>
+                <ul>
+            """
+            for asset in data.get('assets', []):
+                html += f"<li>{asset.get('name', 'N/A')}: {asset.get('balance', 0)}</li>"
+            html += "</ul></body></html>"
+            return html
+        
+        # Default HTML for other report types
+        return f"""
+        <html>
+        <head><title>{report.name}</title></head>
+        <body>
+            <h1>{report.name}</h1>
+            <p>Generated: {data.get('generated_at', 'N/A')}</p>
+            <pre>{str(data)}</pre>
+        </body>
+        </html>
+        """
     
     @action(detail=True, methods=['post'])
     def cancel(self, request, pk=None):
         """Cancel a report generation."""
-        report = self.get_object()
+        #report = self.get_object()
+        report = Report.objects.get(id=pk)
         
         if report.status not in ['PENDING', 'GENERATING']:
             return Response(
@@ -273,7 +327,8 @@ class ReportScheduleViewSet(viewsets.ModelViewSet):
     
     def get_queryset(self):
         """Get filtered queryset."""
-        queryset = super().get_queryset()
+        #queryset = super().get_queryset()
+        queryset = ReportSchedule.objects.all()
         
         # Filter by frequency if specified
         frequency = self.request.query_params.get('frequency')
@@ -290,7 +345,8 @@ class ReportScheduleViewSet(viewsets.ModelViewSet):
     @action(detail=True, methods=['post'])
     def activate(self, request, pk=None):
         """Activate a report schedule."""
-        schedule = self.get_object()
+        #schedule = self.get_object()
+        schedule = ReportSchedule.objects.get(id=pk)
         
         if schedule.is_active:
             return Response(
@@ -310,7 +366,8 @@ class ReportScheduleViewSet(viewsets.ModelViewSet):
     @action(detail=True, methods=['post'])
     def deactivate(self, request, pk=None):
         """Deactivate a report schedule."""
-        schedule = self.get_object()
+        #schedule = self.get_object()
+        schedule = ReportSchedule.objects.get(id=pk)
         
         if not schedule.is_active:
             return Response(
@@ -329,7 +386,8 @@ class ReportScheduleViewSet(viewsets.ModelViewSet):
     @action(detail=True, methods=['post'])
     def run_now(self, request, pk=None):
         """Run a scheduled report immediately."""
-        schedule = self.get_object()
+        #schedule = self.get_object()
+        schedule = ReportSchedule.objects.get(id=pk)
         
         try:
             # Create a report from this schedule

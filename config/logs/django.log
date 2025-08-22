@@ -2565,3 +2565,235 @@ Traceback (most recent call last):
 django.core.exceptions.FieldError: Unsupported lookup 'transaction_date' for ForeignKey or join on the field not permitted.
 ERROR 2025-08-21 12:54:49,024 basehttp 23868 1800 "GET /api/v1/accounts/fcc8116e-0b77-4c9b-a390-c30ad91781f4/transactions/?start_date=2024-01-01&end_date=2024-12-31 HTTP/1.1" 500 166630
 INFO 2025-08-21 12:57:34,796 basehttp 23868 23780 "GET /api/v1/accounts/?is_active=true&account_type=REVENUE HTTP/1.1" 200 245
+INFO 2025-08-21 19:46:25,167 autoreload 24700 21528 Watching for file changes with StatReloader
+INFO 2025-08-21 19:46:45,626 basehttp 24700 14244 "POST /api/v1/auth/token/ HTTP/1.1" 200 767
+INFO 2025-08-21 19:47:35,761 basehttp 24700 14244 "GET /api/v1/accounts/?is_active=true&account_type=ASSET HTTP/1.1" 200 603
+ERROR 2025-08-21 19:49:09,577 log 24700 12408 Internal Server Error: /api/v1/accounts/b040ae2d-767e-4c25-b8ae-02795d94dda2/transactions/
+Traceback (most recent call last):
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\views\decorators\csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\madza\Documents\Project\AccountingAPI\config\api\views\accounts.py", line 280, in transactions
+    transactions = account.get_transaction_history(start_date, end_date)
+  File "C:\Users\madza\Documents\Project\AccountingAPI\config\accounting\models\accounts.py", line 288, in get_transaction_history
+    queryset = queryset.filter(journal_entry__transaction_date__gte=start_date)
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\db\models\query.py", line 1436, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\db\models\query.py", line 1454, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\db\models\query.py", line 1461, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\db\models\sql\query.py", line 1545, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+                ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\db\models\sql\query.py", line 1576, in _add_q
+    child_clause, needed_inner = self.build_filter(
+                                 ~~~~~~~~~~~~~~~~~^
+        child,
+        ^^^^^^
+    ...<6 lines>...
+        summarize=summarize,
+        ^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\db\models\sql\query.py", line 1491, in build_filter
+    condition = self.build_lookup(lookups, col, value)
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\db\models\sql\query.py", line 1305, in build_lookup
+    lhs = self.try_transform(lhs, name)
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\db\models\sql\query.py", line 1356, in try_transform
+    raise FieldError(
+    ...<2 lines>...
+    )
+django.core.exceptions.FieldError: Unsupported lookup 'transaction_date' for ForeignKey or join on the field not permitted.
+ERROR 2025-08-21 19:49:09,597 basehttp 24700 12408 "GET /api/v1/accounts/b040ae2d-767e-4c25-b8ae-02795d94dda2/transactions/?start_date=2024-01-01&end_date=2024-12-31 HTTP/1.1" 500 167131
+INFO 2025-08-21 19:50:18,597 basehttp 24700 15652 "GET /api/v1/transactions/?status=PENDING&start_date=2024-01-01&end_date=2024-12-31 HTTP/1.1" 200 1041
+INFO 2025-08-21 19:56:34,796 basehttp 24700 18720 "GET /api/v1/transaction-types/?is_active=true HTTP/1.1" 200 1151
+INFO 2025-08-21 19:57:31,808 basehttp 24700 18720 "GET /api/v1/account-types/?is_active=true HTTP/1.1" 200 1392
+ERROR 2025-08-21 19:59:02,220 transaction_service 24700 20420 Failed to create transaction: Account matching query does not exist.
+WARNING 2025-08-21 19:59:02,225 log 24700 20420 Bad Request: /api/v1/transactions/
+WARNING 2025-08-21 19:59:02,226 basehttp 24700 20420 "POST /api/v1/transactions/ HTTP/1.1" 400 72
+INFO 2025-08-21 20:01:13,197 basehttp 24700 1896 "GET /api/v1/accounts/?is_active=true&account_type=REVENUE HTTP/1.1" 200 245
+INFO 2025-08-21 20:01:36,974 transaction_service 24700 1896 Transaction TXN202508210002 created by admin
+INFO 2025-08-21 20:01:37,093 basehttp 24700 1896 "POST /api/v1/transactions/ HTTP/1.1" 201 1683
+WARNING 2025-08-21 20:04:47,129 log 24700 12444 Unauthorized: /api/v1/transactions/76bb7852-acb2-45fa-8404-d715c81c2e61/post_transaction/
+WARNING 2025-08-21 20:04:47,130 basehttp 24700 12444 "POST /api/v1/transactions/76bb7852-acb2-45fa-8404-d715c81c2e61/post_transaction/ HTTP/1.1" 401 183
+INFO 2025-08-21 20:04:58,257 basehttp 24700 12444 "POST /api/v1/auth/token/ HTTP/1.1" 200 767
+INFO 2025-08-21 20:05:28,782 transaction_service 24700 12444 Notification sent for transaction TXN202508210002 posted by admin.
+INFO 2025-08-21 20:05:28,782 transaction_service 24700 12444 Transaction TXN202508210002 posted by admin
+INFO 2025-08-21 20:05:28,787 basehttp 24700 12444 "POST /api/v1/transactions/76bb7852-acb2-45fa-8404-d715c81c2e61/post_transaction/ HTTP/1.1" 200 129
+INFO 2025-08-21 20:06:21,332 basehttp 24700 12444 "GET /api/v1/accounts/fcc8116e-0b77-4c9b-a390-c30ad91781f4/balance/?as_of_date=2024-12-31 HTTP/1.1" 200 131
+INFO 2025-08-22 09:56:18,430 autoreload 16604 15480 Watching for file changes with StatReloader
+INFO 2025-08-22 09:57:04,901 basehttp 16604 18816 "POST /api/v1/auth/token/ HTTP/1.1" 200 767
+INFO 2025-08-22 09:58:02,299 basehttp 16604 25148 "GET /api/v1/accounts/?is_active=true&account_type=REVENUE HTTP/1.1" 200 245
+ERROR 2025-08-22 09:58:25,916 log 16604 25148 Internal Server Error: /api/v1/accounts/fcc8116e-0b77-4c9b-a390-c30ad91781f4/transactions/
+Traceback (most recent call last):
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\views\decorators\csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\madza\Documents\Project\AccountingAPI\config\api\views\accounts.py", line 280, in transactions
+    transactions = account.get_transaction_history(start_date, end_date)
+  File "C:\Users\madza\Documents\Project\AccountingAPI\config\accounting\models\accounts.py", line 288, in get_transaction_history
+    queryset = queryset.filter(journal_entry__transaction_date__gte=start_date)
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\db\models\query.py", line 1436, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\db\models\query.py", line 1454, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\db\models\query.py", line 1461, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\db\models\sql\query.py", line 1545, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+                ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\db\models\sql\query.py", line 1576, in _add_q
+    child_clause, needed_inner = self.build_filter(
+                                 ~~~~~~~~~~~~~~~~~^
+        child,
+        ^^^^^^
+    ...<6 lines>...
+        summarize=summarize,
+        ^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\db\models\sql\query.py", line 1491, in build_filter
+    condition = self.build_lookup(lookups, col, value)
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\db\models\sql\query.py", line 1305, in build_lookup
+    lhs = self.try_transform(lhs, name)
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\db\models\sql\query.py", line 1356, in try_transform
+    raise FieldError(
+    ...<2 lines>...
+    )
+django.core.exceptions.FieldError: Unsupported lookup 'transaction_date' for ForeignKey or join on the field not permitted.
+ERROR 2025-08-22 09:58:25,937 basehttp 16604 25148 "GET /api/v1/accounts/fcc8116e-0b77-4c9b-a390-c30ad91781f4/transactions/?start_date=2024-01-01&end_date=2024-12-31 HTTP/1.1" 500 167655
+INFO 2025-08-22 10:00:12,416 autoreload 16604 15480 C:\Users\madza\Documents\Project\AccountingAPI\config\accounting\models\accounts.py changed, reloading.
+INFO 2025-08-22 10:00:14,732 autoreload 18264 14348 Watching for file changes with StatReloader
+INFO 2025-08-22 10:00:22,696 autoreload 18264 14348 C:\Users\madza\Documents\Project\AccountingAPI\config\accounting\models\accounts.py changed, reloading.
+INFO 2025-08-22 10:00:24,905 autoreload 11608 2824 Watching for file changes with StatReloader
+INFO 2025-08-22 10:00:45,405 autoreload 11608 2824 C:\Users\madza\Documents\Project\AccountingAPI\config\accounting\models\accounts.py changed, reloading.
+INFO 2025-08-22 10:00:47,695 autoreload 2380 20164 Watching for file changes with StatReloader
+ERROR 2025-08-22 10:01:01,438 log 2380 24520 Internal Server Error: /api/v1/accounts/fcc8116e-0b77-4c9b-a390-c30ad91781f4/transactions/
+Traceback (most recent call last):
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\rest_framework\fields.py", line 446, in get_attribute
+    return get_attribute(instance, self.source_attrs)
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\rest_framework\fields.py", line 96, in get_attribute
+    instance = getattr(instance, attr)
+AttributeError: 'JournalItem' object has no attribute 'transaction_number'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\django\views\decorators\csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\madza\Documents\Project\AccountingAPI\config\api\views\accounts.py", line 287, in transactions
+    return self.get_paginated_response(serializer.data)
+                                       ^^^^^^^^^^^^^^^
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\rest_framework\serializers.py", line 768, in data
+    ret = super().data
+          ^^^^^^^^^^^^
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\rest_framework\serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+                 ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\rest_framework\serializers.py", line 687, in to_representation
+    self.child.to_representation(item) for item in iterable
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\rest_framework\serializers.py", line 509, in to_representation
+    attribute = field.get_attribute(instance)
+  File "C:\Users\madza\Documents\Project\AccountingAPI\myenv\Lib\site-packages\rest_framework\fields.py", line 479, in get_attribute
+    raise type(exc)(msg)
+AttributeError: Got AttributeError when attempting to get a value for field `transaction_number` on serializer `TransactionSummarySerializer`.
+The serializer field might be named incorrectly and not match any attribute or key on the `JournalItem` instance.
+Original exception text was: 'JournalItem' object has no attribute 'transaction_number'.
+ERROR 2025-08-22 10:01:01,473 basehttp 2380 24520 "GET /api/v1/accounts/fcc8116e-0b77-4c9b-a390-c30ad91781f4/transactions/?start_date=2024-01-01&end_date=2024-12-31 HTTP/1.1" 500 160225
+INFO 2025-08-22 10:02:57,759 autoreload 2380 20164 C:\Users\madza\Documents\Project\AccountingAPI\config\accounting\models\accounts.py changed, reloading.
+INFO 2025-08-22 10:03:00,073 autoreload 21524 5672 Watching for file changes with StatReloader
+INFO 2025-08-22 10:03:08,426 autoreload 21524 5672 C:\Users\madza\Documents\Project\AccountingAPI\config\accounting\models\accounts.py changed, reloading.
+INFO 2025-08-22 10:03:10,913 autoreload 22428 10568 Watching for file changes with StatReloader
+INFO 2025-08-22 10:03:37,468 autoreload 22428 10568 C:\Users\madza\Documents\Project\AccountingAPI\config\accounting\models\accounts.py changed, reloading.
+INFO 2025-08-22 10:03:39,783 autoreload 26576 6436 Watching for file changes with StatReloader
+INFO 2025-08-22 10:03:57,177 basehttp 26576 9836 "GET /api/v1/accounts/fcc8116e-0b77-4c9b-a390-c30ad91781f4/transactions/?start_date=2024-01-01&end_date=2024-12-31 HTTP/1.1" 200 779
+INFO 2025-08-22 10:04:32,816 basehttp 26576 9836 "GET /api/v1/transactions/pending_transactions/ HTTP/1.1" 200 991
+INFO 2025-08-22 10:05:03,172 basehttp 26576 9836 "GET /api/v1/transactions/?status=PENDING&start_date=2024-01-01&end_date=2024-12-31 HTTP/1.1" 200 1041
+INFO 2025-08-22 10:05:24,283 basehttp 26576 9836 "GET /api/v1/journal-entries/?transaction=60dd9845-d72a-47d1-86ee-0eb5432dd74b HTTP/1.1" 200 605
+INFO 2025-08-22 10:05:39,582 basehttp 26576 9836 "GET /api/v1/report-templates/?is_active=true&report_type=BALANCE_SHEET HTTP/1.1" 200 426
+INFO 2025-08-22 10:06:24,998 basehttp 26576 9836 "GET /api/v1/reports/?status=COMPLETED&template=a5383626-b2a5-4514-8b63-2162d3ca3bf4 HTTP/1.1" 200 52
+WARNING 2025-08-22 10:06:51,780 log 26576 9836 Bad Request: /api/v1/reports/
+WARNING 2025-08-22 10:06:51,781 basehttp 26576 9836 "POST /api/v1/reports/ HTTP/1.1" 400 43
+INFO 2025-08-22 10:07:10,977 basehttp 26576 9836 "POST /api/v1/reports/ HTTP/1.1" 201 916
+INFO 2025-08-22 10:07:55,170 cache_utils 26576 9836 Invalidated report cache
+INFO 2025-08-22 10:07:55,173 basehttp 26576 9836 "POST /api/v1/reports/08c428aa-0bcf-4989-a2c7-3c8182f37f1e/generate/ HTTP/1.1" 200 99
+WARNING 2025-08-22 10:08:43,534 log 26576 9836 Bad Request: /api/v1/reports/08c428aa-0bcf-4989-a2c7-3c8182f37f1e/download/
+WARNING 2025-08-22 10:08:43,535 basehttp 26576 9836 "GET /api/v1/reports/08c428aa-0bcf-4989-a2c7-3c8182f37f1e/download/ HTTP/1.1" 400 49
+INFO 2025-08-22 10:10:57,794 basehttp 26576 18740 "GET /api/v1/reports/completed_reports/ HTTP/1.1" 200 364
+WARNING 2025-08-22 10:11:24,581 log 26576 18740 Bad Request: /api/v1/reports/08c428aa-0bcf-4989-a2c7-3c8182f37f1e/download/
+WARNING 2025-08-22 10:11:24,583 basehttp 26576 18740 "GET /api/v1/reports/08c428aa-0bcf-4989-a2c7-3c8182f37f1e/download/ HTTP/1.1" 400 49
+INFO 2025-08-22 10:13:55,302 autoreload 26576 6436 C:\Users\madza\Documents\Project\AccountingAPI\config\api\views\reports.py changed, reloading.
+INFO 2025-08-22 10:13:57,685 autoreload 13464 11684 Watching for file changes with StatReloader
+INFO 2025-08-22 10:14:09,227 autoreload 13464 11684 C:\Users\madza\Documents\Project\AccountingAPI\config\api\views\reports.py changed, reloading.
+INFO 2025-08-22 10:14:11,825 autoreload 21988 17216 Watching for file changes with StatReloader
+INFO 2025-08-22 10:15:03,070 autoreload 21988 17216 C:\Users\madza\Documents\Project\AccountingAPI\config\api\views\reports.py changed, reloading.
+INFO 2025-08-22 10:15:05,598 autoreload 16328 21344 Watching for file changes with StatReloader
+INFO 2025-08-22 10:15:27,275 autoreload 16328 21344 C:\Users\madza\Documents\Project\AccountingAPI\config\api\views\reports.py changed, reloading.
+INFO 2025-08-22 10:15:29,892 autoreload 18172 8432 Watching for file changes with StatReloader
+INFO 2025-08-22 10:16:44,650 autoreload 18172 8432 C:\Users\madza\Documents\Project\AccountingAPI\config\api\views\reports.py changed, reloading.
+INFO 2025-08-22 10:16:47,207 autoreload 24412 10252 Watching for file changes with StatReloader
+WARNING 2025-08-22 10:16:55,079 log 24412 17268 Unauthorized: /api/v1/reports/08c428aa-0bcf-4989-a2c7-3c8182f37f1e/download/
+WARNING 2025-08-22 10:16:55,098 basehttp 24412 17268 "GET /api/v1/reports/08c428aa-0bcf-4989-a2c7-3c8182f37f1e/download/ HTTP/1.1" 401 183
+INFO 2025-08-22 10:17:37,842 basehttp 24412 17268 "POST /api/v1/auth/token/ HTTP/1.1" 200 767
+INFO 2025-08-22 10:18:04,941 basehttp 24412 17268 "GET /api/v1/reports/08c428aa-0bcf-4989-a2c7-3c8182f37f1e/download/ HTTP/1.1" 200 1351
+INFO 2025-08-22 10:19:29,871 basehttp 24412 25632 "GET /api/v1/report-schedules/?is_active=true&frequency=MONTHLY HTTP/1.1" 200 52
+WARNING 2025-08-22 10:19:38,265 log 24412 25632 Bad Request: /api/v1/report-schedules/
+WARNING 2025-08-22 10:19:38,266 basehttp 24412 25632 "POST /api/v1/report-schedules/ HTTP/1.1" 400 84
+WARNING 2025-08-22 10:20:29,997 log 24412 25632 Not Found: /api/v1/../dashboard/
+WARNING 2025-08-22 10:20:29,997 basehttp 24412 25632 "GET /api/v1/../dashboard/ HTTP/1.1" 404 36981
+WARNING 2025-08-22 10:20:55,129 log 24412 25632 Not Found: /api/v1/../system/health/
+WARNING 2025-08-22 10:20:55,130 basehttp 24412 25632 "GET /api/v1/../system/health/ HTTP/1.1" 404 36993

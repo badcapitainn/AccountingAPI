@@ -278,19 +278,22 @@ class Account(TimeStampedModel, SoftDeleteModel):
             end_date: End date for history (defaults to None)
             
         Returns:
-            QuerySet of JournalItem objects
+            QuerySet of Transaction objects
         """
-        from .transactions import JournalItem
+        from .transactions import Transaction
         
-        queryset = JournalItem.objects.filter(account=self)
+        # Get transactions that have journal items for this account
+        queryset = Transaction.objects.filter(
+            journal_entries__items__account=self
+        ).distinct()
         
         if start_date:
-            queryset = queryset.filter(journal_entry__transaction_date__gte=start_date)
+            queryset = queryset.filter(transaction_date__gte=start_date)
         
         if end_date:
-            queryset = queryset.filter(journal_entry__transaction_date__lte=end_date)
+            queryset = queryset.filter(transaction_date__lte=end_date)
         
-        return queryset.order_by('journal_entry__transaction_date', 'created_at')
+        return queryset.order_by('-transaction_date', '-created_at')
     
     def is_debit_balance(self):
         """Check if this account normally has a debit balance."""

@@ -80,3 +80,15 @@ WARNING 2025-08-21 12:28:58,617 logging Suspicious activity detected: http_error
 WARNING 2025-08-21 12:51:17,706 logging Suspicious activity detected: http_error from 127.0.0.1 - Status: 401
 WARNING 2025-08-21 12:52:06,128 logging Suspicious activity detected: http_error from 127.0.0.1 - Status: 401
 WARNING 2025-08-21 12:54:49,021 logging Suspicious activity detected: http_error from 127.0.0.1 - Status: 500
+WARNING 2025-08-21 19:49:09,593 logging Suspicious activity detected: http_error from 127.0.0.1 - Status: 500
+WARNING 2025-08-21 19:59:02,221 logging Suspicious activity detected: http_error from 127.0.0.1 - Status: 400
+WARNING 2025-08-21 20:04:47,127 logging Suspicious activity detected: http_error from 127.0.0.1 - Status: 401
+WARNING 2025-08-22 09:58:25,934 logging Suspicious activity detected: http_error from 127.0.0.1 - Status: 500
+WARNING 2025-08-22 10:01:01,469 logging Suspicious activity detected: http_error from 127.0.0.1 - Status: 500
+WARNING 2025-08-22 10:06:51,778 logging Suspicious activity detected: http_error from 127.0.0.1 - Status: 400
+WARNING 2025-08-22 10:08:43,531 logging Suspicious activity detected: http_error from 127.0.0.1 - Status: 400
+WARNING 2025-08-22 10:11:24,579 logging Suspicious activity detected: http_error from 127.0.0.1 - Status: 400
+WARNING 2025-08-22 10:16:55,077 logging Suspicious activity detected: http_error from 127.0.0.1 - Status: 401
+WARNING 2025-08-22 10:19:38,237 logging Suspicious activity detected: http_error from 127.0.0.1 - Status: 400
+WARNING 2025-08-22 10:20:29,996 logging Suspicious activity detected: http_error from 127.0.0.1 - Status: 404
+WARNING 2025-08-22 10:20:55,128 logging Suspicious activity detected: http_error from 127.0.0.1 - Status: 404
